@@ -22,6 +22,14 @@ const routes: Routes = [
   },{
     path: 'acompanhamento-do-servico',
     loadChildren: () => import('./acompanhamento-do-servico/acompanhamento-do-servico.module').then( m => m.AcompanhamentoDoServicoPageModule)
+  },
+  {
+    path: 'separacao-cliente-prestador',
+    loadChildren: () => import('./separacao-cliente-prestador/separacao-cliente-prestador.module').then( m => m.SeparacaoClientePrestadorPageModule)
+  },
+  {
+    path: 'gerenciamento-de-solicitacoes',
+    loadChildren: () => import('./gerenciamento-de-solicitacoes/gerenciamento-de-solicitacoes.module').then( m => m.GerenciamentoDeSolicitacoesPageModule)
   }
 ];
 @NgModule({
