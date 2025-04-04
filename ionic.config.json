@@ -1,0 +1,7 @@
+{
+  "name": "front-end-tcc-coleta-verde",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
