@@ -1,0 +1,45 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+ion-title{
+    text-align: center;
+}
+.end{
+    background-image: url(/src/assets/icon/end.jpg);
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: 20px;
+}
+.form{
+    display: flex;
+    justify-content: center; 
+    height: 100vh;
+    background-color: rgb(233, 237, 237);
+    background-image: url(/src/assets/icon/Captura_de_tela_2025-03-31_203325-removebg-preview.png);
+    background-repeat: no-repeat;
+    background-position: center bottom 100px
+}
+input{
+    border-radius: 10px;
+    padding: 7px;
+    width: 100%;
+    border-color: rgb(225, 225, 225);
+}
+input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: initial;
+  }
+
+button{
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #0A4E23;
+    color: white;
+    width: 100%;
+}
+
+button:hover{
+    background-color: #09451f;
+}
