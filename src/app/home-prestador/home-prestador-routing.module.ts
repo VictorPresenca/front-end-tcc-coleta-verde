@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Tab1Page } from './home.page';
+import { Tab1Page } from './home-prestador.page';
 
 const routes: Routes = [
   {

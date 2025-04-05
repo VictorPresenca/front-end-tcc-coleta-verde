@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tab1',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  templateUrl: 'home-prestador.page.html',
+  styleUrls: ['home-prestador.page.scss'],
   standalone: false,
 })
 export class Tab1Page {

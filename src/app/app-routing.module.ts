@@ -30,6 +30,18 @@ const routes: Routes = [
   {
     path: 'gerenciamento-de-solicitacoes',
     loadChildren: () => import('./gerenciamento-de-solicitacoes/gerenciamento-de-solicitacoes.module').then( m => m.GerenciamentoDeSolicitacoesPageModule)
+  },
+  {
+    path: 'pagamento',
+    loadChildren: () => import('./pagamento/pagamento.module').then( m => m.PagamentoPageModule)
+  },
+  {
+    path: 'home-cliente',
+    loadChildren: () => import('./home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+  },
+  {
+    path: 'leilao',
+    loadChildren: () => import('./leilao/leilao.module').then( m => m.LeilaoPageModule)
   }
 ];
 @NgModule({
