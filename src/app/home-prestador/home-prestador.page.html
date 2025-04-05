@@ -7,11 +7,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="navegacao">
+    <ion-button [routerLink]="['/acompanhamento-do-servico']">
+      Tela acompanhamento do servico
+    </ion-button>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-button [routerLink]="['/cadastro']">
+      Tela cadastro
+    </ion-button>
+
+    <ion-button [routerLink]="['/chat']">
+      Tela chat
+    </ion-button>
+
+    <ion-button [routerLink]="['/configuracoes']">
+      Tela configuracoes
+    </ion-button>
+
+    <ion-button [routerLink]="['/gerenciamento-de-solicitacoes']">
+      Tela gerenciamento de solicitações
+    </ion-button>
+
+    <ion-button [routerLink]="['/home-cliente']">
+      Tela home cliente
+    </ion-button>
+
+    <ion-button [routerLink]="['/leilao']">
+      Tela leilão
+    </ion-button>
+
+    <ion-button [routerLink]="['/login']">
+      Tela login
+    </ion-button>
+
+    <ion-button [routerLink]="['/pagamento']">
+      Tela pagamento
+    </ion-button>
+        
+    <ion-button [routerLink]="['/separacao-cliente-prestador']">
+      Tela separacao cliente-prestador
+    </ion-button>
+    
+    <ion-button [routerLink]="['/']">
+      Tela Home
+    </ion-button>
+
+  </div>
+
 </ion-content>
