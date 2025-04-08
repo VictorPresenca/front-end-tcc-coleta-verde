@@ -5,36 +5,32 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <p>Digite o valor combinado:</p>
 
- <p>Digite o valor combinado:</p>
+  <ion-item class="formatarMoeda">
+    <ion-label position="floating"></ion-label>
+    <ion-input
+      type="text"
+      [(ngModel)]="valor"
+      (ionInput)="formatarMoeda($event)"
+    ></ion-input>
+  </ion-item>
 
- <ion-item>
-  <ion-label position="floating"></ion-label>
-  <ion-input
-    type="text"
-    [(ngModel)]="valor"
-    (ionInput)="formatarMoeda($event)"
-  ></ion-input>
-</ion-item>
+  <p>Qual a forma de pagamento:</p>
 
-<p>Qual a forma de pagamento:</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let forma of formasPagamento">
+        <ion-button
+          expand="block"
+          [ngClass]="formaSelecionada === forma ? 'botao-verde-escuro' : 'botao-verde-claro'"
+          (click)="selecionarForma(forma)"
+        >
+          {{ forma }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-<ion-grid>
-  <ion-row>
-    <ion-col size="6" *ngFor="let forma of formasPagamento">
-      <ion-button
-        expand="block"
-        [ngClass]="formaSelecionada === forma ? 'botao-verde-escuro' : 'botao-verde-claro'"
-        (click)="selecionarForma(forma)"
-      >
-        {{ forma }}
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
-
-  <ion-button [routerLink]="['/']">
-    Tela Home
-  </ion-button>
+  <ion-button [routerLink]="['/']"> Tela Home </ion-button>
 </ion-content>
