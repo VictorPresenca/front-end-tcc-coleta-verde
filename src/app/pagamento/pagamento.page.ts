@@ -43,4 +43,24 @@ selecionarForma(forma: string) {
   }
 }
 
+abrirNotificacoes() {
+  console.log("Notificações clicadas!");
+  // ou redirecione, ou abra modal, etc.
+}
+
+mostrarEnderecos: boolean = false;
+
+enderecos: string[] = [
+  'Rua das Palmeiras, 123',
+  'Av. Brasil, 789',
+  'Praça Central, 456',
+];
+
+enderecoSelecionado: string = '';
+
+selecionarEndereco(endereco: string) {
+  this.enderecoSelecionado = endereco;
+  this.mostrarEnderecos = false;
+}
+
 }

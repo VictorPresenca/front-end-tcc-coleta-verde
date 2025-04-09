@@ -1,20 +1,102 @@
+ion-content{
+    --background: rgb(233, 237, 237);
+    position: relative;
+}
 
-.botao-verde-claro {
-    --background: #b9fbc0;
-    --color: #0a3d31;
-  }
-  
-  .botao-verde-escuro {
-    --background: #2d6a4f;
-    --color: white;
-  }
+ion-title{
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+}
 
-  .formatarMoeda{
+.content-padding{
+    padding: 16px;
+}
+
+.botao-verde-claro,
+.botao-cinza {
+  font-weight: bold;
+  --border-radius: 5px;
+  text-transform: capitalize;
+}
+
+p{
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-size: 14vw;
+}
+
+.p-pagamento{
+    margin-top: 35px;
+}
+
+.btn-pagar{
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.botao-cinza {
+  --background: #dbdbdb;
+  --color: #0a4e23;
+}
+
+.botao-verde-claro {
+  --background: #0a4e23;
+  --color: #ffffff;
+}
+
+.formatarMoeda {
+  --background: rgb(233, 237, 237);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  font-size: 14vw;
+  text-align: center;
+  color: #0a4e23;
+  width: 70vw;
+}
+
+button {
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #0a4e23;
+  color: white;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+button:hover {
+  background-color: #0c612b;
+}
+
+img{
+    position: relative;
+    z-index: 1;
+    margin-top: -150px;
+}
+
+.botao-notificacao{
+    --color: #0a4e23;
+    padding: -20px;
+}
+
+.titulo-dropdown {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    color: #0a3d31;
-    width: 70vw;
+    font-size: 15px;
+    color: #242424;
+  }
+  
+  .lista-enderecos {
+    position: absolute;
+    margin-right: 50px;
+    margin-left: 50px;
+    background-color: white;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
