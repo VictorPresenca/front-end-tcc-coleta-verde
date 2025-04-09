@@ -1,0 +1,98 @@
+ion-content {
+    --background: white;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-start;
+    min-height: 100%;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .logo-background {
+    background-color: #388e3c;
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .leaf-icon {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .coleta {
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .verde {
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .form-container {
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  .input-group {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  ion-item {
+    --background: transparent;
+    --border-color: #c8c7cc;
+    margin-bottom: 10px;
+    border-radius: 8px;
+  }
+  
+  ion-label {
+    color: #222428;
+  }
+  
+  .input-field {
+    font-size: 1em;
+  }
+  
+  .register-button {
+    --background: black; /* Cor do botão alterada para preto */
+    --color: #ffffff;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .eye-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+  }
