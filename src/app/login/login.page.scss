@@ -1,0 +1,115 @@
+ion-content {
+    --background: #f4f5f8; /* Cor de fundo geral */
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    justify-content: flex-start;
+    min-height: 100%;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .logo-background {
+    background-color: #388e3c;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  ion-icon {
+    font-size: 30px;
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .coleta {
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .verde {
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .welcome {
+    color: #222428;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+  
+  .form-container {
+    width: 80%;
+    max-width: 400px;
+  }
+  
+  .input-group {
+    background-color: #e0e0e0; /* Tom de cinza claro */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  ion-item {
+    --background: transparent;
+    --border-color: #c8c7cc;
+    margin-bottom: 10px;
+  }
+  
+  ion-label {
+    color: #222428;
+  }
+  
+  .input-field {
+    font-size: 1em; /* Define o tamanho da fonte para os inputs */
+  }
+  
+  .enter-button {
+    --background: #333333;
+    --color: #ffffff;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .forgot-password {
+    color: #707070;
+    font-size: 0.9em; /* Tamanho inicial um pouco menor */
+    text-align: center;
+    transition: font-size 0.2s, font-weight 0.2s; /* Adiciona transição suave */
+  }
+  
+  .forgot-password:hover {
+    font-size: 1em; /* Aumenta para o tamanho normal no hover */
+    font-weight: bold;
+  }
+  
+  .eye-icon {
+    font-size: 1.2em; /* Aumenta um pouco o tamanho do ícone */
+    cursor: pointer;
+  }
