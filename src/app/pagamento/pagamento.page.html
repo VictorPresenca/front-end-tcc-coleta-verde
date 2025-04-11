@@ -1,10 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
 
-    <!-- Título que abre o dropdown -->
-    <div class="titulo-dropdown" (click)="mostrarEnderecos = !mostrarEnderecos">
-      {{ enderecoSelecionado || 'Endereço do usuário' }}
-    </div>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
 
     <!-- Botão de notificação -->
     <ion-buttons slot="end">
@@ -14,15 +13,6 @@
     </ion-buttons>
 
   </ion-toolbar>
-
-  <!-- Lista suspensa de endereços -->
-  <div class="lista-enderecos" *ngIf="mostrarEnderecos">
-    <ion-list>
-      <ion-item *ngFor="let endereco of enderecos" (click)="selecionarEndereco(endereco)">
-        {{ endereco }}
-      </ion-item>
-    </ion-list>
-  </div>
 </ion-header>
 
 
@@ -61,7 +51,5 @@
     </div>
 
   </div>
-
-  <img src="/assets/img/fundo-arvores-removebg-preview.png" alt="">
   <!-- <ion-button [routerLink]="['/']"> Tela Home </ion-button> -->
 </ion-content>

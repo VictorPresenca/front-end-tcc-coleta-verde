@@ -17,5 +17,7 @@ initializeApp() {
     document.body.classList.remove('dark'); // Remove o modo escuro
   });
 }
+
+
   
 }
