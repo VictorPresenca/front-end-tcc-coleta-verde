@@ -3,19 +3,28 @@
 }
 ion-title{
     text-align: center;
+    font-size: 5vw;
+}
+ion-select{
+  font-size: 4.5vw;
 }
 .bgd{
-  background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png'); 
-  background-repeat: repeat-x; 
-  background-size: contain; 
+  background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
   background-position: center bottom 100px;
 }
 .form{
+    padding: 5px 25px 80px;
     justify-content: center;
     height: 100vh;
     background-color: rgb(233, 237, 237);
-
+    font-size: 4vw;
 }
+h6{
+  font-size: 4.5vw;
+}
+
 input{
     border-radius: 10px;
     padding: 7px;
@@ -36,8 +45,23 @@ button{
     background-color: #0A4E23;
     color: white;
     width: 100%;
+    font-size: 4vw;
 }
 
 button:hover{
     background-color: #09451f;
+}
+
+@media (min-width: 1024px){
+  h6{
+    font-size: 1vw;
+  }
+  .form{
+    padding: 5px 25px 80px;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(233, 237, 237);
+    font-size: 2vw;
+}
+
 }
