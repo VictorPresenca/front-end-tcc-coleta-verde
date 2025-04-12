@@ -14,7 +14,7 @@ ion-select{
   background-size: contain;
   background-position: center bottom 100px;
 }
-.form{
+.container{
     padding: 5px 25px 80px;
     justify-content: center;
     height: 100vh;
@@ -52,16 +52,24 @@ button:hover{
     background-color: #09451f;
 }
 
-@media (min-width: 1024px){
-  h6{
-    font-size: 1vw;
-  }
-  .form{
-    padding: 5px 25px 80px;
-    justify-content: center;
-    height: 100vh;
-    background-color: rgb(233, 237, 237);
-    font-size: 2vw;
-}
 
+@media (min-width: 1024px) {
+  ion-title {
+    font-size: 2rem;
+  }
+
+  ion-select,
+  h6,
+  .container,
+  button {
+    font-size: 1.1rem;
+  }
+
+  .bgd {
+    background-image: none;
+  }
+
+  input {
+    font-size: 1rem;
+  }
 }
