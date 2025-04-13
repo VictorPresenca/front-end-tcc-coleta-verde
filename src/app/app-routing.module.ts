@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'leilao',
     loadChildren: () => import('./leilao/leilao.module').then( m => m.LeilaoPageModule)
+  },
+  {
+    path: 'solicitacao',
+    loadChildren: () => import('./solicitacao/solicitacao.module').then( m => m.SolicitacaoPageModule)
   }
 ];
 @NgModule({
