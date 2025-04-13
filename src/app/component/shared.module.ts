@@ -4,9 +4,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { ToolbarGlobalComponent } from './toolbar-global/toolbar-global.component';
 
+import { FooterGlobalComponent } from './footer-global/footer-global.component';
+
+
 @NgModule({
-  declarations: [ToolbarGlobalComponent],
-  exports: [ToolbarGlobalComponent],
+  declarations: [ToolbarGlobalComponent, FooterGlobalComponent],
+  exports: [ToolbarGlobalComponent, FooterGlobalComponent],
   imports: [
     CommonModule,
     IonicModule
