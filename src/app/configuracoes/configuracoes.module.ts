@@ -8,12 +8,15 @@ import { ConfiguracoesPageRoutingModule } from './configuracoes-routing.module';
 
 import { ConfiguracoesPage } from './configuracoes.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConfiguracoesPageRoutingModule
+    ConfiguracoesPageRoutingModule,
+    SharedModule
   ],
   declarations: [ConfiguracoesPage]
 })
