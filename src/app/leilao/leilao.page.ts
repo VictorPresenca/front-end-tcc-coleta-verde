@@ -13,4 +13,14 @@ export class LeilaoPage implements OnInit {
   ngOnInit() {
   }
 
+  mensagem: string = '';
+
+  enviarMensagem() {
+    if (this.mensagem.trim()) {
+      console.log('Mensagem enviada:', this.mensagem);
+      this.mensagem = '';
+    }
+  }
+
+
 }

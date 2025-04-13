@@ -1,5 +1,58 @@
-.descricaoChat{
-    display: flex;
+ion-content {
+    --background: #EFF0EF; 
+    background-color: #EFF0EF;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    display: flex;
+  }
+
+.descricaoChat{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
+
+.descricaoChat ion-row {
+    justify-content: center;
+}
+
+.descricaoChat ion-row img {
+    margin-bottom: 14px;
+}
+
+.descricaoChat p {
+    margin: 8px 0;
+}
+
+.mensagem-container {
+    position: fixed;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    padding: 6px;
+    background: #fff;
+    z-index: 10;
+    border-top: 1px solid #ddd;
+    width: 98%;
+    border-radius: 20px;
+    margin-left: 1%;
+}
+  
+.mensagem-input {
+    flex: 1;
+}
+  
+.mensagens {
+    padding-bottom: 70px;
+}
+
+
+.mensagem-container  ion-button {
+    color: #000 !important;
+    font-size: 22px;
+}
+  
