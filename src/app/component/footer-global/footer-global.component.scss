@@ -1,0 +1,31 @@
+ion-toolbar ion-buttons {
+    width: 100%;
+    justify-content: center;
+}
+
+ion-toolbar ion-buttons a.link-icone {
+    flex-direction: column !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 90px;
+    color: #000000;
+    font-size: 12px;
+    text-decoration: initial;
+    padding: 10px;
+}
+
+ion-toolbar ion-buttons a.link-icone:hover {
+    background-color: #b5f3bb;
+    border-radius: 20px;
+}
+
+.icone-custom {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+ion-toolbar ion-buttons a.link-icone ion-label {
+    margin-top: 7px;
+}
