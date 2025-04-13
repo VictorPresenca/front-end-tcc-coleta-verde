@@ -5,7 +5,49 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/']">
-    Tela Home
-  </ion-button>
+
+  <div>
+    <ion-grid>
+      <ion-row>
+
+        <ion-col>
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+          </ion-buttons>
+        </ion-col>
+
+        <ion-col>
+          <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 45px; height: 45px;"/>
+        </ion-col>
+
+        <ion-col>
+          <p>Nome Completo do Trabalhador</p>
+        </ion-col>
+
+        <ion-col>
+          <ion-button aria-label="Favorite">
+            <ion-icon name="heart" aria-hidden="true"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="descricaoChat">
+    <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 165px; height: 165px;"/>
+    <p>Nome Completo do Trabalhador</p>
+    <p>200 coletas realizadas</p>
+    <ion-row>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star-half"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-row>
+
+  </div>
+  
+  
+
 </ion-content>
