@@ -8,12 +8,16 @@ import { LeilaoPageRoutingModule } from './leilao-routing.module';
 
 import { LeilaoPage } from './leilao.page';
 
+import { SharedModule } from '../component/shared.module';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LeilaoPageRoutingModule
+    LeilaoPageRoutingModule,
+    SharedModule
   ],
   declarations: [LeilaoPage]
 })
