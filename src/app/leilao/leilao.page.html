@@ -11,9 +11,11 @@
       <ion-row>
 
         <ion-col>
-          <ion-buttons slot="start">
-            <ion-back-button defaultHref="/"></ion-back-button>
-          </ion-buttons>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-back-button defaultHref="/"></ion-back-button>
+            </ion-buttons>
+          </ion-toolbar>
         </ion-col>
 
         <ion-col>
@@ -25,9 +27,7 @@
         </ion-col>
 
         <ion-col>
-          <ion-button aria-label="Favorite">
-            <ion-icon name="heart" aria-hidden="true"></ion-icon>
-          </ion-button>
+          <img src="../../assets/imagens/icones/iconeFavorite.png">
         </ion-col>
 
       </ion-row>
@@ -59,7 +59,7 @@
       <ion-item lines="none">
         <ion-input
           [(ngModel)]="mensagem"
-          placeholder="Sua mensagem aqui..."
+          placeholder="Digite sua mensagem aqui..."
           class="mensagem-input"
           type="text"
         ></ion-input>
