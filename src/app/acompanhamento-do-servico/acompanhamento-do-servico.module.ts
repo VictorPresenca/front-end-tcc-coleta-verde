@@ -8,12 +8,15 @@ import { AcompanhamentoDoServicoPageRoutingModule } from './acompanhamento-do-se
 
 import { AcompanhamentoDoServicoPage } from './acompanhamento-do-servico.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AcompanhamentoDoServicoPageRoutingModule
+    AcompanhamentoDoServicoPageRoutingModule,
+    SharedModule
   ],
   declarations: [AcompanhamentoDoServicoPage]
 })

@@ -8,12 +8,15 @@ import { PagamentoPageRoutingModule } from './pagamento-routing.module';
 
 import { PagamentoPage } from './pagamento.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PagamentoPageRoutingModule
+    PagamentoPageRoutingModule,
+    SharedModule
   ],
   declarations: [PagamentoPage]
 })
