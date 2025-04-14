@@ -2,10 +2,10 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab2Page } from './pedidos-cliente.page';
+import { PerfilPrestadorPage } from './perfil-prestador.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
-import { Tab2PageRoutingModule } from './pedidos-cliente';
+import { PerfilPrestadorPageRoutingModule } from './perfil-prestador-routing.module';
 
 import { SharedModule } from '../component/shared.module';
 
@@ -15,9 +15,9 @@ import { SharedModule } from '../component/shared.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule,
+    PerfilPrestadorPageRoutingModule,
     SharedModule
   ],
-  declarations: [Tab2Page]
+  declarations: [PerfilPrestadorPage]
 })
-export class Tab2PageModule {}
+export class PerfilPrestadorPageModule {}
