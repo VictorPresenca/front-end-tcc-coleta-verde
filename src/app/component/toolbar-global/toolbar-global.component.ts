@@ -13,6 +13,7 @@ export class ToolbarGlobalComponent  implements OnInit {
   ngOnInit() {}
 
   @Input() titulo: string = 'Título'; // Personalizável por página
+  @Input() mostrarBotaoVoltar: boolean = true;
 
   abrirNotificacoes() {
     // Coloque aqui a lógica para abrir as notificações

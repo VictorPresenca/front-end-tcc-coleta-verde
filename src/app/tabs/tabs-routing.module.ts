@@ -16,8 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../pedidos-cliente/pedidos-cliente.module').then(m => m.Tab2PageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.Tab3PageModule)
+        path: 'perfil-prestador',
+        loadChildren: () => import('../perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
       },
       {
         path: '',

@@ -12,8 +12,8 @@ const routes: Routes = [
     loadChildren: () => import('../chat/chat.module').then( m => m.ChatPageModule)
   },
   {
-    path: 'acompanhamento-do-servico',
-    loadChildren: () => import('../acompanhamento-do-servico/acompanhamento-do-servico.module').then( m => m.AcompanhamentoDoServicoPageModule)
+    path: 'pedido-prestador',
+    loadChildren: () => import('../pedido-prestador/pedido-prestador.module').then( m => m.PedidoPrestadorPageModule)
   }
 ];
 

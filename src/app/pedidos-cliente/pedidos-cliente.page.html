@@ -1,11 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Endereço do usuario
-    </ion-title>
+    <app-toolbar-global [titulo]="'Pedidos'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" scrollY="false">
-    
+  <div class="content">
+
+    <div class="center-button">
+      <ion-button shape="round" class="add-pedido" [routerLink]="['/solicitacao']">
+        <ion-icon slot="icon-only" name="add-outline" class="icone-mais"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
 </ion-content>

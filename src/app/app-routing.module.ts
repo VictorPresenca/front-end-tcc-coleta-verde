@@ -7,12 +7,20 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'perfil-prestador',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'cadastro',
-    loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
+    path: 'cadastro-cliente',
+    loadChildren: () => import('./cadastro-cliente/cadastro-cliente.module').then( m => m.CadastroClientePageModule)
   },{
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
@@ -20,16 +28,16 @@ const routes: Routes = [
     path: 'configuracoes',
     loadChildren: () => import('./configuracoes/configuracoes.module').then( m => m.ConfiguracoesPageModule)
   },{
-    path: 'acompanhamento-do-servico',
-    loadChildren: () => import('./acompanhamento-do-servico/acompanhamento-do-servico.module').then( m => m.AcompanhamentoDoServicoPageModule)
+    path: 'pedido-prestador',
+    loadChildren: () => import('./pedido-prestador/pedido-prestador.module').then( m => m.PedidoPrestadorPageModule)
   },
   {
-    path: 'separacao-cliente-prestador',
-    loadChildren: () => import('./separacao-cliente-prestador/separacao-cliente-prestador.module').then( m => m.SeparacaoClientePrestadorPageModule)
+    path: 'inicial',
+    loadChildren: () => import('./inicial/inicial.module').then( m => m.InicialPageModule)
   },
   {
-    path: 'gerenciamento-de-solicitacoes',
-    loadChildren: () => import('./gerenciamento-de-solicitacoes/gerenciamento-de-solicitacoes.module').then( m => m.GerenciamentoDeSolicitacoesPageModule)
+    path: 'pedidos-prestador',
+    loadChildren: () => import('./pedidos-prestador/pedidos-prestador.module').then( m => m.PedidosPrestadorPageModule)
   },
   {
     path: 'pagamento',
@@ -46,6 +54,22 @@ const routes: Routes = [
   {
     path: 'solicitacao',
     loadChildren: () => import('./solicitacao/solicitacao.module').then( m => m.SolicitacaoPageModule)
+  },
+  {
+    path: 'cadastro-prestador',
+    loadChildren: () => import('./cadastro-prestador/cadastro-prestador.module').then( m => m.CadastroPrestadorPageModule)
+  },
+  {
+    path: 'pedido-cliente',
+    loadChildren: () => import('./pedido-cliente/pedido-cliente.module').then( m => m.PedidoClientePageModule)
+  },
+  {
+    path: 'agendamento',
+    loadChildren: () => import('./agendamento/agendamento.module').then( m => m.AgendamentoPageModule)
+  },
+  {
+    path: 'perfil-cliente',
+    loadChildren: () => import('./perfil-cliente/perfil-cliente.module').then( m => m.PerfilClientePageModule)
   }
 ];
 @NgModule({
