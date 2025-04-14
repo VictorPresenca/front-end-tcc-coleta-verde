@@ -13,10 +13,10 @@ const routes: Routes = [
       },
       {
         path: 'tab2',
-        loadChildren: () => import('../pedidos-cliente/pedidos-cliente.module').then(m => m.Tab2PageModule)
+        loadChildren: () => import('../pedidos-cliente/pedidos-cliente.module').then(m => m.PedidosClientePageModule)
       },
       {
-        path: 'perfil-prestador',
+        path: 'tab3',
         loadChildren: () => import('../perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
       },
       {

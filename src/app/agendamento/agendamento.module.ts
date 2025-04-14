@@ -8,12 +8,15 @@ import { AgendamentoPageRoutingModule } from './agendamento-routing.module';
 
 import { AgendamentoPage } from './agendamento.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AgendamentoPageRoutingModule
+    AgendamentoPageRoutingModule,
+    SharedModule
   ],
   declarations: [AgendamentoPage]
 })

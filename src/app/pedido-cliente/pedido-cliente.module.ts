@@ -8,12 +8,15 @@ import { PedidoClientePageRoutingModule } from './pedido-cliente-routing.module'
 
 import { PedidoClientePage } from './pedido-cliente.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PedidoClientePageRoutingModule
+    PedidoClientePageRoutingModule,
+    SharedModule
   ],
   declarations: [PedidoClientePage]
 })

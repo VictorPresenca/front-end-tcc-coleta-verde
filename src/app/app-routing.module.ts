@@ -8,11 +8,11 @@ const routes: Routes = [
   },
   {
     path: 'perfil-prestador',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
   },
   {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    path: 'pedidos-cliente',
+    loadChildren: () => import('./pedidos-cliente/pedidos-cliente.module').then(m => m.PedidosClientePageModule)
   },
   {
     path: 'login',

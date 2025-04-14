@@ -8,12 +8,15 @@ import { HomeClientePageRoutingModule } from './home-cliente-routing.module';
 
 import { HomeClientePage } from './home-cliente.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeClientePageRoutingModule
+    HomeClientePageRoutingModule,
+    SharedModule
   ],
   declarations: [HomeClientePage]
 })

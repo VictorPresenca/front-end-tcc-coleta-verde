@@ -8,12 +8,15 @@ import { PedidosPrestadorPageRoutingModule } from './pedidos-prestador-routing.m
 
 import { PedidosPrestadorPage } from './pedidos-prestador.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PedidosPrestadorPageRoutingModule
+    PedidosPrestadorPageRoutingModule,
+    SharedModule
   ],
   declarations: [PedidosPrestadorPage]
 })
