@@ -1,13 +1,66 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <app-toolbar-global [titulo]="'Pedido'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pedido-cliente</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="content">
+    <ion-card class="main-card">
+      <div class="value-section">
+        <ion-label>VALOR:</ion-label>
+        <div class="value">R$ 30,00</div>
+      </div>
+
+      <div class="input-group">
+        <ion-label position="stacked">CEP:</ion-label>
+        <ion-input type="text" value="20070-030"></ion-input>
+      </div>
+
+      <div class="input-group">
+        <ion-label position="stacked">HORÁRIO:</ion-label>
+        <ion-input type="text" value="12h e 30 min"></ion-input>
+      </div>
+
+      <div class="input-group">
+        <ion-label position="stacked">DATA:</ion-label>
+        <ion-input type="text" value="15/04/2025"></ion-input>
+      </div>
+
+      <div class="input-group">
+        <ion-label position="stacked">ENDEREÇO DA EMPRESA:</ion-label>
+        <ion-input type="text" value="Rua João da Silva, 123"></ion-input>
+      </div>
+
+      <div class="description-group">
+        <ion-label position="stacked">DESCRIÇÃO:</ion-label>
+        <div class="description-box">
+          O lixo contém 30 latas de metal...
+        </div>
+      </div>
+    </ion-card>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="inicio">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Início</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="solicitacoes">
+          <ion-icon name="list-outline"></ion-icon>
+          <ion-label>Solicitações</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="perfil">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

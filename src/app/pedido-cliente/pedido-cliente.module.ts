@@ -10,6 +10,7 @@ import { PedidoClientePage } from './pedido-cliente.page';
 
 import { SharedModule } from '../component/shared.module';
 
+
 @NgModule({
   imports: [
     CommonModule,

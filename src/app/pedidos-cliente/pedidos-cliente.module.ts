@@ -9,6 +9,7 @@ import { PedidosClientePageRoutingModule } from './pedidos-cliente-routing.modul
 
 import { SharedModule } from '../component/shared.module';
 
+
 @NgModule({
   imports: [
     IonicModule,
