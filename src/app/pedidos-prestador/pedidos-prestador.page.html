@@ -5,7 +5,52 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/']">
-    Tela Home
-  </ion-button>
+  <div class="content">
+    
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle class="subtitle-em-andamento">Em andamento</ion-card-subtitle>
+        <ion-card-title>Pedido 12345</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Informações simples sobre o pedido
+      </ion-card-content>
+    
+      <ion-button fill="abrir" class="abrir-card">Abrir</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle class="subtitle-concluido">Concluido</ion-card-subtitle>
+        <ion-card-title>Pedido 12345</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Informações simples sobre o pedido
+      </ion-card-content>
+    
+      <ion-button fill="abrir" class="abrir-card">Abrir</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle class="subtitle-cancelado">Cancelado</ion-card-subtitle>
+        <ion-card-title>Pedido 12345</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Informações simples sobre o pedido
+      </ion-card-content>
+    
+      <ion-button fill="abrir" class="abrir-card">Abrir</ion-button>
+    </ion-card>
+
+    <div class="center-button">
+      <ion-button shape="round" class="add-pedido" [routerLink]="['/solicitacao']">
+        <ion-icon slot="icon-only" name="add-outline" class="icone-mais"></ion-icon>
+      </ion-button>
+    </div>
+
+  </div>
 </ion-content>
