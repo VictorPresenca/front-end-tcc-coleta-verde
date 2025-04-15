@@ -5,9 +5,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">agendamento</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container bgd">
+
+    <ion-card class="card-data">
+      <ion-card-header>
+        <ion-card-title>Data do Serviço</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <input type="date" name="date" id="IdDate">
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 </ion-content>
+<app-footer-global></app-footer-global>
