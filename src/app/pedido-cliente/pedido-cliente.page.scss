@@ -1,0 +1,64 @@
+ion-content{
+    --background: rgb(233, 237, 237);
+    padding: 15px;
+  }
+  
+  .content{
+    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center bottom;
+    width: 100%;
+    height: 100%;
+  }
+  
+  ion-card.main-card {
+    background-color: #f8f9fa; /* Cor de fundo do card principal, similar à imagem */
+    border-radius: 20px;
+    margin: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicionando uma leve sombra para destacar */
+  }
+  
+  .value-section {
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 10px 20px;
+  }
+  
+  .value-section ion-label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #1e490b; /* Verde mais escuro para a label "VALOR:" */
+  }
+  
+  .value-section .value {
+    font-size: 1.5em;
+    color: #1e490b; /* Verde mais escuro para o valor - CORRIGIDO PARA SER IGUAL À LABEL */
+    font-weight: bold;
+  }
+  
+  .input-group {
+    margin: 10px 20px;
+  }
+  
+  .input-group ion-label {
+    color: #1e490b; /* Verde mais escuro para as labels dos inputs */
+    margin-bottom: 5px;
+  }
+  
+  .description-group {
+    margin: 20px;
+  }
+  
+  .description-group ion-label {
+    color: #1e490b; /* Verde mais escuro para a label da descrição */
+    margin-bottom: 5px;
+  }
+  
+  .description-box {
+    background-color: #f4f5f8; /* Cor de fundo da caixa de descrição, similar à imagem */
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    white-space: pre-line;
+  }
