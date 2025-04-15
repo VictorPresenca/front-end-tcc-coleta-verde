@@ -1,21 +1,30 @@
 *{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-ion-title{
-    text-align: center;
-}
 .bgd{
-  background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png'); 
-  background-repeat: repeat-x; 
-  background-size: contain; 
+  background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
   background-position: center bottom;
   width: 100%;
   height: 100%;
   padding: 16px;
 }
-.form{
+.container{
     justify-content: center;
     background-color: rgb(233, 237, 237);
+    font-size: 4.5vw;
+
+    h6{
+      font-size: 5vw;
+    }
+    button{
+      font-size: 3vw;
+    }
+}
+
+ion-select{
+  font-size: 4vw;
 }
 input{
     border-radius: 10px;
