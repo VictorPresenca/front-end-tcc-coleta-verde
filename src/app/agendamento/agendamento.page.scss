@@ -1,19 +1,24 @@
-.bgd{
+/* Fundo da página */
+.bgd {
   background-color: rgb(233, 237, 237);
   background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center bottom;
   width: 100%;
- height: 100%;
+  height: 100%;
 }
-hr{
+
+/* Linha separadora */
+hr {
   border: 1px solid rgb(219, 222, 222);
   width: 100%;
   margin: 0%;
   padding: 0%;
 }
-ion-card{
+
+/* Estilo geral dos cards */
+ion-card {
   border-radius: 8px;
   background-color: #d6f0d9;
   padding: 30px 0px 20px 0px;
@@ -23,32 +28,49 @@ ion-card{
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
 }
 
-.btn{
+/* Botões */
+.btn {
   margin: 10px 15px 0px 10px;
   text-align: right;
-  input{
+
+  input {
     border: none;
     color: #0A4E23;
   }
 }
-ion-card-content{
-  background-color: #d6f0d9;
 
+/* Conteúdo interno do card */
+ion-card-content {
+  background-color: #d6f0d9;
 }
 
-.card-data{
+/* Card de horário */
+.card-horario {
+  ion-card-title {
+    font-size: 4vw;
+  }
+}
+
+/* Card da data */
+.card-data {
   margin-bottom: 5%;
 }
-input{
+
+/* Inputs em geral */
+input {
   background-color: #d6f0d9;
   font-size: 4.5vw;
 }
+
+/* Título dos cards */
 ion-card-title {
-  color: #0A4E23;
+  color: #3f3d3d;
   font-size: 7vw;
   font-weight: 600;
   margin-bottom: 6px;
 }
+
+/* Input do tipo data */
 input[type="date"] {
   width: 100%;
   padding: 6px 10px;
@@ -57,11 +79,44 @@ input[type="date"] {
   box-sizing: border-box;
 }
 
-.card-horario {
-  border-radius: 14px;
-  background-color: #f9f9f9;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.07);
+/* Container do horário */
+.row-horario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* ou flex-start se quiser encostar na esquerda */
+  gap: 8px;
+  margin-top: 8px;
+}
 
-  ion-card-header {
-    padding: 8px 16px 0 16px;
-  }}
+/* Inputs de hora e minuto */
+.hora-input,
+.minuto-input {
+  width: 100%;
+  height: 70px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  text-align: center;
+  font-size: 5vw;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* Separador ":" */
+.sep {
+  font-size: 10vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.btn-submit {
+  display: block;
+  margin: 30px auto 0 auto; /* top, right, bottom, left */
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #0A4E23;
+  color: white;
+  width: 70%;
+  text-align: center;
+}
