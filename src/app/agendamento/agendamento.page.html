@@ -5,9 +5,62 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">agendamento</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="container bgd">
+
+    <ion-card class="card-data">
+      <ion-card-header>
+        <ion-card-title>Data do Serviço</ion-card-title>
+      </ion-card-header>
+      <hr>
+      <ion-card-content>
+        <input type="date" name="date" id="IdDate">
+      </ion-card-content>
+      <div class="btn">
+      <input type="reset" value="cancelar">
+      <input type="submit" value="ok">
+      </div>
+    </ion-card>
+
+    <ion-card class="card-horario">
+      <ion-card-header>
+        <ion-card-title>Horário do serviço</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <!-- Container dos inputs e separador -->
+        <div class="row-horario">
+
+          <!-- Campo Hora (ex: "20") -->
+          <ion-input
+            type="number"
+            placeholder="20"
+            class="hora-input"
+          ></ion-input>
+
+          <!-- Separador ":" -->
+          <span class="sep">:</span>
+
+          <!-- Campo Minuto (ex: "00") -->
+          <ion-input
+            type="number"
+            placeholder="00"
+            class="minuto-input"
+          ></ion-input>
+
+        </div>
+
+        <!-- Botões Cancelar e OK -->
+        <div class="btn">
+          <input type="reset" value="cancelar">
+          <input type="submit" value="ok">
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+    <button class="btn-submit" type="submit">Avançar</button>
+
+  </div>
 </ion-content>
+<app-footer-global></app-footer-global>
