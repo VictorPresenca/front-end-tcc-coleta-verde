@@ -1,11 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home-cliente</ion-title>
+    <app-toolbar-global [titulo]="'Home'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/']">
-    Tela Home
-  </ion-button>
+  <div class="content">
+    <div class="bgd-superior">
+      <img class="img-logo" src="/assets/imagens/logo-app-coleta-verde.png" alt="logo-app-coleta-verde">
+    </div>
+
+    <div class="atalhos-home"> 
+      <h2>COLETA DE ENTULHO</h2>
+      <p>Resto de tijolo, caliça e madeira</p>
+      <ion-button expand="block">Solicitar</ion-button>
+    </div>
+
+    <div class="atalhos-home"> 
+      <h2>COLETA DE LIXO COMUM</h2>
+      <p>Reciclaveis, orgânico</p>
+      <ion-button expand="block">Solicitar</ion-button>
+    </div>
+
+    <div class="carrossel">
+      <div class="card">
+        <ion-card>
+          <ion-card-header>
+            <img class="img-card" src="/assets/imagens/arvore-icone-png.png" alt="arvore-icone-png">
+          </ion-card-header>
+          <ion-card-content>Preservar o meio ambiente começa com o destino do seu lixo.</ion-card-content>
+        </ion-card>
+      </div>
+      <div class="card">
+        <ion-card>
+          <ion-card-header>
+            <img class="img-card" src="/assets/imagens/folhas-verdes-icone-png.png" alt="arvore-icone-png">
+          </ion-card-header>
+          <ion-card-content>Descartar com consciência é plantar um futuro melhor.</ion-card-content>
+        </ion-card>
+      </div>
+      <div class="card">
+        <ion-card>
+          <ion-card-header>
+            <img class="img-card" src="/assets/imagens/icone-lampada-verde-png.png" alt="arvore-icone-png">
+          </ion-card-header>
+          <ion-card-content>O mundo muda quando a gente aprende a descartar.</ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
+
+<app-footer-global></app-footer-global>
