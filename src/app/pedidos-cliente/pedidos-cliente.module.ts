@@ -19,6 +19,6 @@ import { SharedModule } from '../component/shared.module';
     PedidosClientePageRoutingModule,
     SharedModule
   ],
-  declarations: [PedidosClientePage]
+  
 })
 export class PedidosClientePageModule {}
