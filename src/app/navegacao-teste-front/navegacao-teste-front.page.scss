@@ -1,0 +1,19 @@
+ion-content{
+    --background: rgb(233, 237, 237);
+  }
+  
+ion-title{
+    text-align: center;
+    padding: 30px;
+}
+
+ion-button{
+    width: 500px;
+}
+
+.navegacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+}
