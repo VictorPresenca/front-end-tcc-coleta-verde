@@ -1,9 +1,79 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <app-toolbar-global [titulo]="'Perfil'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="no-scroll">
+  <div class="container-final-fixo">
+    <div class="header-final-fixo header-bg-branco">
+    <div class="botao-leilao-header">Leilão</div>
+    </div>
 
-<ion-content [fullscreen]="true">
+    <div class="linha-separadora-topo"></div>
 
+    <div class="perfil-info-container">
+      <ion-avatar class="perfil-avatar">
+        <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png">
+      </ion-avatar>
+      <ion-label class="nome-cliente-label">
+        <strong>Nome do prestador</strong>
+      </ion-label>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="chatbubble-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Conversas</h2>
+          <p>Meu histórico de conversas</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="notifications-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Notificações</h2>
+          <p>Minha central de notificações</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Dados da conta</h2>
+          <p>Minhas informações da conta</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="wallet-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Pagamentos</h2>
+          <p>Valor gasto em cada coleta</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="heart-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Favoritos</h2>
+          <p>Seus prestadores mais fiéis</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none" routerLink="#">
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h2>Configurações</h2>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+
+  <app-footer-global></app-footer-global>
 </ion-content>

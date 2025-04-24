@@ -4,8 +4,7 @@
       <div class="botao-leilao-header" (click)="abrirLeilao()">Leilão</div>
       <ion-label class="endereco-usuario-final-fixo">Endereço do Usuário</ion-label>
       <div class="icones-header-final-fixo">
-        <ion-icon name="arrow-forward-outline" class="icone-header-final-fixo"></ion-icon>
-        <ion-icon name="notifications-outline" class="icone-header-final-fixo"></ion-icon>
+        <ion-icon name="notifications-outline" class="icone-header-final-fixo notificacao-verde"></ion-icon>
       </div>
     </div>
     <div class="linha-separadora-topo"></div>
@@ -43,6 +42,7 @@
             <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
             <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
             <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
+            <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
             <ion-icon name="star-outline" color="warning" class="estrela-menor-final-fixo"></ion-icon>
           </div>
         </div>
@@ -55,14 +55,18 @@
       <ion-icon name="document-text-outline" class="icone-procurar-final-fixo verde-principal"></ion-icon>
       <ion-label class="texto-procurar-final-fixo verde-principal-texto">PROCURAR PEDIDO</ion-label>
     </div>
-    <ion-button fill="clear" class="botao-detalhe-final-fixo verde-final-fixo centralizado-tela-botao abaixo-procurar">Ir para tela de solicitações</ion-button>
+    <ion-button fill="clear" class="botao-detalhe-final-fixo verde-final-fixo centralizado-tela-botao abaixo-procurar">Ir para tela de serviços</ion-button>
+    <ion-button fill="outline" size="small" class="centralizado-tela-botao" [routerLink]="['/navegacao-teste-front']">NAVEGAR</ion-button>
 
     <ion-button [routerLink]="['/navegacao-teste-front']">
       Tela Navegação
     </ion-button>
 
+<<<<<<< HEAD
   </div>
 
+=======
+>>>>>>> 44b166363ed36f00d6e3148ead3ffd238e67f601
   <app-footer-global></app-footer-global>
 
 </ion-content>

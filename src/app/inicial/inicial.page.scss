@@ -1,0 +1,59 @@
+ion-content {
+    --background: rgb(233, 237, 237); /* Cor de fundo padrão */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    min-height: 100vh; /* Garante que o ion-content ocupe toda a altura da viewport */
+    padding-bottom: 20px; /* Espaçamento inferior */
+    padding-top: 30px; /* Espaçamento superior */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .content {
+    background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+  }
+  
+  .logo-container {
+    margin-bottom: 40px;
+    width: 150px;
+  }
+  
+  .logo-container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .form-container {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+  
+h1{
+    font-size: 64px;
+    color: #000000;
+    margin: 0;
+    text-align: center;
+}
+
+span {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+.btnAcesso button.button-native {
+    background-color: #276040 !important;
+    background: #276040 !important;
+}
