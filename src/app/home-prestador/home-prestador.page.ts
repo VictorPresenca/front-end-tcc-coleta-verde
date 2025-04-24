@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'home-prestador.page.html',
-  styleUrls: ['home-prestador.page.scss'],
+  selector: 'app-home-prestador',
+  templateUrl: './home-prestador.page.html',
+  styleUrls: ['./home-prestador.page.scss'],
   standalone: false,
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
-  constructor() {}
+  constructor(private router: Router) { }
 
+  ngOnInit() {
+  }
+
+  abrirLeilao() {
+    this.router.navigate(['/leilao']);
+  }
 }

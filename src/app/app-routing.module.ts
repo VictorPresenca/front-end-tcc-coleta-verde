@@ -70,6 +70,10 @@ const routes: Routes = [
   {
     path: 'perfil-cliente',
     loadChildren: () => import('./perfil-cliente/perfil-cliente.module').then( m => m.PerfilClientePageModule)
+  },
+  {
+    path: 'navegacao-teste-front',
+    loadChildren: () => import('./navegacao-teste-front/navegacao-teste-front.module').then( m => m.NavegacaoTesteFrontPageModule)
   }
 ];
 @NgModule({
