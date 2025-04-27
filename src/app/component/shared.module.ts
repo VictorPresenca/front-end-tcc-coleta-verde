@@ -6,10 +6,11 @@ import { ToolbarGlobalComponent } from './toolbar-global/toolbar-global.componen
 
 import { FooterGlobalComponent } from './footer-global/footer-global.component';
 
+import { HeaderEnderecoGlobalComponent } from './header-endereco-global/header-endereco-global.component';
 
 @NgModule({
-  declarations: [ToolbarGlobalComponent, FooterGlobalComponent],
-  exports: [ToolbarGlobalComponent, FooterGlobalComponent],
+  declarations: [ToolbarGlobalComponent, FooterGlobalComponent, HeaderEnderecoGlobalComponent],
+  exports: [ToolbarGlobalComponent, FooterGlobalComponent, HeaderEnderecoGlobalComponent],
   imports: [
     CommonModule,
     IonicModule

@@ -1,0 +1,28 @@
+ion-header {
+    box-shadow: none !important;
+    --box-shadow: none;
+    -webkit-box-shadow: none !important;
+    border-bottom: 1px solid #cac4d0;
+}
+
+.conteinerHeader {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.conteinerHeader ion-title {
+    padding-left: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.conteinerHeader ion-title img {
+    margin-left: 18px;
+}
+
+.conteinerHeader button.button-native {
+    --color: #276040;
+    color: #276040;
+}
+
