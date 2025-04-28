@@ -17,11 +17,20 @@ ion-content {
 .inicioChat {
   display: inline-flex;
   margin-top: 15px;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
 }
 
 .inicioChatBl ion-toolbar {
   background: #eff0ef;
   --background: #eff0ef;
+}
+
+.iconeFavorito{
+  width: 24px;
+  height: 24px;
 }
 
 .descricaoChat{
@@ -75,4 +84,15 @@ ion-content {
 .mensagem-container  ion-button {
   color: #000 !important;
   font-size: 22px;
+}
+
+
+
+@media (max-width: 450px) {
+
+.inicioChat {
+  padding: 0 20px;
+  gap: 13px;
+}
+
 }
