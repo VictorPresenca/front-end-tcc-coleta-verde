@@ -9,6 +9,21 @@ ion-content {
   color: #000;
 }
 
+.contentChat {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.inicioChat {
+  display: inline-flex;
+  margin-top: 15px;
+}
+
+.inicioChatBl ion-toolbar {
+  background: #eff0ef;
+  --background: #eff0ef;
+}
+
 .descricaoChat{
   display: grid;
   justify-content: center;
