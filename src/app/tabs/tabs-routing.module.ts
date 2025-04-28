@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
       },
       {
+        path: 'pedido-prestador',
+        loadChildren: () => import('../pedido-prestador/pedido-prestador.module').then( m => m.PedidoPrestadorPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
