@@ -1,9 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <app-toolbar-global [titulo]="'Configurações'"></app-toolbar-global>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-header>
+    <ion-toolbar color="primary">
+      <app-toolbar-global [titulo]="'Configurações'"></app-toolbar-global>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content [fullscreen]="true">
+  <div class="content">
+    <ion-list class="settings-list">
 
+      <ion-item button detail="false" class="custom-item-icon">
+        <ion-label>Gerenciar Notificações</ion-label>
+        <ion-icon name="chevron-forward" slot="end"></ion-icon>
+      </ion-item>
+
+      <ion-item button detail="false" class="custom-item-icon">
+        <ion-label>Sobre esta versão</ion-label>
+        <ion-icon name="chevron-forward" slot="end"></ion-icon>
+      </ion-item>
+
+      <ion-item button detail="false" class="exit-item">
+        <ion-label>Sair</ion-label>
+        <ion-icon name="chevron-forward" slot="end"></ion-icon>
+      </ion-item>
+
+    </ion-list>
+  </div>
 </ion-content>
