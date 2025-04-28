@@ -5,68 +5,64 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <ion-grid>
+  <div class="contentChat">
+    <div class="inicioChat">
+
+          <div class="inicioChatBl">
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-back-button defaultHref="/"></ion-back-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </div>
+
+          <div class="inicioChatBl">
+            <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 45px; height: 45px;"/>
+          </div>
+
+          <div class="inicioChatBl">
+            <p>Nome Completo do Trabalhador</p>
+          </div>
+
+          <div class="inicioChatBl">
+            <img src="../../assets/imagens/icones/iconeFavorite.png">
+          </div>
+    </div>
+
+    <div class="descricaoChat">
       <ion-row>
-
-        <ion-col>
-          <ion-toolbar>
-            <ion-buttons slot="start">
-              <ion-back-button defaultHref="/"></ion-back-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-col>
-
-        <ion-col>
-          <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 45px; height: 45px;"/>
-        </ion-col>
-
-        <ion-col>
-          <p>Nome Completo do Trabalhador</p>
-        </ion-col>
-
-        <ion-col>
-          <img src="../../assets/imagens/icones/iconeFavorite.png">
-        </ion-col>
-
+        <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 165px; height: 165px;"/>
       </ion-row>
-    </ion-grid>
-  </div>
+      <p>Nome Completo do Trabalhador</p>
+      <p>200 coletas realizadas</p>
+      <ion-row>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star"></ion-icon>
+        <ion-icon name="star-half"></ion-icon>
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-row>
+    </div>
 
-  <div class="descricaoChat">
-    <ion-row>
-      <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" style="width: 165px; height: 165px;"/>
-    </ion-row>
-    <p>Nome Completo do Trabalhador</p>
-    <p>200 coletas realizadas</p>
-    <ion-row>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star-half"></ion-icon>
-      <ion-icon name="star-outline"></ion-icon>
-    </ion-row>
-  </div>
+    <div class="mensagens">
 
-  <div class="mensagens">
-    <!-- mensagens vão aqui -->
-  </div>
+    </div>
 
-  <!-- Campo de input fixado no final -->
-  <div class="blocoMsg">
-    <div class="mensagem-container">
-      <ion-item lines="none">
-        <ion-input
-          [(ngModel)]="mensagem"
-          placeholder="Digite sua mensagem aqui..."
-          class="mensagem-input"
-          type="text"
-        ></ion-input>
+    <div class="blocoMsg">
+      <div class="mensagem-container">
+        <ion-item lines="none">
+          <ion-input
+            [(ngModel)]="mensagem"
+            placeholder="Digite sua mensagem aqui..."
+            class="mensagem-input"
+            type="text"
+          ></ion-input>
 
-        <ion-button fill="clear" (click)="enviarMensagem()">
-          <ion-icon name="send" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-item>
+          <ion-button fill="clear" (click)="enviarMensagem()">
+            <ion-icon name="send" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </div>
     </div>
   </div>
 
