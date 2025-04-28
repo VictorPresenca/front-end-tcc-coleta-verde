@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -8,6 +9,26 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+// tudo isso abaixo é para não aparecer o tabs original nas telas principais.
+
+  showTabBar = true;
+  
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.checkRoute(event.urlAfterRedirects);
+      }
+    });
+  }
+
+  checkRoute(url: string) {
+    const noTabsRoutes = [
+      '/tabs/tab1',
+      '/tabs/tab2',
+      '/tabs/tab3',
+    ];
+
+    this.showTabBar = !noTabsRoutes.includes(url);
+  }
 
 }

@@ -1,93 +1,81 @@
 ion-content {
-    --background: rgb(233, 237, 237); /* Cor de fundo padrão */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-start; /* Alinha o conteúdo ao topo */
-    min-height: 100vh; /* Garante que o ion-content ocupe toda a altura da viewport */
-    padding-bottom: 15vh; /* Espaço para o background */
-    padding-top: 60px; /* Espaçamento superior para a logo */
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  
-  .content {
-    background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-position: center bottom;
-    width: 100%;
-    height: 100%; /* Garante que a div content cubra todo o ion-content */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente o conteúdo interno */
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente os itens internos */
-    justify-content: flex-start; /* Alinha os itens ao topo dentro do container */
-    width: 100%;
-    max-width: 400px; /* Limita a largura do conteúdo principal */
-  }
-  
-  .logo-container {
-    margin-bottom: 40px;
-    width: 150px;
-  }
-  
-  .logo-container img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .form-container {
-    width: 100%; /* Ocupa a largura total do container */
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .input-group {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 15px;
-  }
-  
-  ion-item {
-    --background: transparent;
-    --border-color: #c8c7cc;
-    margin-bottom: 8px;
-    border-radius: 8px;
-  }
-  
-  ion-label {
-    color: #222428;
-  }
-  
-  .input-field {
-    font-size: 1em;
-  }
-  
-  .register-button {
-    --background: black;
-    --color: #ffffff;
-    border-radius: 8px;
-    font-weight: bold;
-  }
-  
-  .background-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15vh; /* Altura do background */
-    background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-position: center bottom;
-    z-index: -1; /* Fica atrás do conteúdo */
-  }
+  --background: rgb(233, 237, 237); /* Cor de fundo padrão */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: flex-start; /* Alinha o conteúdo ao topo */
+  min-height: 100vh; /* Garante que o ion-content ocupe toda a altura da viewport */
+  padding-bottom: 20px; /* Espaçamento inferior (igual ao primeiro) */
+  padding-top: 30px; /* Espaçamento superior (igual ao primeiro) */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.content {
+  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center bottom;
+  width: 100%;
+  height: 100%; /* Garante que a div content cubra todo o ion-content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+}
+
+.logo-container {
+  margin-bottom: 40px;
+  width: 150px;
+}
+
+.logo-container img {
+  width: 100%;
+  height: auto;
+}
+
+.form-container {
+  width: 80%; /* Largura igual ao primeiro */
+  max-width: 400px; /* Largura máxima igual ao primeiro */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+ion-item {
+  --background: transparent;
+  --border-color: #c8c7cc;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+ion-label {
+  color: #222428;
+}
+
+.input-field {
+  font-size: 1em;
+}
+
+.register-button {
+  --background: black;
+  --color: #ffffff;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.eye-icon {
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.background-container {
+  display: none; /* Oculta o background-container adicional para manter a aparência do primeiro */
+}
