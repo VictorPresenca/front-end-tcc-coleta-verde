@@ -12,7 +12,7 @@ export class TabsPage {
 // tudo isso abaixo é para não aparecer o tabs original nas telas principais.
 
   showTabBar = true;
-  
+
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -26,6 +26,7 @@ export class TabsPage {
       '/tabs/tab1',
       '/tabs/tab2',
       '/tabs/tab3',
+      './pedido-cliente',
     ];
 
     this.showTabBar = !noTabsRoutes.includes(url);

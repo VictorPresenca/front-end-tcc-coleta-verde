@@ -1,8 +1,9 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  <app-toolbar-global [titulo]="'Perfil'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="no-scroll">
-  <div class="container-final-fixo">
-    <div class="header-final-fixo header-bg-branco">
-    <div class="botao-leilao-header" (click)="abrirLeilao()" tappable>Leilão</div>
-    </div>
 
     <div class="linha-separadora-topo"></div>
 
@@ -73,7 +74,5 @@
         </ion-label>
       </ion-item>
     </div>
-  </div>
-
-  <app-footer-global></app-footer-global>
 </ion-content>
+<app-footer-global></app-footer-global>
