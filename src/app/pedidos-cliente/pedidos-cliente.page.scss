@@ -7,7 +7,7 @@ ion-content{
     min-height: 100vh;
     padding-bottom: 15vh;
   }
-  
+
   .content{
     width: 100%;
     height: 100%;
@@ -15,23 +15,23 @@ ion-content{
     flex-direction: column;
     align-items: center;
   }
-  
+
   ion-card{
     border-radius: 10px;
     margin: 10px 20px;
     width: 90%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
+
   ion-card-header{
     padding: 10px;
   }
-  
+
   ion-card-title{
     font-size: 1.2em;
     margin-bottom: 5px;
   }
-  
+
   ion-card-subtitle{
     position: absolute;
     top: 10px;
@@ -43,45 +43,45 @@ ion-content{
     font-weight: bold;
     box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.1);
   }
-  
+
   .subtitle-em-andamento{
     background-color: #a7d1a9; /* Verde claro */
     color: #1e490b; /* Verde escuro */
   }
-  
+
   .subtitle-concluido{
     background-color: #8fbc8f; /* Verde médio */
     color: #0a4e23; /* Verde escuro */
   }
-  
+
   .subtitle-pendente{
     background-color: #f0e68c; /* Amarelo claro */
     color: #8b8000; /* Amarelo escuro */
   }
-  
+
   ion-card-content{
     padding: 10px;
     font-size: 0.9em;
     color: #555;
   }
-  
+
   .add-pedido{
     --background: #a7d1a9; /* Verde claro */
     width: 60px;
     height: 60px;
   }
-  
+
   .icone-mais{
     color: #1e490b; /* Verde escuro */
     font-size: 30px;
   }
-  
+
   .center-button{
     display: flex;
     justify-content: center;
     margin-top: 20px;
   }
-  
+
   .background-container {
     position: fixed;
     bottom: 0;
