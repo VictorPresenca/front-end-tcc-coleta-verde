@@ -74,7 +74,11 @@ const routes: Routes = [
   {
     path: 'navegacao-teste-front',
     loadChildren: () => import('./navegacao-teste-front/navegacao-teste-front.module').then( m => m.NavegacaoTesteFrontPageModule)
+  },  {
+    path: 'cardapio',
+    loadChildren: () => import('./cardapio/cardapio.module').then( m => m.CardapioPageModule)
   }
+
 ];
 @NgModule({
   imports: [
