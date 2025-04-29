@@ -1,59 +1,82 @@
-ion-content {
-  --background: rgb(233, 237, 237);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding-bottom: 20px;
-  padding-top: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.content {
-  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
-  background-repeat: repeat-x;
-  background-size: contain;
-  background-position: center bottom;
-  width: 100%;
+// Garantir que html, body e ion-app ocupem 100% da altura
+html, body, ion-app {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 0px;
 }
 
+// Estilo para o ion-content
+ion-content {
+  --background: transparent;
+  padding: 0 20px;
+  &::part(scroll) {
+    overflow: hidden !important;
+  }
+}
+
+// Estilo para o container principal do conteúdo
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  min-height: calc(100vh - 56px - 56px); // ajusta conforme a altura do header e footer
+
+  padding-top: 0;
+  padding-bottom: 80px;
+
+  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: no-repeat;
+  background-size: contain; // ✅ usa a imagem inteira sem cortar
+  background-position: center bottom;
+  background-attachment: fixed;
+  background-color: rgb(233, 237, 237);
+}
+
+// Lista de configurações
 .settings-list {
   width: 100%;
   max-width: 400px;
   background-color: transparent;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
+// Estilos dos itens
 ion-item {
   --background: transparent !important;
   --border-color: transparent !important;
   border-bottom: 1px solid #dcdcdc;
-  border-radius: 0px;
-  margin-bottom: 0px;
+  border-radius: 0;
+  margin-bottom: 0;
   font-weight: normal;
   --inner-padding-end: 10px;
   --padding-top: 18px;
   --padding-bottom: 18px;
-  min-height: 60px; /* Aumenta a altura dos botões */
+  min-height: 60px;
 }
 
+// Texto dos itens
 ion-label {
-  color: #000000 !important;
+  color: #000 !important;
   margin-right: auto;
 }
 
+// Ícones dos itens
 ion-icon {
   color: #666 !important;
-  font-size: 20px; /* Deixa a seta um pouco maior */
+  font-size: 20px;
 }
 
 ion-icon[slot="end"] {
   display: block !important;
+}
+
+// Footer fixo dentro do conteúdo
+app-footer-global {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }

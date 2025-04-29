@@ -1,96 +1,87 @@
-ion-content{
-    --background: rgb(233, 237, 237);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding-bottom: 15vh;
-  }
+ion-content {
+  --background: rgb(233, 237, 237);
+  padding: 0 20px 20px 20px;
+}
 
-  .content{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.content {
+  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center bottom;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0px;
+  padding-bottom: 20px; /* espaço para não encostar no footer */
+}
 
-  ion-card{
-    border-radius: 10px;
-    margin: 10px 20px;
-    width: 90%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
 
-  ion-card-header{
-    padding: 10px;
-  }
 
-  ion-card-title{
-    font-size: 1.2em;
-    margin-bottom: 5px;
-  }
+ion-card {
+  border-radius: 10px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-  ion-card-subtitle{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    text-align: center;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8em;
-    font-weight: bold;
-    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.1);
-  }
+ion-card-header {
+  padding: 10px;
+}
 
-  .subtitle-em-andamento{
-    background-color: #a7d1a9; /* Verde claro */
-    color: #1e490b; /* Verde escuro */
-  }
+ion-card-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
 
-  .subtitle-concluido{
-    background-color: #8fbc8f; /* Verde médio */
-    color: #0a4e23; /* Verde escuro */
-  }
+ion-card-subtitle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.1);
+}
 
-  .subtitle-pendente{
-    background-color: #f0e68c; /* Amarelo claro */
-    color: #8b8000; /* Amarelo escuro */
-  }
+.subtitle-em-andamento {
+  background-color: #a7d1a9;
+  color: #1e490b;
+}
 
-  ion-card-content{
-    padding: 10px;
-    font-size: 0.9em;
-    color: #555;
-  }
+.subtitle-concluido {
+  background-color: #8fbc8f;
+  color: #0a4e23;
+}
 
-  .add-pedido{
-    --background: #a7d1a9; /* Verde claro */
-    width: 60px;
-    height: 60px;
-  }
+.subtitle-pendente {
+  background-color: #f0e68c;
+  color: #8b8000;
+}
 
-  .icone-mais{
-    color: #1e490b; /* Verde escuro */
-    font-size: 30px;
-  }
+ion-card-content {
+  padding: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
 
-  .center-button{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
+.add-pedido {
+  --background: #a7d1a9;
+  width: 60px;
+  height: 60px;
+}
 
-  .background-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15vh; /* Altura do background */
-    background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-position: center bottom;
-    z-index: -1; /* Fica atrás do conteúdo */
-  }
+.icone-mais {
+  color: #1e490b;
+  font-size: 30px;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
