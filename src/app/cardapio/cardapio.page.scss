@@ -1,0 +1,30 @@
+.contentCardapio {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.inicioCardapio {
+    display: inline-flex;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.CardapioHeader{
+    background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: bottom;
+    width: 100%;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CardapioHeader img{
+    max-width: 150px;
+    margin-top: 40px;
+}
