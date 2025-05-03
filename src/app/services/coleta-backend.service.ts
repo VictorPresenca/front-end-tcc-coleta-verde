@@ -10,7 +10,7 @@ export enum EColetaRole {
 }
 
 
-interface IColetaBackendResponse<T> {
+export interface IColetaBackendResponse<T> {
   message?: string;
   data?: T;
   status: number;
@@ -48,7 +48,7 @@ export interface IColetaUser {
   providedIn: 'root'
 })
 export class ColetaBackendService {
-  private readonly url = 'http://localhost:8080'; /* Isso aqui vai mudar em produ o */
+  private readonly url = 'https://coletaverde.up.railway.app'; /* Isso aqui vai mudar em produ o */
   private token: string = '';
 
   constructor(private http: HttpClient) {
@@ -97,4 +97,37 @@ export class ColetaBackendService {
   public getCurrentUserData(): Observable<IColetaBackendResponse<IColetaUser>> {
     return this.rawRequest('GET', '/user/me');
   }
+
+  /**
+   * Função para fazer solicitação de coleta
+   * @param enderecoSelecionadoIndex Índice do endereço selecionado
+   * @param descricao Descrição do lixo a ser coletado
+   * @param valor Valor sugerido para a coleta
+   * @returns Observable da resposta
+   */
+  public fazerSolicitacaoColeta(enderecoSelecionadoIndex: number, descricao: string, valor: number): Observable<IColetaBackendResponse<any>> {
+    const body = {
+      type: "rubble",
+      addressIndex: enderecoSelecionadoIndex,  // Passando o índice do endereço selecionado
+      description: descricao,
+      suggestedValue: valor,
+    };
+
+    return this.rawRequest('POST', '/solicitation/create', body);
+  }
+
+  adicionarEndereco(endereco: IColetaAddress) {
+    const token = localStorage.getItem('token');
+    return this.http.post<any>(
+      'https://coletaverde.up.railway.app/address/create',
+      endereco,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  }
 }
+  
+

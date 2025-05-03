@@ -22,6 +22,15 @@
       font-size: 3vw;
     }
 }
+#iddesc {
+  height: 20vh;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  resize: none; /* impede redimensionamento manual, opcional */
+  font-size: 5vw;
+  box-sizing: border-box;
+}
 
 ion-select{
   font-size: 4vw;
