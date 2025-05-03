@@ -5,30 +5,51 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" scrollY="false">
-    <div class="container bgd">
-      <form action="#">
+  <div class="container bgd">
+    <form (ngSubmit)="fazerSolicitacao()" #form="ngForm">
 
-        <label for="endereço">
-          <h6>Selecione o endereço</h6>
-          <ion-select placeholder="Selecionar">
-            <ion-select-option>Teste</ion-select-option>
-          </ion-select>
-        </label>
+      <!-- Endereço -->
+      <label>
+        <h6>Selecione o endereço</h6>
+        <ion-select placeholder="Selecionar" [(ngModel)]="enderecoSelecionado" name="endereco" required>
+          <ion-select-option value="Rua A, 123">Rua A, 123</ion-select-option>
+          <ion-select-option value="Rua B, 456">Rua B, 456</ion-select-option>
+          <ion-select-option value="Rua C, 789">Rua C, 789</ion-select-option>
+        </ion-select>
+        <button type="button" class="btnend">Adicionar endereço</button>
+      </label>
 
-        <label for="desc">
-          <h6>Descrição do lixo a ser coletado</h6>
-          <input type="text" name="desc" id="iddesc" placeholder="Digite aqui..." style="padding: 5px 0px 60px 5px;">
-        </label>
+      <!-- Descrição -->
+      <label for="iddesc">
+        <h6>Descrição do lixo a ser coletado</h6>
+        <input
+          type="text"
+          id="iddesc"
+          name="desc"
+          [(ngModel)]="descricao"
+          placeholder="Digite aqui..."
+          style="padding: 5px 0px 60px 5px;"
+          required
+        />
+      </label>
 
-        <label for="vl">
-          <h6>Qual o valor sugerido</h6>
-          <input type="number" name="valor" id="idvalor" placeholder="R$">
-        </label>
+      <!-- Valor sugerido -->
+      <label for="idvalor">
+        <h6>Qual o valor sugerido</h6>
+        <input
+          type="number"
+          id="idvalor"
+          name="valor"
+          [(ngModel)]="valor"
+          placeholder="R$"
+          required
+        />
+      </label>
 
-        <button type="submit">Fazer solicitação</button>
-        <!-- <img class='img' src="/assets/img/fundo-arvores-removebg-preview.png" alt=""> -->
-      </form>
-    </div>
+      <!-- Botão de envio -->
+      <button type="submit">Fazer solicitação</button>
+    </form>
+  </div>
 </ion-content>
 
 <app-footer-global></app-footer-global>
