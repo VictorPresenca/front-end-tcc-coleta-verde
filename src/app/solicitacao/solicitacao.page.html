@@ -8,46 +8,37 @@
   <div class="container bgd">
     <form (ngSubmit)="fazerSolicitacao()" #form="ngForm">
 
-      <!-- Endereço -->
-      <label>
+      <!-- Seleção de Endereço -->
+      <label for="endereco">
         <h6>Selecione o endereço</h6>
-        <ion-select placeholder="Selecionar" [(ngModel)]="enderecoSelecionado" name="endereco" required>
-          <ion-select-option value="Rua A, 123">Rua A, 123</ion-select-option>
-          <ion-select-option value="Rua B, 456">Rua B, 456</ion-select-option>
-          <ion-select-option value="Rua C, 789">Rua C, 789</ion-select-option>
+        <ion-select [(ngModel)]="enderecoSelecionadoIndex" name="endereco" placeholder="Selecionar" required>
+          <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
+            {{ endereco.logradouro }} - {{ endereco.bairro }}
+          </ion-select-option>
         </ion-select>
-        <button type="button" class="btnend">Adicionar endereço</button>
       </label>
 
+      <!-- Botão para adicionar novo endereço -->
+      <button type="button" (click)="abrirAlertaEndereco()">Adicionar Novo Endereço</button>
+
       <!-- Descrição -->
-      <label for="iddesc">
+      <label for="desc">
         <h6>Descrição do lixo a ser coletado</h6>
-        <input
-          type="text"
-          id="iddesc"
-          name="desc"
-          [(ngModel)]="descricao"
-          placeholder="Digite aqui..."
-          style="padding: 5px 0px 60px 5px;"
-          required
-        />
+        <textarea id="iddesc" name="desc" [(ngModel)]="descricao" placeholder="Digite aqui..." required></textarea>
       </label>
 
       <!-- Valor sugerido -->
-      <label for="idvalor">
+      <label for="vl">
         <h6>Qual o valor sugerido</h6>
-        <input
-          type="number"
-          id="idvalor"
-          name="valor"
-          [(ngModel)]="valor"
-          placeholder="R$"
-          required
-        />
+        <input type="number" id="idvalor" name="valor" [(ngModel)]="valor" placeholder="R$" required />
       </label>
 
       <!-- Botão de envio -->
-      <button type="submit">Fazer solicitação</button>
+      <button type="submit" [disabled]="isSubmitting">Fazer solicitação</button>
+
+      <!-- Carregando -->
+      <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+
     </form>
   </div>
 </ion-content>
