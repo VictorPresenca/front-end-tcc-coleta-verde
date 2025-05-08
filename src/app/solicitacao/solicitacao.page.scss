@@ -1,73 +1,176 @@
-*{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-.bgd{
+/* ----------- GERAL ----------- */
+.bgd {
+  background-color: rgb(233, 237, 237);
   background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
   background-repeat: repeat-x;
   background-size: contain;
   background-position: center bottom;
   width: 100%;
-  height: 100%;
-  padding: 16px;
+  min-height: 100vh;
+  position: relative;
+  padding: 10px 16px 16px 16px;
+  padding-bottom: 80px; /* espaço pro botão */
 }
-.container{
-    justify-content: center;
-    background-color: rgb(233, 237, 237);
-    font-size: 4.5vw;
 
-    h6{
-      font-size: 5vw;
-    }
-    button{
-      font-size: 3vw;
-    }
-}
-#iddesc {
-  height: 20vh;
-  padding: 10px;
-  border-radius: 10px;
+.blur-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  resize: none; /* impede redimensionamento manual, opcional */
-  font-size: 5vw;
-  box-sizing: border-box;
+  height: 100%;
+  z-index: 0;
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.2px);
+  background-color: rgba(255, 255, 255, 0.107);
 }
 
-ion-select{
+.container > *:not(.blur-overlay) {
+  position: relative;
+  z-index: 1;
+}
+
+hr {
+  border: 1px solid rgb(219, 222, 222);
+  width: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+
+/* ----------- SOLICITAÇÃO ----------- */
+.solicitacao-form {
+  margin: 30px auto;
+  max-width: 350px;
+  width: 90%;
+}
+
+.solicitacao-form h6 {
+  margin: 15px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.solicitacao-form ion-select,
+.solicitacao-form input[type="number"],
+.solicitacao-form textarea {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 4.5vw;
+  border: 1px solid #2f9e25;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.solicitacao-form textarea {
+  resize: none;
+  height: 100px;
+  font-family: inherit;
+}
+
+.solicitacao-form button {
+  margin-top: 15px;
+  background-color: transparent;
+  border: 1px solid #0a4e23;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #0a4e23;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ----------- AGENDAMENTO ----------- */
+.agendamento-wrapper ion-card {
+  border-radius: 8px;
+  background-color: #d6f0d9;
+  padding: 30px 0px 20px 0px;
+  margin: 5% auto;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.agendamento-wrapper ion-card-content {
+  background-color: #d6f0d9;
+}
+
+.card-data {
+  margin-bottom: 5%;
+}
+
+ion-card-title {
+  color: #3f3d3d;
+  font-size: 7vw;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card-horario ion-card-title {
   font-size: 4vw;
 }
-input{
-    border-radius: 10px;
-    padding: 7px;
-    width: 100%;
-    border-color: rgb(225, 225, 225);
+
+/* Inputs */
+input[type="date"] {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #2f9e25;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 4.5vw;
+  background-color: #d6f0d9;
 }
 
-input:focus {
-    outline: none;
-    box-shadow: none;
-    border-color: initial;
-  }
-
-button{
-    margin-top: 30px;
-    padding: 10px;
-    border-radius: 20px;
-    background-color: #0A4E23;
-    color: white;
-    width: 100%;
+.hora-input,
+.minuto-input {
+  width: 100%;
+  height: 70px;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  text-align: center;
+  font-size: 5vw;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-button:hover{
-    background-color: #09451f;
+.row-horario {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
 }
-.btnend{
-    margin-top: 30px;
-    padding: 10px;
-    border-radius: 15px;
-    background-color: #0A4E23;
-    color: white;
-    width: auto;
+
+.sep {
+  font-size: 10vw;
+  font-weight: bold;
+  color: #333;
 }
-.btnend:hover{
-    background-color: #09451f;
+
+/* Botões */
+.btn {
+  margin: 10px 15px 0px 10px;
+  text-align: right;
+}
+
+.btn input {
+  border: none;
+  color: #0A4E23;
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px 12px;
+}
+
+/* Botão final */
+.btn-submit {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #0A4E23;
+  color: white;
+  width: 70%;
+  text-align: center;
+  font-size: 4.5vw;
 }

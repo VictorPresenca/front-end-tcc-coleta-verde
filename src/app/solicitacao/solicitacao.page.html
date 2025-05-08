@@ -1,12 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="'Solicitação'"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Solicitação e Agendamento'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" scrollY="false">
+<ion-content [fullscreen]="true">
   <div class="container bgd">
-    <form (ngSubmit)="fazerSolicitacao()" #form="ngForm">
+
+    <!-- Tela de Solicitação -->
+    <form (ngSubmit)="fazerSolicitacao()" #form="ngForm" class="solicitacao-form">
 
       <!-- Seleção de Endereço -->
       <label for="endereco">
@@ -33,14 +35,61 @@
         <input type="number" id="idvalor" name="valor" [(ngModel)]="valor" placeholder="R$" required />
       </label>
 
-      <!-- Botão de envio -->
-      <button type="submit" [disabled]="isSubmitting">Fazer solicitação</button>
-
-      <!-- Carregando -->
-      <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
-
     </form>
+
+    <!-- Tela de Agendamento -->
+    <div class="agendamento-wrapper">
+      <div class="blur-overlay"></div>
+
+      <ion-card class="card-data">
+        <ion-card-header>
+          <ion-card-title>Data do Serviço</ion-card-title>
+        </ion-card-header>
+        <hr>
+        <ion-card-content>
+          <input type="date" name="date" id="IdDate">
+        </ion-card-content>
+        <div class="btn">
+          <input type="reset" value="cancelar">
+          <input type="submit" value="ok">
+        </div>
+      </ion-card>
+
+      <ion-card class="card-horario">
+        <ion-card-header>
+          <ion-card-title>Horário do serviço</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="row-horario">
+            <ion-input
+              type="number"
+              placeholder="20"
+              class="hora-input"
+            ></ion-input>
+
+            <span class="sep">:</span>
+
+            <ion-input
+              type="number"
+              placeholder="00"
+              class="minuto-input"
+            ></ion-input>
+          </div>
+
+          <div class="btn">
+            <input type="reset" value="cancelar">
+            <input type="submit" value="ok">
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Botão Final -->
+    <button class="btn-submit" type="submit" [disabled]="isSubmitting" (click)="fazerSolicitacao()">Fazer solicitação</button>
+    <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
+
   </div>
 </ion-content>
 
 <app-footer-global></app-footer-global>
+
