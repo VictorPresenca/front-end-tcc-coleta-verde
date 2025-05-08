@@ -14,6 +14,8 @@ export class SolicitacaoPage implements OnInit {
   enderecoSelecionadoIndex: number | null = null;
   descricao: string = '';
   valor: number | null = null;
+  dataSelecionada: string = '';     // já existente
+  horaSelecionada: string = '';     // já existente
   isSubmitting: boolean = false;
   novoEndereco: any = {};
 
@@ -178,7 +180,7 @@ export class SolicitacaoPage implements OnInit {
       return;
     }
 
-    if (!this.descricao || !this.valor) {
+    if (!this.descricao || !this.valor || !this.dataSelecionada || !this.horaSelecionada) {
       alert('Preencha todos os campos obrigatórios.');
       return;
     }
@@ -187,7 +189,9 @@ export class SolicitacaoPage implements OnInit {
     const dados = {
       ...endereco,
       descricao: this.descricao,
-      valor: this.valor
+      valor: this.valor,
+      data: this.dataSelecionada,
+      horario: this.horaSelecionada
     };
 
     this.isSubmitting = true;
@@ -203,7 +207,7 @@ export class SolicitacaoPage implements OnInit {
         this.isSubmitting = false;
         alert('Solicitação enviada com sucesso!');
         this.resetarFormulario();
-        this.carregarEnderecosSalvos(); // Atualiza a lista após envio
+        this.carregarEnderecosSalvos();
       },
       (error) => {
         this.isSubmitting = false;
@@ -217,5 +221,7 @@ export class SolicitacaoPage implements OnInit {
     this.descricao = '';
     this.valor = null;
     this.enderecoSelecionadoIndex = null;
+    this.dataSelecionada = '';
+    this.horaSelecionada = '';
   }
 }

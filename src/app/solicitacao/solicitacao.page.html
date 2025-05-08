@@ -45,14 +45,10 @@
         <ion-card-header>
           <ion-card-title>Data do Serviço</ion-card-title>
         </ion-card-header>
-        <hr>
+        <hr />
         <ion-card-content>
-          <input type="date" name="date" id="IdDate">
+          <input type="date" name="date" id="IdDate" [(ngModel)]="dataSelecionada" />
         </ion-card-content>
-        <div class="btn">
-          <input type="reset" value="cancelar">
-          <input type="submit" value="ok">
-        </div>
       </ion-card>
 
       <ion-card class="card-horario">
@@ -60,26 +56,12 @@
           <ion-card-title>Horário do serviço</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <div class="row-horario">
-            <ion-input
-              type="number"
-              placeholder="20"
-              class="hora-input"
-            ></ion-input>
-
-            <span class="sep">:</span>
-
-            <ion-input
-              type="number"
-              placeholder="00"
-              class="minuto-input"
-            ></ion-input>
-          </div>
-
-          <div class="btn">
-            <input type="reset" value="cancelar">
-            <input type="submit" value="ok">
-          </div>
+          <ion-input class=""
+            [(ngModel)]="horaSelecionada"
+            name="hora"
+            type="time"
+            class="hora-input"
+          ></ion-input>
         </ion-card-content>
       </ion-card>
     </div>
