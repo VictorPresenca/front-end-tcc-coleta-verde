@@ -17,12 +17,14 @@ ion-content {
     background-size: contain;
     background-position: bottom;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centraliza horizontalmente o conteúdo interno */
   }
   
   .logo-container {
+    margin-top: 50px;
     max-width: 180px;
   }
   

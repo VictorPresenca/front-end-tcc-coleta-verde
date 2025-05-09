@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <app-toolbar-global [titulo]="'Pedido'"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div class="container">
+      <h1>Finalizar Pedido</h1>
+
+      <div class="section">
+        <label for="foto">Foto(s) da Coleta</label>
+        <input type="file" id="foto" accept="image/*" multiple>
+      </div>
+
+      <div class="section">
+        <label for="observacoes">Observações</label>
+        <textarea id="observacoes" placeholder="Ex: Coleta feita com sucesso. Havia entulho misturado com material reciclável."></textarea>
+      </div>
+
+      <div class="section">
+        <label for="avaliacao">Avaliação do Cliente (opcional)</label>
+        <select id="avaliacao">
+          <option value="">Selecione uma nota</option>
+          <option value="5">⭐⭐⭐⭐⭐ - Excelente</option>
+          <option value="4">⭐⭐⭐⭐ - Muito bom</option>
+          <option value="3">⭐⭐⭐ - Bom</option>
+          <option value="2">⭐⭐ - Regular</option>
+          <option value="1">⭐ - Ruim</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <button (click)="registrarFinalizacao()">Confirmar Coleta Concluída</button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<app-footer-global></app-footer-global>

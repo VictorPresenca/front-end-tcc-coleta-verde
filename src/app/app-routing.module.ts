@@ -74,7 +74,11 @@ const routes: Routes = [
   {
     path: 'cardapio',
     loadChildren: () => import('./cardapio/cardapio.module').then( m => m.CardapioPageModule)
+  },  {
+    path: 'finalizar-pedido-prestador',
+    loadChildren: () => import('./finalizar-pedido-prestador/finalizar-pedido-prestador.module').then( m => m.FinalizarPedidoPrestadorPageModule)
   }
+
 
 ];
 @NgModule({
