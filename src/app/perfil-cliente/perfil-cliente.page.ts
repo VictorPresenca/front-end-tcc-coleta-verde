@@ -22,6 +22,7 @@ export class PerfilClientePage implements OnInit {
     this.coletaBackendService.getCurrentUserData().subscribe({
       next: (value) => {
         this.currentUser = value.data!;
+        console.log(this)
       },
       error: ({ error }) => {
         this.toastController.create({
