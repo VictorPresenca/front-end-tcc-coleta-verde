@@ -44,11 +44,22 @@ export interface IColetaUser {
   cnpj?: string
 }
 
+type TAuthAccountType = 'user' | 'employee' | 'enterprise';
+
+export interface IAuthRegister {
+  email: string,
+  name: string,
+  password: string,
+  accountType: TAuthAccountType,
+  cpf?: string,
+  cnpj?: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ColetaBackendService {
-  private readonly url = 'https://coletaverde.up.railway.app'; /* Isso aqui vai mudar em produ o */
+  private readonly url = 'https://coletaverde.up.railway.app';
   private token: string = '';
 
   constructor(private http: HttpClient) {
@@ -98,6 +109,10 @@ export class ColetaBackendService {
     return this.rawRequest('GET', '/user/me');
   }
 
+  public createAccount(data: IAuthRegister) {
+    return this.rawRequest('POST', '/auth/register', data);
+  }
+
   /**
    * Função para fazer solicitação de coleta
    * @param enderecoSelecionadoIndex Índice do endereço selecionado
@@ -117,17 +132,12 @@ export class ColetaBackendService {
   }
 
   adicionarEndereco(endereco: IColetaAddress) {
-    const token = localStorage.getItem('token');
-    return this.http.post<any>(
-      'https://coletaverde.up.railway.app/address/create',
-      endereco,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    return this.rawRequest('POST', '/address/create', endereco);
+  }
+
+  listarSolicitacoes( page: number, limit: number) {
+    return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
   }
 }
-  
+
 
