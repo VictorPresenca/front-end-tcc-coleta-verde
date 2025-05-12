@@ -77,7 +77,8 @@ ion-content {
 }
 
 .mensagens {
-  padding-bottom: 70px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 
@@ -86,6 +87,16 @@ ion-content {
   font-size: 22px;
 }
 
+.contCima {
+  min-height: 510px;
+}
+
+.blocoMsg {
+  position: fixed;
+  max-width: 700px;
+  width: 100%;
+  bottom: 80px;
+}
 
 
 @media (max-width: 450px) {
