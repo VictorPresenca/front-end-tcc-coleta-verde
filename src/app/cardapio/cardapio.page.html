@@ -18,40 +18,18 @@
 
     <div class="inicioCardapio">
 
-      <div class="blocoInfos">
-        <div class="blocoInfosEsq">
-          <span class="blocoInfosHorario">Horário:12h e 30min</span>
-          <span class="blocoInfosData">Dia:15/04/2025 </span>
-          <span class="blocoInfosEndereco">Endereço da Empresa</span>
-        </div>
-        <div class="blocoInfosDir">
-          <span class="blocoInfosPreco">R$ 30,00</span>
-        </div>
+      <div class="blocoInfos" *ngFor="let item of solicitacoes">
+          <div class="blocoInfosEsq">
+            <span class="blocoInfosHorario">Horário: {{ item.horario }}</span>
+            <span class="blocoInfosData">Dia: {{ item.data }}</span>
+            <span class="blocoInfosEndereco">{{ item.logradouro }} - {{ item.bairro }}</span>
+          </div>
+          <div class="blocoInfosDir">
+            <span class="blocoInfosPreco">{{ item.valor }}</span>
+          </div>
+          
       </div>
-
-      <div class="blocoInfos">
-        <div class="blocoInfosEsq">
-          <span class="blocoInfosHorario">Horário:12h e 30min</span>
-          <span class="blocoInfosData">Dia:15/04/2025 </span>
-          <span class="blocoInfosEndereco">Endereço da Empresa</span>
-        </div>
-        <div class="blocoInfosDir">
-          <span class="blocoInfosPreco">R$ 30,00</span>
-        </div>
-      </div>
-
-      <div class="blocoInfos">
-        <div class="blocoInfosEsq">
-          <span class="blocoInfosHorario">Horário:12h e 30min</span>
-          <span class="blocoInfosData">Dia:15/04/2025 </span>
-          <span class="blocoInfosEndereco">Endereço da Empresa</span>
-        </div>
-        <div class="blocoInfosDir">
-          <span class="blocoInfosPreco">R$ 30,00</span>
-        </div>
-      </div>
-
-
+      
 
     </div>
 

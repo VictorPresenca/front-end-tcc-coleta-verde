@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-cardapio',
@@ -8,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardapioPage implements OnInit {
 
-  constructor() { }
+  solicitacoes: any[] = [];
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.carregarSolicitacoes();
   }
 
+
+  carregarSolicitacoes(){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    
+    this.http.get<any>('https://coletaverde.up.railway.app/solicitation/all?page=1&limit=10', { headers }).subscribe(
+      res => {
+        this.solicitacoes = res.data || [];
+      },
+      err => {
+        console.error('Erro ao carregar solicitações', err);
+      }
+    );
+  }
 }
