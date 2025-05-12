@@ -1,3 +1,4 @@
+import { ColetaBackendService, IAuthRegister } from './../services/coleta-backend.service';
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,7 @@ export class CadastroClientePage implements OnInit {
   email: string = '';
   senha: string = '';
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private coleta: ColetaBackendService, private httpClient: HttpClient, private router: Router) { }
 
   ngOnInit() {}
 
@@ -31,23 +32,23 @@ export class CadastroClientePage implements OnInit {
   onSubmit() {
     // Remove os caracteres especiais do CNPJ
     const cnpjLimpo = this.cnpj.replace(/[^\d]+/g, '');
-  
-    const dadosCadastro = {
+
+    const dadosCadastro: IAuthRegister = {
       name: this.nomeEmpresa,
       email: this.email,
       password: this.senha,
       accountType: 'enterprise',
       cnpj: this.cnpj
     };
-  
+
     // Verifique os dados no console
     console.log('Dados do Cadastro:', dadosCadastro);
-  
-    this.httpClient.post('https://coletaverde.up.railway.app/auth/register', dadosCadastro)
+
+    this.coleta.createAccount(dadosCadastro)
       .subscribe(
         (response) => {
           console.log('Cadastro realizado com sucesso:', response);
-          this.router.navigate(['/home']);  // Redirecione ou mostre mensagem de sucesso
+          this.router.navigate(['/login']);  
         },
         (error) => {
           console.error('Erro ao enviar dados', error);
@@ -55,5 +56,5 @@ export class CadastroClientePage implements OnInit {
         }
       );
   }
-  
+
 }
