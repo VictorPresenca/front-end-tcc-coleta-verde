@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ColetaBackendService } from '../services/coleta-backend.service';
 
 @Component({
   selector: 'app-cardapio',
@@ -11,7 +12,7 @@ export class CardapioPage implements OnInit {
 
   solicitacoes: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private coleta: ColetaBackendService, private http: HttpClient) { }
 
   ngOnInit() {
     this.carregarSolicitacoes();
@@ -19,16 +20,13 @@ export class CardapioPage implements OnInit {
 
 
   carregarSolicitacoes(){
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    
-    this.http.get<any>('https://coletaverde.up.railway.app/solicitation/all?page=1&limit=10', { headers }).subscribe(
-      res => {
+
+    this.coleta.listarSolicitacoes(1, 10)
+    .subscribe(
+      (res: any) => {
         this.solicitacoes = res.data || [];
       },
-      err => {
+      (err: any) => {
         console.error('Erro ao carregar solicitações', err);
       }
     );
