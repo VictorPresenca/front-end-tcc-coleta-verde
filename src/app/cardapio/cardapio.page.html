@@ -19,13 +19,15 @@
     <div class="inicioCardapio">
 
       <div class="blocoInfos" *ngFor="let item of solicitacoes">
+
           <div class="blocoInfosEsq">
-            <span class="blocoInfosHorario">Horário: {{ item.horario }}</span>
-            <span class="blocoInfosData">Dia: {{ item.data }}</span>
-            <span class="blocoInfosEndereco">{{ item.logradouro }} - {{ item.bairro }}</span>
+            <span class="blocoInfosHorario">Horário: <!-- {{ formatDate(item.createdAt) }} --> </span>
+            <span class="blocoInfosData">Dia: <!-- {{ formatDate(item.createdAt) }} --> </span>
+            <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
           </div>
+
           <div class="blocoInfosDir">
-            <span class="blocoInfosPreco">{{ item.valor }}</span>
+            <span class="blocoInfosPreco">R$ {{ item.suggestedValue }}</span>
           </div>
           
       </div>
