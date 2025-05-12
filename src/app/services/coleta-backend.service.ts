@@ -135,7 +135,7 @@ export class ColetaBackendService {
     return this.rawRequest('POST', '/address/create', endereco);
   }
 
-  listarSolicitacoes( page: number, limit: number) {
+  listarSolicitacoes(page: number, limit: number) {
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
   }
 }
