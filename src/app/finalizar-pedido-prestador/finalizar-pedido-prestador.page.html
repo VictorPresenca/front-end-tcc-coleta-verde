@@ -1,12 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="'Pedido'"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Finalizar pedido'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="content">
+<ion-content class="finalizacao-content">
+  <div class="finalizacao-container">
+    <h2 class="titulo">Prestador de Serviço</h2>
+    <p class="descricao">
+      A sua avaliação deste serviço permite que outros prestadores tomem decisões baseadas na sua experiência.
+    </p>
 
+    <div class="icone-check">
+      <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+    </div>
+
+    <h3 class="subtitulo">Avaliação do cliente e suas ações</h3>
+
+    <ion-item class="item-customizado">
+      <ion-label position="floating">Nota do Cliente</ion-label>
+      <ion-select interface="">
+        <ion-select-option value="1">1 Estrela</ion-select-option>
+        <ion-select-option value="2">2 Estrelas</ion-select-option>
+        <ion-select-option value="3">3 Estrelas</ion-select-option>
+        <ion-select-option value="4">4 Estrelas</ion-select-option>
+        <ion-select-option value="5">5 Estrelas</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" class="botao-finalizar">
+      Finalizar
+    </ion-button>
+
+    <ion-button expand="block" class="botao-cancelar" (click)="cancelar()">
+      Cancelar
+    </ion-button>
   </div>
 </ion-content>
+
 <app-footer-global></app-footer-global>

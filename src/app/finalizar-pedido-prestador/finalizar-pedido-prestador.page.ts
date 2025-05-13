@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-finalizar-pedido-prestador',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinalizarPedidoPrestadorPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  cancelar() {
+    this.navCtrl.navigateRoot('/pedidos-prestador');
   }
-
 }
+
