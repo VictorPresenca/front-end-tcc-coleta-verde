@@ -1,87 +1,46 @@
-ion-content {
-  --background: rgb(233, 237, 237);
-  padding: 0 20px 20px 20px;
+ion-content.fundo-arvores {
+  --background: transparent;
+  background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: contain;
+  background-color: rgb(233, 237, 237); 
 }
 
 .content {
-  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
-  background-repeat: repeat-x;
-  background-size: contain;
-  background-position: center bottom;
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 0px;
-  padding-bottom: 20px; /* espaço para não encostar no footer */
+  padding: 16px;
+  position: relative;
+  z-index: 2;
 }
 
-
-
-ion-card {
-  border-radius: 10px;
-  margin: 10px 0;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.card-pedido {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-ion-card-header {
-  padding: 10px;
-}
-
-ion-card-title {
-  font-size: 1.2em;
-  margin-bottom: 5px;
-}
-
-ion-card-subtitle {
+.status-banner {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.8em;
+  top: 0;
+  right: 0;
+  padding: 6px 12px;
+  color: white;
   font-weight: bold;
-  box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  border-bottom-left-radius: 12px;
 }
 
-.subtitle-em-andamento {
-  background-color: #a7d1a9;
-  color: #1e490b;
+.status-banner.concluido {
+  background-color: #0a4e23;
 }
 
-.subtitle-concluido {
-  background-color: #8fbc8f;
-  color: #0a4e23;
+.status-banner.andamento {
+  background-color: #6c757d;
 }
 
-.subtitle-pendente {
-  background-color: #f0e68c;
-  color: #8b8000;
+.status-banner.pendente {
+  background-color: #d12d2d;
 }
 
-ion-card-content {
-  padding: 10px;
-  font-size: 0.9em;
-  color: #555;
-}
-
-.add-pedido {
-  --background: #a7d1a9;
-  width: 60px;
-  height: 60px;
-}
-
-.icone-mais {
-  color: #1e490b;
-  font-size: 30px;
-}
-
-.center-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
