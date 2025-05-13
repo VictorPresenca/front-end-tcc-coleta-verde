@@ -138,6 +138,13 @@ export class ColetaBackendService {
   listarSolicitacoes(page: number, limit: number) {
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
   }
+
+  public aceitarSolicitacao(solicitationId: number): Observable<IColetaBackendResponse<any>> {
+  const body = {
+    solicitationId: solicitationId
+  };
+
+  return this.rawRequest('POST', '/solicitation/accept', body);
 }
 
-
+}
