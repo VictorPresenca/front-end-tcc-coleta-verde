@@ -2,18 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-<<<<<<< HEAD
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-=======
 {
   path: '',
   redirectTo: 'inicial',
   pathMatch: 'full'
 },
->>>>>>> 9fe20a9d7fc0d3b84ec3f46b6a489b0034cfa5ae
   {
     path: 'perfil-prestador',
     loadChildren: () => import('./perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
@@ -40,13 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./pedido-prestador/pedido-prestador.module').then( m => m.PedidoPrestadorPageModule)
   },
   {
-<<<<<<< HEAD
-  path: 'pedido-prestador/:id',
-  loadChildren: () => import('./pedido-prestador/pedido-prestador.module').then(m => m.PedidoPrestadorPageModule)
-  },
-  {
-=======
->>>>>>> 9fe20a9d7fc0d3b84ec3f46b6a489b0034cfa5ae
     path: 'inicial',
     loadChildren: () => import('./inicial/inicial.module').then( m => m.InicialPageModule)
   },
