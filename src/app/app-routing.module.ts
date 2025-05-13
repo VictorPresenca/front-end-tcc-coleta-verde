@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
+{
+  path: '',
+  redirectTo: 'inicial',
+  pathMatch: 'full'
+},
   {
     path: 'perfil-prestador',
     loadChildren: () => import('./perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
@@ -74,7 +75,8 @@ const routes: Routes = [
   {
     path: 'cardapio',
     loadChildren: () => import('./cardapio/cardapio.module').then( m => m.CardapioPageModule)
-  },  {
+  },
+  {
     path: 'finalizar-pedido-prestador',
     loadChildren: () => import('./finalizar-pedido-prestador/finalizar-pedido-prestador.module').then( m => m.FinalizarPedidoPrestadorPageModule)
   }

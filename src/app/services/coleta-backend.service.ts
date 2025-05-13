@@ -41,10 +41,10 @@ export interface IColetaUser {
   rating: number,
   completedSolicitations?: number,
   cpf?: string,
-  cnpj?: string
+  cnpj?: string,
 }
 
-type TAuthAccountType = 'user' | 'employee' | 'enterprise';
+export type TAuthAccountType = 'user' | 'employee' | 'enterprise';
 
 export interface IAuthRegister {
   email: string,
@@ -55,12 +55,13 @@ export interface IAuthRegister {
   cnpj?: string
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ColetaBackendService {
   private readonly url = 'https://coletaverde.up.railway.app';
-  private token: string = '';
+  private token: string = ''
 
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token') ?? '';
@@ -91,6 +92,8 @@ export class ColetaBackendService {
     return this.http.request(method, this.url + path, { headers, body }) as Observable<IColetaBackendResponse<any>>;
   }
 
+
+
   /**
    * Faz o login do usuário
    * @param email O email do usuário
@@ -98,8 +101,10 @@ export class ColetaBackendService {
    * @returns O token de autenticação do usuário ou erro
    */
   public getJwtByCredentials(email: string, password: string): Observable<IColetaBackendResponse<string>> {
-    return this.rawRequest('POST', '/auth/login', { email, password });
+    return this.rawRequest('POST', '/auth/login', { email, password});
   }
+
+  // public getLoginType(email: string, password: string, accountType: TAuthAccountType): Observable<IColetaBackendResponse
 
   /**
    * Busca os dados do usuário logado
@@ -109,9 +114,12 @@ export class ColetaBackendService {
     return this.rawRequest('GET', '/user/me');
   }
 
+
   public createAccount(data: IAuthRegister) {
     return this.rawRequest('POST', '/auth/register', data);
   }
+
+
 
   /**
    * Função para fazer solicitação de coleta

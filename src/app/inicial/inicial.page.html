@@ -7,11 +7,14 @@
       <div class="form-container">
         <h1>Bem -<br>Vindo ...</h1>
   
-        <ion-button expand="block" class="btnAcesso">PRSTADOR DE SERVIÇO</ion-button>
+        <ion-button expand="block" class="btnAcesso"[routerLink]="['/login']">login</ion-button>
 
         <span>OU</span>
 
-        <ion-button expand="block" class="btnAcesso">EMPRESA</ion-button>
+        <ion-button expand="block" class="btnAcesso" [routerLink]="['/cadastro-cliente']">cadastro empresa</ion-button>
+        <ion-button expand="block" class="btnAcesso" [routerLink]="['/cadastro-prestador']">cadastro prestador</ion-button>
+        <ion-button fill="outline" size="small" style="margin-left: 45%;" [routerLink]="['/navegacao-teste-front']">NAVEGAR</ion-button>
+
       </div>
     </div>
   </ion-content>
