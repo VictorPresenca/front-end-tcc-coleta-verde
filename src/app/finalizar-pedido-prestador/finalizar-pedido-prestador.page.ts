@@ -13,15 +13,4 @@ export class FinalizarPedidoPrestadorPage implements OnInit {
   ngOnInit() {
   }
 
-  registrarFinalizacao() {
-    const horario = new Date().toLocaleString('pt-BR');
-    const avaliacao = (document.getElementById('avaliacao') as HTMLSelectElement).value;
-  
-    let mensagem = 'Coleta finalizada com sucesso!\nHorário de finalização: ' + horario;
-    if (avaliacao) {
-      mensagem += '\nAvaliação do cliente: ' + avaliacao + ' estrela(s)';
-    }
-    alert(mensagem);
-  }
-
 }
