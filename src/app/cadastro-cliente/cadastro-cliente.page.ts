@@ -28,7 +28,7 @@ export class CadastroClientePage implements OnInit {
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
-
+  
   onSubmit() {
     // Remove os caracteres especiais do CNPJ
     const cnpjLimpo = this.cnpj.replace(/[^\d]+/g, '');

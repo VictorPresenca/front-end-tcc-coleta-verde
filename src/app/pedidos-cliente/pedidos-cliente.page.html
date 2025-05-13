@@ -4,12 +4,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="fundo-arvores">
   <div class="content">
-    <ion-card>
+
+    <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
+      <div class="status-banner concluido">CONCLUÍDO</div>
       <ion-card-header>
-        <ion-card-subtitle class="subtitle-concluido">Concluído</ion-card-subtitle>
-        <ion-card-title>Descrição...</ion-card-title>
+        <ion-card-title>Pedido 12345</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         Pedido concluído em 17/03/25<br>
@@ -17,20 +18,20 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
+      <div class="status-banner andamento">EM ANDAMENTO</div>
       <ion-card-header>
-        <ion-card-subtitle class="subtitle-em-andamento">Em andamento</ion-card-subtitle>
-        <ion-card-title>Descrição...</ion-card-title>
+        <ion-card-title>Pedido 12345</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         Pedido aceito em 16/03/25
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
+      <div class="status-banner pendente">CANCELADO</div>
       <ion-card-header>
-        <ion-card-subtitle class="subtitle-pendente">Pendente</ion-card-subtitle>
-        <ion-card-title>Descrição...</ion-card-title>
+        <ion-card-title>Pedido 12345</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         Pedido feito em 15/03/25<br>
@@ -38,12 +39,8 @@
       </ion-card-content>
     </ion-card>
 
-    <div class="center-button">
-      <ion-button shape="round" class="add-pedido" [routerLink]="['/solicitacao']">
-        <ion-icon slot="icon-only" name="add-outline" class="icone-mais"></ion-icon>
-      </ion-button>
-    </div>
   </div>
 </ion-content>
 
 <app-footer-global></app-footer-global>
+
