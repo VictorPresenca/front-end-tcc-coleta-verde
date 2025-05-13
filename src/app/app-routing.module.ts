@@ -79,7 +79,11 @@ const routes: Routes = [
   {
     path: 'finalizar-pedido-prestador',
     loadChildren: () => import('./finalizar-pedido-prestador/finalizar-pedido-prestador.module').then( m => m.FinalizarPedidoPrestadorPageModule)
-  }
+  },
+  {
+  path: 'home-prestador',
+  loadChildren: () => import('./home-prestador/home-prestador.module').then(m => m.Tab1PageModule)
+}
 
 
 ];
