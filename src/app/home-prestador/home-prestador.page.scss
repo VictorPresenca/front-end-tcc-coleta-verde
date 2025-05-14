@@ -1,227 +1,222 @@
 ion-content.no-scroll {
-    --background: #fff; /* Fundo branco do container */
-    --padding-bottom: 56px; /* Ajuste esse valor para a altura do seu footer global */
-  }
-  
-  .container-final-fixo {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px;
-    height: calc(100vh - 56px); /* Considera a altura do header */
-    overflow: auto; /* Permite rolagem se o conteúdo exceder a altura */
-  }
-  
-  /* Header */
-  .header-final-fixo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 10px 0;
-    background-color: #fff; /* Fundo branco do header */
-  }
-  
-  .header-bg-branco {
-    background-color: #fff;
-    margin-bottom: 0;
-  }
-  
-  .endereco-usuario-final-fixo {
-    color: #777;
-    font-size: 16px;
-  }
-  
-  .icones-header-final-fixo {
-    position: absolute;
-    right: 10px;
-    display: flex;
-  }
-  
-  .icone-header-final-fixo {
-    font-size: 24px;
-    color: #777;
-    margin-left: 16px;
-  }
-  
-  .linha-separadora-topo {
-    height: 1px;
-    background-color: #ddd;
-    margin-bottom: 10px;
-  }
-  
-  /* Boxes com fundo cinza claro */
-  .card-cinza {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    padding: 16px;
-  }
-  
-  /* Perfil Info */
-  .perfil-info-final-fixo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .avatar-final-fixo {
-    width: 60px;
-    height: 60px;
-    margin-right: 16px;
-  }
-  
-  .nome-prestador-final-fixo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .ola-final-fixo {
-    font-size: 18px;
-    color: #000;
-  }
-  
-  .nome-final-fixo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-  }
-  
-  /* Card Métricas */
-  .card-metricas-final-fixo {
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Organiza número e botão verticalmente */
-    align-items: center; /* Centraliza os itens */
-  }
-  
-  .metricas-final-fixo {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 16px 0;
-    width: 100%; /* Garante que ocupe toda a largura da box */
-  }
-  
-  .metrica-item-final-fixo {
-    text-align: center;
-  }
-  
-  .numero-final-fixo {
-    font-size: 26px;
-    color: #000;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  
-  .descricao-final-fixo {
-    font-size: 16px;
-    color: #777;
-  }
-  
-  .botao-detalhe-final-fixo {
-    --color: #0a4e23;
-    font-size: 18px;
-    --padding-start: 0;
-    --padding-end: 0;
-    margin-top: 8px; /* Adiciona espaço entre os números e o botão */
-  }
-  
-  .verde-final-fixo {
-    --color: #0a4e23 !important;
-  }
-  
-  .centralizado-tela-botao {
-    text-align: center !important;
-    justify-content: center !important;
-  }
-  
-  /* Card Avaliação */
-  .card-avaliacao-final-fixo {
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .avaliacao-principal-final-fixo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  
-  .estrela-maior-final-fixo {
-    font-size: 60px;
-    color: #ffc107;
-    margin-right: 16px;
-  }
-  
-  .avaliacao-texto-principal-final-fixo {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .nota-final-fixo {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 2px;
-  }
-  
-  .estrelas-menores-final-fixo {
-    display: flex;
-  }
-  
-  .estrela-menor-final-fixo {
-    font-size: 18px;
-    margin-right: 2px;
-    color: #ffc107;
-  }
-  
-  .tempo-servico-final-fixo {
-    font-size: 16px;
-    color: #777;
-    margin-top: 8px;
-  }
-  
-  /* Card Procurar Pedido (agora cinza) */
-  .card-procurar-final-fixo {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .icone-procurar-final-fixo {
-    font-size: 36px;
-    margin-right: 16px;
-    color: #198754;
-  }
-  
-  .texto-procurar-final-fixo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #198754;
-  }
-  
-  /* Botão Ir para tela de solicitações (abaixo de Procurar Pedido) */
-  .abaixo-procurar {
-    margin-top: 10px;
-  }
-  .botao-leilao-header {
-    position: absolute;
-    left: 10px;
-    font-size: 16px;
-    color: #0a4e23;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .centralizado-tela-botao {
-    display: block;
-    margin: 12px auto;
-    text-align: center;
-  }
-  .notificacao-verde {
-    color: #0e5732; /* Mesma cor da palavra 'Leilão' */
-  }
-  
-  
+  --background: #fff; /* Fundo branco do container */
+  --padding-bottom: 56px; /* Ajuste esse valor para a altura do seu footer global */
+}
+
+.container-final-fixo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px;
+  height: calc(100vh - 56px); /* Considera a altura do header */
+  overflow: auto; /* Permite rolagem se o conteúdo exceder a altura */
+}
+
+/* Header */
+.header-final-fixo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 0;
+  background-color: #fff; /* Fundo branco do header */
+}
+
+.header-bg-branco {
+  background-color: #fff;
+  margin-bottom: 0;
+}
+
+.endereco-usuario-final-fixo {
+  color: #777;
+  font-size: 16px;
+}
+
+.icones-header-final-fixo {
+  position: absolute;
+  right: 10px;
+  display: flex;
+}
+
+.icone-header-final-fixo {
+  font-size: 24px;
+  color: #777;
+  margin-left: 16px;
+}
+
+.linha-separadora-topo {
+  height: 1px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+
+/* Boxes com fundo cinza claro */
+.card-cinza {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 16px;
+}
+
+/* Perfil Info */
+.perfil-info-final-fixo {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-final-fixo {
+  width: 60px;
+  height: 60px;
+  margin-right: 16px;
+}
+
+.nome-prestador-final-fixo {
+  display: flex;
+  flex-direction: column;
+}
+
+.ola-final-fixo {
+  font-size: 18px;
+  color: #000;
+}
+
+.nome-final-fixo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Card Métricas */
+.card-metricas-final-fixo {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Organiza número e botão verticalmente */
+  align-items: center; /* Centraliza os itens */
+}
+
+.metricas-final-fixo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 0;
+  width: 100%; /* Garante que ocupe toda a largura da box */
+}
+
+.metrica-item-final-fixo {
+  text-align: center;
+}
+
+.numero-final-fixo {
+  font-size: 26px;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.descricao-final-fixo {
+  font-size: 16px;
+  color: #777;
+}
+
+.botao-detalhe-final-fixo {
+  --color: #0a4e23;
+  font-size: 18px;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-top: 8px; /* Adiciona espaço entre os números e o botão */
+}
+
+.verde-final-fixo {
+  --color: #0a4e23 !important;
+}
+
+.centralizado-tela-botao {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+/* Card Avaliação */
+.card-avaliacao-final-fixo {
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.avaliacao-principal-final-fixo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.estrela-maior-final-fixo {
+  font-size: 60px;
+  color: #ffc107;
+  margin-right: 16px;
+}
+
+.avaliacao-texto-principal-final-fixo {
+  display: flex;
+  flex-direction: column;
+}
+
+.nota-final-fixo {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.estrelas-menores-final-fixo {
+  display: flex;
+}
+
+.estrela-menor-final-fixo {
+  font-size: 18px;
+  margin-right: 2px;
+  color: #ffc107;
+}
+
+.tempo-servico-final-fixo {
+  font-size: 16px;
+  color: #777;
+  margin-top: 8px;
+}
+
+.card-procurar-final-fixo {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icone-procurar-final-fixo {
+  font-size: 36px;
+  margin-right: 16px;
+  color: #198754;
+}
+
+.texto-procurar-final-fixo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #198754;
+}
+
+.abaixo-procurar {
+  margin-top: 10px;
+}
+.centralizado-tela-botao {
+  display: block;
+  margin: 12px auto;
+  text-align: center;
+}
+.notificacao-verde {
+  color: #0e5732; 
+}
+.icone-propostas-maior {
+  font-size: 42px; /* maior que os 36px atuais */
+}
+
+.texto-propostas-maior {
+  font-size: 22px; /* maior que os 20px atuais */
+}
