@@ -1,61 +1,57 @@
-  <ion-header [translucent]="true">
-    <ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar>
     <app-toolbar-global [titulo]="'Início'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
-    </ion-toolbar>
-  </ion-header>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-    <div class="linha-separadora-topo"></div>
+  <div class="linha-separadora-topo"></div>
 
-    <div class="perfil-info-final-fixo card-cinza">
-      <ion-avatar class="avatar-final-fixo">
-        <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" alt="Foto do Perfil">
-      </ion-avatar>
-      <div class="nome-prestador-final-fixo">
-        <ion-label class="ola-final-fixo">Olá,</ion-label>
-        <ion-label class="nome-final-fixo">Nome do prestador</ion-label>
+  <div class="perfil-info-final-fixo card-cinza">
+    <ion-avatar class="avatar-final-fixo">
+      <img src="../../assets/imagens/fotoPerfil/fotoPerfilTrabalhador.png" alt="Foto do Perfil">
+    </ion-avatar>
+    <div class="nome-prestador-final-fixo">
+      <ion-label class="ola-final-fixo">Olá,</ion-label>
+      <ion-label class="nome-final-fixo">Nome do prestador</ion-label>
+    </div>
+  </div>
+
+  <div class="card-metricas-final-fixo card-cinza">
+    <div class="metricas-final-fixo">
+      <div class="metrica-item-final-fixo">
+        <h1 class="numero-final-fixo">4</h1>
+        <p class="descricao-final-fixo">Serviços hoje</p>
+      </div>
+      <div class="metrica-item-final-fixo">
+        <h1 class="numero-final-fixo">400</h1>
+        <p class="descricao-final-fixo">Total de serviços feitos</p>
       </div>
     </div>
+  </div>
 
-    <div class="card-metricas-final-fixo card-cinza">
-      <div class="metricas-final-fixo">
-        <div class="metrica-item-final-fixo">
-          <h1 class="numero-final-fixo">4</h1>
-          <p class="descricao-final-fixo">Serviços hoje</p>
-        </div>
-        <div class="metrica-item-final-fixo">
-          <h1 class="numero-final-fixo">400</h1>
-          <p class="descricao-final-fixo">Total de serviços feitos</p>
-        </div>
-      </div>
-      <ion-button fill="clear" class="botao-detalhe-final-fixo verde-final-fixo centralizado-tela-botao">Ver detalhe</ion-button>
-    </div>
-
-    <div class="card-avaliacao-final-fixo card-cinza">
-      <div class="avaliacao-principal-final-fixo">
-        <ion-icon name="star" color="warning" class="estrela-maior-final-fixo"></ion-icon>
-        <div class="avaliacao-texto-principal-final-fixo">
-          <h2 class="nota-final-fixo">4,0</h2>
-          <div class="estrelas-menores-final-fixo">
-            <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
-            <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
-            <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
-            <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
-            <ion-icon name="star-outline" color="warning" class="estrela-menor-final-fixo"></ion-icon>
-          </div>
+  <div class="card-avaliacao-final-fixo card-cinza">
+    <div class="avaliacao-principal-final-fixo">
+      <ion-icon name="star" color="warning" class="estrela-maior-final-fixo"></ion-icon>
+      <div class="avaliacao-texto-principal-final-fixo">
+        <h2 class="nota-final-fixo">4,0</h2>
+        <div class="estrelas-menores-final-fixo">
+          <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
+          <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
+          <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
+          <ion-icon name="star" color="warning" class="estrela-menor-final-fixo"></ion-icon>
+          <ion-icon name="star-outline" color="warning" class="estrela-menor-final-fixo"></ion-icon>
         </div>
       </div>
-      <p class="tempo-servico-final-fixo">2 anos de serviço</p>
-      <ion-button fill="clear" class="botao-detalhe-final-fixo verde-final-fixo centralizado-tela-botao">Ver detalhe</ion-button>
     </div>
+    <p class="tempo-servico-final-fixo">2 anos de serviço</p>
+  </div>
 
-    <div class="card-procurar-final-fixo card-cinza">
-      <ion-icon name="document-text-outline" class="icone-procurar-final-fixo verde-principal"></ion-icon>
-      <ion-label class="texto-procurar-final-fixo verde-principal-texto">PROCURAR PEDIDO</ion-label>
-    </div>
-    <ion-button fill="clear" class="botao-detalhe-final-fixo verde-final-fixo centralizado-tela-botao abaixo-procurar">Ir para tela de serviços</ion-button>
-     <ion-button fill="outline" size="small" style="margin-left: 45%;" [routerLink]="['/navegacao-teste-front']">NAVEGAR</ion-button>
-
-
-
+  <div class="card-procurar-final-fixo card-cinza" (click)="irParaCardapio()">
+    <ion-icon name="document-text-outline" class="icone-procurar-final-fixo verde-principal icone-propostas-maior"></ion-icon>
+    <ion-label class="texto-procurar-final-fixo verde-principal-texto texto-propostas-maior">ANALISAR PROPOSTAS</ion-label>
+  </div>
+  
 </ion-content>
+
 <app-footer-global></app-footer-global>
