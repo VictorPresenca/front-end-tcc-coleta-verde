@@ -128,16 +128,17 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-  public fazerSolicitacaoColeta(enderecoSelecionadoIndex: number, descricao: string, valor: number): Observable<IColetaBackendResponse<any>> {
-    const body = {
-      type: "rubble",
-      addressIndex: enderecoSelecionadoIndex,  // Passando o índice do endereço selecionado
-      description: descricao,
-      suggestedValue: valor,
-    };
-
-    return this.rawRequest('POST', '/solicitation/create', body);
-  }
+public fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: string, horario: string) {
+  const body = {
+    type: "rubble",
+    addressIndex: index,
+    description: descricao,
+    suggestedValue: valor,
+    date: data,
+    time: horario
+  };
+  return this.rawRequest('POST', '/solicitation/create', body);
+}
 
   adicionarEndereco(endereco: IColetaAddress) {
     return this.rawRequest('POST', '/address/create', endereco);
