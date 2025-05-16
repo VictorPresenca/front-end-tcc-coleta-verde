@@ -149,10 +149,17 @@ export class ColetaBackendService {
 
   public aceitarSolicitacao(solicitationId: number): Observable<IColetaBackendResponse<any>> {
   const body = {
-    solicitationId: solicitationId
+    id: solicitationId
   };
-
   return this.rawRequest('POST', '/solicitation/accept', body);
-}
+  }
+
+  public buscarSolicitacaoPorId(id: number) {
+    return this.rawRequest('GET', `/solicitation/id/${id}`);
+  }
+
+  getUsuarioPorId(id: number) {
+    return this.rawRequest('GET', `/user/id/${id}`);
+  }
 
 }

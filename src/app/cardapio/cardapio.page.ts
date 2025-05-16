@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ColetaBackendService } from '../services/coleta-backend.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cardapio',
@@ -12,7 +13,7 @@ export class CardapioPage implements OnInit {
 
   solicitacoes: any[] = [];
 
-  constructor(private coleta: ColetaBackendService, private http: HttpClient) { }
+  constructor(private coleta: ColetaBackendService, private http: HttpClient, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.carregarSolicitacoes();
@@ -24,7 +25,7 @@ export class CardapioPage implements OnInit {
     this.coleta.listarSolicitacoes(1, 10)
     .subscribe(
       (res: any) => {
-        this.solicitacoes = res.data || [];
+        this.solicitacoes = res.data.filter((s: any) => s.progress === 'created');
       },
       (err: any) => {
         console.error('Erro ao carregar solicitações', err);
@@ -32,17 +33,9 @@ export class CardapioPage implements OnInit {
     );
   }
 
-  // Esse bloco serve pra formatar o "createdAt" em data legível para humanos - (método timestamp)
-
-  // formatDate(timestamp: number): string {
-  //   const date = new Date(timestamp);
-  //   const day = String(date.getDate()).padStart(2, '0');
-  //   const month = String(date.getMonth() + 1).padStart(2, '0');
-  //   const year = date.getFullYear();
-  //   const hours = String(date.getHours()).padStart(2, '0');
-  //   const minutes = String(date.getMinutes()).padStart(2, '0');
-
-  //   return `${day}/${month}/${year} ${hours}:${minutes}`;
-  // }
+  abrirDetalhes(item: any){
+    console.log('Item clicado:', item);
+    this.navCtrl.navigateForward(`/pedido-prestador/${item.id}`);
+  }
 
 }

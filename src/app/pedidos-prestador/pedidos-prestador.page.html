@@ -1,57 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <app-toolbar-global [titulo]="'Pedidos'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <div class="content">
-    
-    <ion-card>
+    <ion-card *ngFor="let pedido of solicitacoesAceitas">
       <ion-card-header>
         <ion-card-subtitle class="subtitle-em-andamento">Em andamento</ion-card-subtitle>
-        <ion-card-title>Pedido 12345</ion-card-title>
+        <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
-        Informações simples sobre o pedido
+        <p>{{ pedido.description }}</p>
+        <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
       </ion-card-content>
     
-      <ion-button fill="abrir" class="abrir-card" [routerLink]="['/finalizar-pedido-prestador']">Abrir</ion-button>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle class="subtitle-concluido">Concluido</ion-card-subtitle>
-        <ion-card-title>Pedido 12345</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Informações simples sobre o pedido
-      </ion-card-content>
-    
-      <ion-button fill="abrir" class="abrir-card" [routerLink]="['/finalizar-pedido-prestador']">Abrir</ion-button>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle class="subtitle-cancelado">Cancelado</ion-card-subtitle>
-        <ion-card-title>Pedido 12345</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        Informações simples sobre o pedido
-      </ion-card-content>
-    
-      <ion-button fill="abrir" class="abrir-card" [routerLink]="['/finalizar-pedido-prestador']">Abrir</ion-button>
-    </ion-card>
-
-    <div class="center-button">
-      <ion-button shape="round" class="add-pedido" [routerLink]="['/solicitacao']">
-        <ion-icon slot="icon-only" name="add-outline" class="icone-mais"></ion-icon>
+      <ion-button fill="solid" class="abrir-card" (click)="abrirPedido(pedido.id)">
+        Abrir
       </ion-button>
-    </div>
+    </ion-card>
 
+    <div *ngIf="solicitacoesAceitas.length === 0" class="ion-text-center">
+      <p>Nenhum pedido aceito até o momento.</p>
+    </div>
   </div>
-  </ion-content>
+</ion-content>
+
 <app-footer-global></app-footer-global>

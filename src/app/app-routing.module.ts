@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'configuracoes',
     loadChildren: () => import('./configuracoes/configuracoes.module').then( m => m.ConfiguracoesPageModule)
   },{
-    path: 'pedido-prestador',
+    path: 'pedido-prestador/:id',
     loadChildren: () => import('./pedido-prestador/pedido-prestador.module').then( m => m.PedidoPrestadorPageModule)
   },
   {

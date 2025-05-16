@@ -12,17 +12,45 @@ import { NavController, ToastController } from '@ionic/angular';
 export class PedidoPrestadorPage implements OnInit {
 
   solicitationId!: number;
+  solicitacao: any;
+  nomeCliente: string = '...';
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private coletaService: ColetaBackendService,
     private toastCtrl: ToastController,
-    private navCtrl: NavController) {}
+    private navCtrl: NavController
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  
+  ionViewWillEnter() {
+    this.solicitationId = Number(this.route.snapshot.paramMap.get('id'));
+    this.buscarSolicitacao();
   }
 
-    ionViewWillEnter() {
-    this.solicitationId = Number(this.route.snapshot.paramMap.get('id')); // ou de onde você estiver pegando o ID
+  buscarSolicitacao() {
+    this.coletaService.buscarSolicitacaoPorId(this.solicitationId).subscribe({
+      next: (res) => {
+        this.solicitacao = res.data;
+
+        const authorId = this.solicitacao.authorId;
+      if (authorId) {
+        this.coletaService.getUsuarioPorId(authorId).subscribe({
+          next: (userRes) => {
+            const user = (userRes as any).data;
+            this.nomeCliente = user.name;
+          },
+          error: () => {
+            this.nomeCliente = 'Nome indisponível';
+          }
+        });
+      }
+      },
+      error: () => {
+        this.showErro('Erro ao carregar os detalhes do pedido');
+      }
+    });
   }
 
   async aceitarSolicitacao() {
@@ -35,8 +63,8 @@ export class PedidoPrestadorPage implements OnInit {
             color: 'success'
           });
           await toast.present();
-          this.navCtrl.navigateBack('/cardapio'); // ou a rota que quiser voltar
-        } else {
+            this.navCtrl.navigateRoot('/pedidos-prestador');
+          } else {
           this.showErro(res.message ?? 'Erro ao aceitar a solicitação');
         }
       },
@@ -54,5 +82,12 @@ export class PedidoPrestadorPage implements OnInit {
     });
     await toast.present();
   }
+
+  tipoColetaMap: { [key: number]: string } = {
+  0: 'Reciclável',
+  1: 'Entulho',
+  2: 'Orgânico',
+  3: 'Eletrônico'
+};
   
 }

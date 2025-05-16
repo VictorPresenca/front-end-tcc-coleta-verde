@@ -20,9 +20,10 @@
 
       <div class="blocoInfos" *ngFor="let item of solicitacoes">
 
-          <div class="blocoInfosEsq">
-            <span class="blocoInfosHorario">Horário: <!-- {{ formatDate(item.createdAt) }} --> </span>
+          <div class="blocoInfosEsq" (click)="abrirDetalhes(item)">
+            <span class="blocoInfosData">Pedido: {{ item.id }}</span>
             <span class="blocoInfosData">Dia: <!-- {{ formatDate(item.createdAt) }} --> </span>
+            <span class="blocoInfosHorario">Horário: <!-- {{ formatDate(item.createdAt) }} --> </span>
             <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
           </div>
 
