@@ -1,4 +1,14 @@
-.botao-notificacao{
-    --color: #0a4e23;
-    padding: -20px;
+.botao-notificacao {
+  --color: #0a4e23;
+  padding: -20px;
+}
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+}
+
+ion-title.md.title-default {
+  padding: 0;
 }

@@ -1,16 +1,17 @@
 <ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button defaultHref="/" *ngIf="mostrarBotaoVoltar"></ion-back-button>
-  </ion-buttons>
+  <div class="content">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" *ngIf="mostrarBotaoVoltar"></ion-back-button>
+    </ion-buttons>
 
-  <ion-title>
-    {{ titulo }}
-  </ion-title>
+    <ion-title>
+      {{ titulo }}
+    </ion-title>
 
-  <ion-buttons slot="end">
-    <ion-button (click)="abrirNotificacoes()" class="botao-notificacao">
-      <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-    </ion-button>
-  </ion-buttons>
-
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirNotificacoes()" class="botao-notificacao">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </div>
 </ion-toolbar>
