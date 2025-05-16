@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ColetaBackendService } from 'src/app/services/coleta-backend.service'; // <-- importe aqui
 
 @Component({
   selector: 'app-solicitacao',
@@ -14,12 +14,16 @@ export class SolicitacaoPage implements OnInit {
   enderecoSelecionadoIndex: number | null = null;
   descricao: string = '';
   valor: number | null = null;
-  dataSelecionada: string = '';     // já existente
-  horaSelecionada: string = '';     // já existente
+  dataSelecionada: string = '';
+  horaSelecionada: string = '';
   isSubmitting: boolean = false;
   novoEndereco: any = {};
 
-  constructor(private alertController: AlertController, private http: HttpClient) {}
+  constructor(
+    private alertController: AlertController,
+    private http: HttpClient,
+    private coletaBackendService: ColetaBackendService // <-- injetado aqui
+  ) {}
 
   ngOnInit() {
     this.carregarEnderecosSalvos();
@@ -57,10 +61,7 @@ export class SolicitacaoPage implements OnInit {
         }
       ],
       buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
+        { text: 'Cancelar', role: 'cancel' },
         {
           text: 'Buscar',
           handler: (data) => {
@@ -185,31 +186,22 @@ export class SolicitacaoPage implements OnInit {
       return;
     }
 
-    const endereco = this.enderecos[this.enderecoSelecionadoIndex];
-    const dados = {
-      ...endereco,
-      descricao: this.descricao,
-      valor: this.valor,
-      data: this.dataSelecionada,
-      horario: this.horaSelecionada
-    };
-
     this.isSubmitting = true;
 
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.post('https://coletaverde.up.railway.app/address/create', dados, { headers }).subscribe(
+    this.coletaBackendService.fazerSolicitacaoColeta(
+      this.enderecoSelecionadoIndex,
+      this.descricao,
+      this.valor,
+      this.dataSelecionada,
+      this.horaSelecionada
+    ).subscribe(
       () => {
         this.isSubmitting = false;
         alert('Solicitação enviada com sucesso!');
         this.resetarFormulario();
         this.carregarEnderecosSalvos();
       },
-      (error) => {
+      (error: { error: { message: string; }; }) => {
         this.isSubmitting = false;
         const msg = error?.error?.message || 'Erro ao enviar solicitação.';
         alert(msg);

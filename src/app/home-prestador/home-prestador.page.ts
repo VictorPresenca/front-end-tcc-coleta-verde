@@ -14,7 +14,10 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
   }
 
-  abrirLeilao() {
-    this.router.navigate(['/leilao']);
+  irParaCardapio() {
+    this.router.navigate(['/cardapio']);
   }
 }
+
+
+
