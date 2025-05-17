@@ -15,32 +15,28 @@
     </ion-button>
 
     <div class="atalhos-home">
-  <h2>Educação Ambiental</h2>
-</div>
+      <h2>COLETA DE LIXO</h2>
+      <p>clique para fazer uma solicitação</p>
+      <ion-button class="btn" expand="block" [routerLink]="['/solicitacao']">Solicitar</ion-button>
+    </div>
 
-<div
-  class="carrossel-scroll"
-  #carrossel
->
-  <div
-    class="card"
-    *ngFor="let card of cards; index as i"
-    (mouseenter)="hoverCard(i)"
-    (mouseleave)="leaveCard()"
-    (click)="scrollToCard(i)"
-  >
-    <ion-card>
-      <img
-        [src]="card.img"
-        [alt]="card.alt"
-        class="img-card"
-      />
-      <ion-card-content>
-        {{ card.texto }}
-      </ion-card-content>
-    </ion-card>
-  </div>
-</div>
+    <div class="carrossel-scroll" #carrossel>
+      <div
+        class="card"
+        *ngFor="let item of cards; let i = index"
+        (click)="scrollToCard(i)"
+        (mouseenter)="hoverCard(i)"
+        (mouseleave)="leaveCard()"
+        [class.hovered]="hoveredIndex === i"
+      >
+        <ion-card>
+          <ion-card-header>
+            <img class="img-card" [src]="item.img" [alt]="item.alt" />
+          </ion-card-header>
+          <ion-card-content>{{ item.texto }}</ion-card-content>
+        </ion-card>
+      </div>
+    </div>
 
   </div>
 </ion-content>
