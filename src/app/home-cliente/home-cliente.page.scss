@@ -1,84 +1,119 @@
-.bgd-superior {
-  background: rgb(233, 237, 237);
-  background-image: url("/assets/imagens/fundo-arvores-removebg-preview.png");
-  background-repeat: no-repeat;
-  background-size: cover; /* ou cover, se preferir */
-  background-position: center;
-  height: 35vh;
-}
-
-.img-logo {
-  display: block;
-  margin: 0 auto;
-  height: 25vh;
-  width: 25vh;
-  padding: 30px;
-}
-.btn {
-  margin-top: 10px;
-  margin-left: 16px;
-  margin-right: 16px;
-  padding: 10px;
-  --border-radius: 20px;
-  --background: #0a4e23;
-  text-transform: capitalize;
-}
-
-.atalhos-home {
-  padding-top: 15px;
-  text-align: center;
-}
-
-h2 {
-  color: #0a4e23;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-  margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
-.carrossel {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  scroll-snap-type: x mandatory;
-}
-
-ion-card {
-  display: flex;
-  background-color: #c4d3c5;
-  border-radius: 15px;
-  height: 120px;
-}
-
-ion-card-content {
-  display: flex;
-  color: #0a4e23;
-  font-weight: bold;
-  font-size: 16px;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
+/* Container geral */
+.container.bgd {
   padding: 16px;
+  background-color: #e9eded; /* mesmo tom claro do .bgd-superior */
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-ion-card-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.card {
-  flex: 0 0 auto;
-  width: 90%;
-  scroll-snap-align: start;
-  padding: 5px;
+/* Cards de data e horário */
+.card-data, .card-horario {
+  background-color: #c4d3c5; /* cor do card */
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+  margin-bottom: 16px;
   transition: transform 0.3s ease;
 }
 
-.img-card {
-  height: 10vh;
-  width: 10vh;
+.card-data:hover,
+.card-horario:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 10;
 }
+
+/* Inputs, textarea e ion-select - estilo igual aos cards, porém com fundo branco para inputs */
+input[type="number"],
+input[type="date"],
+input[type="time"],
+textarea,
+ion-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #0a4e23; /* verde escuro das headings */
+  background-color: #f6f9f6; /* verde clarinho, suave para inputs */
+  color: #0a4e23;
+  font-weight: 600;
+  font-size: 1rem;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 4px rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus,
+ion-select:focus {
+  outline: none;
+  border-color: #064715; /* verde mais escuro no foco */
+  box-shadow: 0 0 8px 2px rgba(10, 78, 35, 0.4);
+}
+
+/* Labels */
+label h6 {
+  color: #0a4e23;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Botões */
+button[type="button"],
+.btn-submit {
+  margin-top: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #0a4e23; 
+  color: white;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="button"]:hover,
+.btn-submit:hover {
+  background-color: #064715;
+}
+
+button[type="button"]:focus,
+.btn-submit:focus {
+  outline: none;
+  box-shadow: 0 0 8px 2px rgba(10, 78, 35, 0.6);
+}
+
+/* Spinner alinhado */
+ion-spinner {
+  display: block;
+  margin: 12px auto 0;
+  color: #0a4e23;
+}
+
+/* Ajuste para ion-input dentro do card */
+ion-input.hora-input {
+  --background: #f6f9f6;
+  --border-radius: 15px;
+  --padding-start: 10px;
+  width: 100%;
+  border: 1px solid #0a4e23;
+  font-weight: 600;
+  color: #0a4e23;
+}
+
+/* Ajustes gerais de espaçamento no form */
+.solicitacao-form label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+
