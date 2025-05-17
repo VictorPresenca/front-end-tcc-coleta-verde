@@ -55,14 +55,14 @@ export class HomeClientePage implements OnInit, OnDestroy {
       ) {
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        scrollContainer.scrollBy({ left: 362, behavior: 'smooth' }); // largura do card + gap (350 + 12)
+        scrollContainer.scrollBy({ left: 362, behavior: 'smooth' }); // largura do card + gap
       }
     }, 3000);
   }
 
   scrollToCard(index: number) {
     const scrollContainer = this.carrossel.nativeElement;
-    const cardWidth = 362; // largura do card + gap
+    const cardWidth = 362;
     scrollContainer.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
   }
 
