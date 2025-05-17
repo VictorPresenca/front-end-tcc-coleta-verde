@@ -4,6 +4,7 @@ import {
   ElementRef,
   OnInit,
   OnDestroy,
+  AfterViewInit
 } from '@angular/core';
 
 @Component({
@@ -12,32 +13,24 @@ import {
   styleUrls: ['./home-cliente.page.scss'],
   standalone: false
 })
-export class HomeClientePage implements OnInit, OnDestroy {
+export class HomeClientePage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('carrossel', { read: ElementRef }) carrossel!: ElementRef;
 
   cards = [
-    {
-      img: '/assets/imagens/arvore-icone-png.png',
-      alt: 'Ícone árvore',
-      texto: 'Preservar o meio ambiente começa com o destino do seu lixo.'
-    },
-    {
-      img: '/assets/imagens/folhas-verdes-icone-png.png',
-      alt: 'Ícone folhas verdes',
-      texto: 'Descartar com consciência é plantar um futuro melhor.'
-    },
-    {
-      img: '/assets/imagens/arvore-icone-png.png',
-      alt: 'Ícone árvore',
-      texto: 'O mundo muda quando a gente aprende a descartar.'
-    }
+    { img: '/assets/imagens/arvore-icone-png.png', alt: 'Ícone árvore', texto: 'Preservar o meio ambiente começa com o destino do seu lixo.' },
+    { img: '/assets/imagens/folhas-verdes-icone-png.png', alt: 'Ícone folhas verdes', texto: 'Descartar com consciência é plantar um futuro melhor.' },
+    { img: '/assets/imagens/arvore-icone-png.png', alt: 'Ícone árvore', texto: 'O mundo muda quando a gente aprende a descartar.' }
   ];
 
   autoScrollInterval: any;
   hoveredIndex: number | null = null;
 
   ngOnInit() {
-    this.startAutoScroll();
+    // NÃO iniciar aqui
+  }
+
+  ngAfterViewInit() {
+    this.startAutoScroll(); // ✅ seguro acessar o nativeElement aqui
   }
 
   ngOnDestroy() {
@@ -55,7 +48,7 @@ export class HomeClientePage implements OnInit, OnDestroy {
       ) {
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        scrollContainer.scrollBy({ left: 362, behavior: 'smooth' }); // largura do card + gap
+        scrollContainer.scrollBy({ left: 362, behavior: 'smooth' });
       }
     }, 3000);
   }
