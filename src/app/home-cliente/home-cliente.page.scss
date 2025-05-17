@@ -41,72 +41,72 @@ p {
 }
 
 .carrossel-scroll {
+  margin-top: 50px;
   display: flex;
   overflow-x: auto;
-  gap: 12px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding: 12px 0;
   scroll-behavior: smooth;
-  scroll-padding-left: 12px;
-  scroll-padding-right: 12px;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+  padding: 10px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 160px; /* menos altura pois agora é mais horizontal */
 }
 
 .card {
   flex: 0 0 auto;
-  height: 200px;
-  width: 350px;
+  width: 360px; /* largura maior para acomodar imagem + texto */
   scroll-snap-align: start;
-  background-color: #c4d3c5;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 140px; /* altura menor */
   display: flex;
+  flex-direction: row; /* alinhamento horizontal */
   align-items: center;
-  opacity: 0.9;
+  border-radius: 24px; /* arredondamento maior */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden; /* para garantir que conteúdo não ultrapasse bordas */
 }
 
-.card:hover {
-  transform: scale(1.05) translateY(-3px);
-  opacity: 1;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 0.25);
+.card:hover,
+.card.hovered {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;
 }
 
-.card ion-card {
-  background-color: transparent !important;
-  box-shadow: none;
+ion-card {
+  background-color: #afdfc0;
+  color: #033315;
+  flex: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 0;
-}
-
-ion-card-header,
-ion-card-content {
-  background-color: transparent !important;
-  padding: 0 8px;
-  margin: 0;
+  border-radius: 24px; /* arredondamento */
+  overflow: hidden; /* mantém a borda arredondada ao redor da imagem */
 }
 
 .img-card {
-  height: 90px;
-  width: 90px;
-  object-fit: contain;
-  border-radius: 10px;
-  background-color: transparent !important;
-  margin-right: 16px;
+  width: 100%;        /* Faz a imagem preencher o espaço disponível no container */
+  max-width: 400px;   /* Limita a largura máxima */
+  height: auto;       /* Altura proporcional */
+  object-fit: cover;  /* Cobre toda a área, cortando só o que passar */
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
   flex-shrink: 0;
+  padding: 0;         /* Remove padding para não ultrapassar borda */
+  box-sizing: border-box;
 }
 
 ion-card-content {
-  color: #0a4e23;
-  font-weight: 600;
-  font-size: 5vw;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  line-height: 1.4;
-  flex: 1;
-  padding-right: 8px;
+  text-align: left;
+  height: 100%;
+  box-sizing: border-box;
 }

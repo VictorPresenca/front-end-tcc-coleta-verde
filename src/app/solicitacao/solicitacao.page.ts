@@ -36,7 +36,13 @@ export class SolicitacaoPage implements OnInit {
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
 
     this.http.get('https://coletaverde.up.railway.app/address/all', { headers }).subscribe(
-      (res: any) => this.enderecos = res.data || [],
+      (res: any) => {
+        this.enderecos = res.data || [];
+        // Se existir algum endereço, pode selecionar o primeiro por padrão (opcional)
+        if(this.enderecos.length > 0 && this.enderecoSelecionadoIndex === null) {
+          this.enderecoSelecionadoIndex = 0;
+        }
+      },
       (err) => console.error('Erro ao carregar endereços:', err)
     );
   }
@@ -67,9 +73,15 @@ export class SolicitacaoPage implements OnInit {
         if (res.erro) return alert('CEP não encontrado.');
         const regiao = this.definirRegiao(res.uf);
         this.novoEndereco = {
-          cep: res.cep, logradouro: res.logradouro, bairro: res.bairro,
-          localidade: res.localidade, uf: res.uf, estado: res.uf, regiao,
-          complemento: '', unidade: ''
+          cep: res.cep, 
+          logradouro: res.logradouro, 
+          bairro: res.bairro,
+          localidade: res.localidade, 
+          uf: res.uf, 
+          estado: res.uf, 
+          regiao,
+          complemento: '', 
+          unidade: ''
         };
         this.confirmarNovoEndereco();
       },
@@ -109,21 +121,44 @@ export class SolicitacaoPage implements OnInit {
         {
           text: 'Adicionar',
           handler: (data) => {
+            const token = localStorage.getItem('token');
+            if (!token) {
+              alert('Token não encontrado.');
+              return false; // previne fechar o alert
+            }
+
+            const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+
             const enderecoEditado = {
               ...data,
               estado: data.uf.toUpperCase(),
               uf: data.uf.toUpperCase()
             };
 
+            // Verifica duplicado antes de salvar
             const existe = this.enderecos.some(e =>
               e.cep === enderecoEditado.cep && e.logradouro === enderecoEditado.logradouro
             );
 
-            if (existe) alert('Este endereço já está registrado.');
-            else {
-              this.enderecos.push(enderecoEditado);
-              this.enderecoSelecionadoIndex = this.enderecos.length - 1;
+            if (existe) {
+              alert('Este endereço já está registrado.');
+              return false; // previne fechar o alert
             }
+
+            // Salva no backend
+            this.http.post('https://coletaverde.up.railway.app/address/create', enderecoEditado, { headers })
+              .subscribe(
+                (res: any) => {
+                  const novoEnderecoSalvo = res.data;
+                  this.enderecos.push(novoEnderecoSalvo);
+                  this.enderecoSelecionadoIndex = this.enderecos.length - 1;
+                },
+                (err) => {
+                  console.error('Erro ao salvar endereço:', err);
+                  alert('Erro ao salvar o endereço.');
+                }
+              );
+            return true; // garante que sempre retorna um valor
           }
         }
       ]
@@ -139,6 +174,7 @@ export class SolicitacaoPage implements OnInit {
 
     this.isSubmitting = true;
 
+    // Passar o índice correto para o backend (supondo que o backend espera índice)
     this.coletaBackendService.fazerSolicitacaoColeta(
       this.enderecoSelecionadoIndex,
       this.descricao,
