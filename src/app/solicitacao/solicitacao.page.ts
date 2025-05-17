@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ColetaBackendService } from 'src/app/services/coleta-backend.service'; // <-- importe aqui
+import { ColetaBackendService } from 'src/app/services/coleta-backend.service';
 
 @Component({
   selector: 'app-solicitacao',
@@ -22,7 +22,7 @@ export class SolicitacaoPage implements OnInit {
   constructor(
     private alertController: AlertController,
     private http: HttpClient,
-    private coletaBackendService: ColetaBackendService // <-- injetado aqui
+    private coletaBackendService: ColetaBackendService
   ) {}
 
   ngOnInit() {
@@ -31,46 +31,28 @@ export class SolicitacaoPage implements OnInit {
 
   carregarEnderecosSalvos() {
     const token = localStorage.getItem('token');
-    if (!token) {
-      console.error('Token não encontrado.');
-      return;
-    }
+    if (!token) return console.error('Token não encontrado.');
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
 
     this.http.get('https://coletaverde.up.railway.app/address/all', { headers }).subscribe(
-      (res: any) => {
-        this.enderecos = res.data || [];
-      },
-      (error) => {
-        console.error('Erro ao carregar endereços:', error);
-      }
+      (res: any) => this.enderecos = res.data || [],
+      (err) => console.error('Erro ao carregar endereços:', err)
     );
   }
 
   async abrirAlertaEndereco() {
     const alertElement = await this.alertController.create({
       header: 'Adicionar Endereço',
-      inputs: [
-        {
-          name: 'cep',
-          type: 'text',
-          placeholder: 'Digite o CEP (ex: 01001-000)',
-        }
-      ],
+      inputs: [{ name: 'cep', type: 'text', placeholder: 'Digite o CEP (ex: 01001-000)' }],
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
         {
           text: 'Buscar',
           handler: (data) => {
             const cep = data.cep.replace(/\D/g, '');
-            if (cep.length === 8) {
-              this.buscarEnderecoPorCep(cep);
-            } else {
-              window.alert('CEP inválido.');
-            }
+            if (cep.length === 8) this.buscarEnderecoPorCep(cep);
+            else alert('CEP inválido.');
           }
         }
       ]
@@ -82,30 +64,16 @@ export class SolicitacaoPage implements OnInit {
   buscarEnderecoPorCep(cep: string) {
     this.http.get(`https://viacep.com.br/ws/${cep}/json/`).subscribe(
       (res: any) => {
-        if (res.erro) {
-          alert('CEP não encontrado.');
-          return;
-        }
-
+        if (res.erro) return alert('CEP não encontrado.');
         const regiao = this.definirRegiao(res.uf);
-
         this.novoEndereco = {
-          cep: res.cep,
-          logradouro: res.logradouro,
-          bairro: res.bairro,
-          localidade: res.localidade,
-          uf: res.uf,
-          estado: res.uf,
-          regiao,
-          complemento: '',
-          unidade: ''
+          cep: res.cep, logradouro: res.logradouro, bairro: res.bairro,
+          localidade: res.localidade, uf: res.uf, estado: res.uf, regiao,
+          complemento: '', unidade: ''
         };
-
         this.confirmarNovoEndereco();
       },
-      () => {
-        alert('Erro ao buscar o endereço.');
-      }
+      () => alert('Erro ao buscar o endereço.')
     );
   }
 
@@ -117,11 +85,8 @@ export class SolicitacaoPage implements OnInit {
       'Sudeste': ['ES', 'MG', 'RJ', 'SP'],
       'Sul': ['PR', 'RS', 'SC']
     };
-
     for (const regiao in regioes) {
-      if (regioes[regiao].includes(uf)) {
-        return regiao;
-      }
+      if (regioes[regiao].includes(uf)) return regiao;
     }
     return '';
   }
@@ -130,14 +95,14 @@ export class SolicitacaoPage implements OnInit {
     const alertElement = await this.alertController.create({
       header: 'Confirmar Endereço',
       inputs: [
-        { name: 'cep', type: 'text', placeholder: 'CEP', value: this.novoEndereco.cep },
-        { name: 'logradouro', type: 'text', placeholder: 'Logradouro', value: this.novoEndereco.logradouro },
-        { name: 'bairro', type: 'text', placeholder: 'Bairro', value: this.novoEndereco.bairro },
-        { name: 'localidade', type: 'text', placeholder: 'Cidade', value: this.novoEndereco.localidade },
-        { name: 'uf', type: 'text', placeholder: 'UF', value: this.novoEndereco.uf },
-        { name: 'regiao', type: 'text', placeholder: 'Região', value: this.novoEndereco.regiao },
-        { name: 'complemento', type: 'text', placeholder: 'Complemento (opcional)', value: this.novoEndereco.complemento },
-        { name: 'unidade', type: 'text', placeholder: 'Unidade (opcional)', value: this.novoEndereco.unidade }
+        { name: 'cep', value: this.novoEndereco.cep, type: 'text', placeholder: 'CEP' },
+        { name: 'logradouro', value: this.novoEndereco.logradouro, type: 'text', placeholder: 'Logradouro' },
+        { name: 'bairro', value: this.novoEndereco.bairro, type: 'text', placeholder: 'Bairro' },
+        { name: 'localidade', value: this.novoEndereco.localidade, type: 'text', placeholder: 'Cidade' },
+        { name: 'uf', value: this.novoEndereco.uf, type: 'text', placeholder: 'UF' },
+        { name: 'regiao', value: this.novoEndereco.regiao, type: 'text', placeholder: 'Região' },
+        { name: 'complemento', value: '', type: 'text', placeholder: 'Complemento' },
+        { name: 'unidade', value: '', type: 'text', placeholder: 'Unidade' }
       ],
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
@@ -145,25 +110,17 @@ export class SolicitacaoPage implements OnInit {
           text: 'Adicionar',
           handler: (data) => {
             const enderecoEditado = {
-              cep: data.cep.trim(),
-              logradouro: data.logradouro.trim(),
-              bairro: data.bairro.trim(),
-              localidade: data.localidade.trim(),
-              uf: data.uf.trim().toUpperCase(),
-              regiao: data.regiao.trim(),
-              complemento: data.complemento?.trim() || '',
-              unidade: data.unidade?.trim() || '',
-              estado: data.uf.trim().toUpperCase()
+              ...data,
+              estado: data.uf.toUpperCase(),
+              uf: data.uf.toUpperCase()
             };
 
             const existe = this.enderecos.some(e =>
-              e.cep === enderecoEditado.cep &&
-              e.logradouro === enderecoEditado.logradouro
+              e.cep === enderecoEditado.cep && e.logradouro === enderecoEditado.logradouro
             );
 
-            if (existe) {
-              alert('Este endereço já está registrado.');
-            } else {
+            if (existe) alert('Este endereço já está registrado.');
+            else {
               this.enderecos.push(enderecoEditado);
               this.enderecoSelecionadoIndex = this.enderecos.length - 1;
             }
@@ -176,15 +133,9 @@ export class SolicitacaoPage implements OnInit {
   }
 
   fazerSolicitacao() {
-    if (this.enderecoSelecionadoIndex === null) {
-      alert('Selecione um endereço.');
-      return;
-    }
-
-    if (!this.descricao || !this.valor || !this.dataSelecionada || !this.horaSelecionada) {
-      alert('Preencha todos os campos obrigatórios.');
-      return;
-    }
+    if (this.enderecoSelecionadoIndex === null) return alert('Selecione um endereço.');
+    if (!this.descricao || !this.valor || !this.dataSelecionada || !this.horaSelecionada)
+      return alert('Preencha todos os campos obrigatórios.');
 
     this.isSubmitting = true;
 
@@ -201,10 +152,9 @@ export class SolicitacaoPage implements OnInit {
         this.resetarFormulario();
         this.carregarEnderecosSalvos();
       },
-      (error: { error: { message: string; }; }) => {
+      (err) => {
         this.isSubmitting = false;
-        const msg = error?.error?.message || 'Erro ao enviar solicitação.';
-        alert(msg);
+        alert(err?.error?.message || 'Erro ao enviar solicitação.');
       }
     );
   }
