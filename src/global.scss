@@ -35,3 +35,27 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/* Seu CSS personalizado para botões - global */
+.btn-submit-solicitacao {
+  margin-top: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #0a4e23 !important;
+  color: rgb(255, 255, 255) !important ;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit-solicitacao:hover {
+  background-color: #064715;
+}
+
+.btn-submit-solicitacao:focus {
+  outline: none;
+  box-shadow: 0 0 8px 2px rgba(10, 78, 35, 0.6);
+}

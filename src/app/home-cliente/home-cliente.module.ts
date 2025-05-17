@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HomeClientePageRoutingModule } from './home-cliente-routing.module';
-
 import { HomeClientePage } from './home-cliente.page';
 
 import { SharedModule } from '../component/shared.module';
+
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { SharedModule } from '../component/shared.module';
     FormsModule,
     IonicModule,
     HomeClientePageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [HomeClientePage]
 })
