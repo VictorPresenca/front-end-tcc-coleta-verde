@@ -151,8 +151,13 @@ fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: st
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
   }
 
-  public aceitarSolicitacao(id: number): Observable<IColetaBackendResponse<any>> {
-  const body = { id };
+  public aceitarSolicitacao(solicitacao: any): Observable<IColetaBackendResponse<any>> {
+  const body = {
+    id: solicitacao.id,
+    desiredDate: solicitacao.desiredDate,
+    authorId: solicitacao.authorId,
+    type: solicitacao.type 
+  };
   return this.rawRequest('POST', '/solicitation/accept', body);
   }
 

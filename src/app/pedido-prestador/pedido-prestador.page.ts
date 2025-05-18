@@ -54,7 +54,7 @@ export class PedidoPrestadorPage implements OnInit {
   }
 
   async aceitarSolicitacao() {
-    this.coletaService.aceitarSolicitacao(this.solicitationId).subscribe({
+    this.coletaService.aceitarSolicitacao(this.solicitacao).subscribe({
       next: async (res) => {
         if (res.status === 200) {
           const toast = await this.toastCtrl.create({
