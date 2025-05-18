@@ -128,17 +128,20 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-public fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: string, horario: string) {
-  const body = {
-    type: "rubble",
-    addressIndex: index,
-    description: descricao,
-    suggestedValue: valor,
-    date: data,
-    time: horario
-  };
-  return this.rawRequest('POST', '/solicitation/create', body);
-}
+fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: string, hora: string): Observable<any> {
+
+  const desiredDate = new Date(`${data}T${hora}:00`).getTime(); // Converte para timestamp
+    const body = {
+      type: 'rubble',
+      addressIndex: index,
+      description: descricao,
+      suggestedValue: valor,
+      desiredDate: desiredDate
+    };
+
+    return this.rawRequest( 'POST', `/solicitation/create`, body);
+  }
+
 
   adicionarEndereco(endereco: IColetaAddress) {
     return this.rawRequest('POST', '/address/create', endereco);
@@ -148,10 +151,8 @@ public fazerSolicitacaoColeta(index: number, descricao: string, valor: number, d
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
   }
 
-  public aceitarSolicitacao(solicitationId: number): Observable<IColetaBackendResponse<any>> {
-  const body = {
-    id: solicitationId
-  };
+  public aceitarSolicitacao(id: number): Observable<IColetaBackendResponse<any>> {
+  const body = { id };
   return this.rawRequest('POST', '/solicitation/accept', body);
   }
 
@@ -162,5 +163,7 @@ public fazerSolicitacaoColeta(index: number, descricao: string, valor: number, d
   getUsuarioPorId(id: number) {
     return this.rawRequest('GET', `/user/id/${id}`);
   }
+
+
 
 }

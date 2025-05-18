@@ -22,8 +22,8 @@
 
           <div class="blocoInfosEsq" (click)="abrirDetalhes(item)">
             <span class="blocoInfosData">Pedido: {{ item.id }}</span>
-            <span class="blocoInfosData">Dia: <!-- {{ formatDate(item.createdAt) }} --> </span>
-            <span class="blocoInfosHorario">Horário: <!-- {{ formatDate(item.createdAt) }} --> </span>
+            <span class="blocoInfosData">Dia: {{ item.desiredDate | date:'dd/MM/yyyy' }}</span>
+            <span class="blocoInfosHorario">Horário: {{ item.desiredDate | date:'HH:mm' }}</span>
             <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
           </div>
 
