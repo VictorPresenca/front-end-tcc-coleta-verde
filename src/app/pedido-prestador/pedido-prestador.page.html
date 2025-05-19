@@ -14,7 +14,8 @@
       <ion-label>
         <h2>Pedido {{ solicitacao.id }} </h2>
         <p>{{ nomeCliente }}</p>
-        <p>{{ solicitacao.createdAt | date: 'shortTime' }}</p>
+        <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
+        <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
       </ion-label>
     </ion-item>
 

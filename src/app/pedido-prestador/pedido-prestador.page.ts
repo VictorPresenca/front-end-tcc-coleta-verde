@@ -54,8 +54,9 @@ export class PedidoPrestadorPage implements OnInit {
   }
 
   async aceitarSolicitacao() {
-    this.coletaService.aceitarSolicitacao(this.solicitationId).subscribe({
+    this.coletaService.aceitarSolicitacao(this.solicitacao.id).subscribe({
       next: async (res) => {
+        console.log('ID da solicitação:', this.solicitacao.id);
         if (res.status === 200) {
           const toast = await this.toastCtrl.create({
             message: 'Solicitação aceita com sucesso!',
