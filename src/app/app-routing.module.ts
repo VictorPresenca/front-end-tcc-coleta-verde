@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./perfil-prestador/perfil-prestador.module').then(m => m.PerfilPrestadorPageModule)
   },
   {
-    path: 'pedidos-cliente/:id',
+    path: 'pedidos-cliente',
     loadChildren: () => import('./pedidos-cliente/pedidos-cliente.module').then(m => m.PedidosClientePageModule)
   },
   {

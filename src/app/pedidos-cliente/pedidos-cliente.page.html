@@ -7,18 +7,19 @@
 <ion-content [fullscreen]="true" class="fundo-arvores">
   <div class="content">
 
-    <ion-card class="card-pedido" *ngFor="let item of solicitacoes">
+    <ion-card class="card-pedido" *ngFor="let item of solicitacoesAceitas" (click)="abrirPedido(item.id)">
       <div class="status-banner concluido">CONCLUÍDO</div>
       <ion-card-header>
-        <ion-card-title>Pedido 12345</ion-card-title>
+        <ion-card-title>Pedido {{ item.id }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        Pedido concluído em 17/03/25<br>
-        Concluído por José
+        Pedido concluído em {{ item.dataConclusao | date:'dd/MM/yy' }}<br>
+        Concluído por {{ item.concluidoPor }}
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
+
+    <!-- <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
       <div class="status-banner andamento">EM ANDAMENTO</div>
       <ion-card-header>
         <ion-card-title>Pedido 12345</ion-card-title>
@@ -37,7 +38,11 @@
         Pedido feito em 15/03/25<br>
         Aguardando contato
       </ion-card-content>
-    </ion-card>
+    </ion-card> -->
+
+    <div *ngIf="solicitacoesAceitas.length === 0" class="ion-text-center">
+      <p>Você ainda não realizou nenhum pedido.</p>
+    </div>
 
   </div>
 </ion-content>
