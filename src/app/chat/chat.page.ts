@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as EventSourcePolyfill from 'event-source-polyfill';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ColetaBackendService } from '../services/coleta-backend.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,26 +11,22 @@ import * as EventSourcePolyfill from 'event-source-polyfill';
 })
 export class ChatPage implements OnInit {
   serverURL = 'https://coletaverde.up.railway.app';
-  jwt: string = '';
+  jwt: string = this.coleta.getToken;
   currentUser: any = null;
   userCache = new Map<number, string>();
   chatMessages: any[] = [];
   toUserId: number | null = null;
   mensagem: string = '';
 
-  constructor() {
+  constructor(private coleta: ColetaBackendService, private http: HttpClient) {
     if (typeof window !== 'undefined' && typeof window.EventSource === 'undefined') {
       window.EventSource = EventSourcePolyfill as any;
     }
   }
 
   ngOnInit() {
-    this.jwt = prompt("Digite seu JWT:") || '';
-    if (!this.jwt) {
-      alert("JWT é necessário!");
-      window.location.reload();
-    }
-
+    const jwt = this.coleta.getToken;
+    console.log('Token:', jwt);
     this.fetchCurrentUser();
     this.initializeEventSource();
   }
@@ -49,6 +47,8 @@ export class ChatPage implements OnInit {
       }
     }
   }
+
+
 
   async sendMessage() {
     const text = this.mensagem.trim();

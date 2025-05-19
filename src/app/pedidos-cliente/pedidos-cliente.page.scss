@@ -4,13 +4,14 @@ ion-content.fundo-arvores {
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: contain;
-  background-color: rgb(233, 237, 237); 
+  background-color: rgb(233, 237, 237);
 }
 
 .content {
-  padding: 16px;
   position: relative;
   z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .card-pedido {
@@ -18,7 +19,7 @@ ion-content.fundo-arvores {
   overflow: hidden;
   margin-bottom: 16px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .status-banner {
@@ -43,4 +44,3 @@ ion-content.fundo-arvores {
 .status-banner.pendente {
   background-color: #d12d2d;
 }
-
