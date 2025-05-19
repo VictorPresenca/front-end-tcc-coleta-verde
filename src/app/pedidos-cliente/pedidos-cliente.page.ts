@@ -4,8 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../component/shared.module';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ColetaBackendService, IColetaUser } from '../services/coleta-backend.service';
+import { ColetaBackendService, IColetaUser, IColetaBackendResponse } from '../services/coleta-backend.service';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -17,43 +18,56 @@ import { NavController } from '@ionic/angular';
 })
 export class PedidosClientePage implements OnInit {
 
-  solicitacoes: any[] = [];
+  solicitacoesAceitas: any[] = [];
   usuarioLogado!: IColetaUser;
 
-  constructor(private coleta: ColetaBackendService, private http: HttpClient, private navCtrl: NavController) { }
+  constructor(
+    private coleta: ColetaBackendService, // Usando 'coleta' corretamente
+    private http: HttpClient,
+    private navCtrl: NavController,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.carregarUsuarioEColetas();
+  }
+
+  // Carrega dados do usuário e as coletas aceitas
+  carregarUsuarioEColetas() {
     this.coleta.getCurrentUserData().subscribe({
-      next: (res) => {
-        if (res && res.data) {
+      next: (res: IColetaBackendResponse<IColetaUser>) => {  // Tipagem explícita para resposta do usuário
+        if (res.data) {
           this.usuarioLogado = res.data;
-          this.carregarTodosPedidos();
-        } else {
-          console.error('Dados do usuário não encontrados.');
+          this.listarSolicitacoesAceitas();
         }
       },
       error: (err) => {
-        console.error('Erro ao obter usuário logado', err);
+        console.error('Erro ao carregar dados do usuário:', err);
+        // Pode adicionar uma notificação de erro aqui
       }
     });
   }
 
-
-  carregarTodosPedidos() {
-    this.coleta.listarPedidosCliente(this.usuarioLogado.id)
-      .subscribe(
-        (res: any) => {
-          this.solicitacoes = res.data.filter((s: any) => s.progress === 'created');
-        },
-        (err: any) => {
-          console.error('Erro ao carregar solicitações', err);
+  // Lista as solicitações aceitas
+  listarSolicitacoesAceitas() {
+    this.coleta.listarSolicitacoes(1, 5).subscribe({
+      next: (res: IColetaBackendResponse<any[]>) => {  // Tipagem explícita para resposta de solicitações
+        if (res.data) {
+          this.solicitacoesAceitas = res.data.filter((s: any) =>
+            s.progress === 'accepted' &&
+            s.employeeId === this.usuarioLogado.id
+          );
         }
-      );
+      },
+      error: (err) => {
+        console.error('Erro ao listar solicitações:', err);
+        // Pode adicionar uma notificação de erro aqui
+      }
+    });
   }
 
-  // abrirDetalhes(item: any){
-  //   console.log('Item clicado:', item);
-  //   this.navCtrl.navigateForward(`/pedido-prestador/${item.id}`);
-  // }
-
+  // Abre um pedido específico
+  abrirPedido(id: number) {
+    this.router.navigate(['/pedido-prestador', id]);
+  }
 }
