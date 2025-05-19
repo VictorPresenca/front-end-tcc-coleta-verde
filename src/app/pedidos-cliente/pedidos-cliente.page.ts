@@ -51,17 +51,11 @@ export class PedidosClientePage implements OnInit {
   // Lista as solicitações aceitas
   listarSolicitacoesAceitas() {
     this.coleta.listarSolicitacoes(1, 5).subscribe({
-      next: (res: IColetaBackendResponse<any[]>) => {  // Tipagem explícita para resposta de solicitações
-        if (res.data) {
-          this.solicitacoesAceitas = res.data.filter((s: any) =>
-            s.progress === 'accepted' &&
-            s.employeeId === this.usuarioLogado.id
-          );
-        }
+      next: (res) => {
+        this.solicitacoesAceitas = res.data || [];
       },
       error: (err) => {
         console.error('Erro ao listar solicitações:', err);
-        // Pode adicionar uma notificação de erro aqui
       }
     });
   }
