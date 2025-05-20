@@ -25,21 +25,25 @@ export class PedidosPrestadorPage implements OnInit {
   carregarUsuarioEColetas() {
     this.coletaService.getCurrentUserData().subscribe({
       next: (res) => {
+        console.log('Solicitações recebidas:', res.data);
         this.usuarioLogado = res.data!;
-        this.coletaService.listarSolicitacoes(1, 100).subscribe({
+        console.log('Usuário logado:', this.usuarioLogado);
+        this.coletaService.listarSolicitacoes(1, 10).subscribe({
           next: (res) => {
             this.solicitacoesAceitas = res.data.filter((s: any) =>
-              s.progress === 'accepted' &&
+              s.accepted === true &&
               s.employeeId === this.usuarioLogado.id
             );
+
+            console.log('Solicitações aceitas filtradas:', this.solicitacoesAceitas);
           }
         });
       }
     });
   }
 
-  abrirPedido(id: number) {
-    this.router.navigate(['/pedido-prestador', id]);
-  }
+  // abrirPedido(id: number) {
+  //   this.router.navigate(['/finalizar-pedido-prestador', id]);
+  // }
 
 }

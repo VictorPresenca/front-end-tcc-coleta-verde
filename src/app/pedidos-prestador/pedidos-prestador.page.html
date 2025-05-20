@@ -11,7 +11,7 @@
         <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
       </ion-card-content>
     
-      <ion-button fill="solid" class="abrir-card" (click)="abrirPedido(pedido.id)">
+      <ion-button fill="solid" class="abrir-card" [routerLink]="['/finalizar-pedido-prestador']">
         Abrir
       </ion-button>
     </ion-card>
