@@ -32,7 +32,7 @@ export class SolicitacaoPage implements OnInit {
       dataServico: ['', Validators.required],
       horaServico: ['', Validators.required],
       // Caso queira usar type, descomente abaixo
-      // type: ['residencial', Validators.required]
+      type: ['residencial', Validators.required]
     });
 
     this.enderecoForm = this.fb.group({
@@ -265,7 +265,7 @@ async adicionarEndereco() {
       const formData = new FormData();
 
       const solicitationObj = {
-        type: 'rubble', // ou this.formulario.value.type
+        type: this.formulario.value.type, // ou this.formulario.value.type
         addressIndex: Number(this.formulario.value.enderecoSel),
         desiredDate: new Date(this.formulario.value.dataServico + ' ' + this.formulario.value.horaServico).getTime(),
         description: this.formulario.value.desc,
