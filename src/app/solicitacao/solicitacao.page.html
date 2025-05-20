@@ -7,100 +7,84 @@
 <ion-content [fullscreen]="true">
   <div class="container bgd">
 
-    <!-- Tela de Solicitação -->
-    <form (ngSubmit)="fazerSolicitacao()" #form="ngForm" class="solicitacao-form">
+    <form (ngSubmit)="fazerSolicitacao(form)" #form="ngForm" class="solicitacao-form">
 
       <!-- Seleção de Endereço -->
-      <label for="endereco">
+        <label for="endereco">
         <h6>Selecione o endereço</h6>
         <ion-select 
-          [(ngModel)]="enderecoSelecionadoIndex" 
+          [(ngModel)]="enderecoSelecionado" 
           name="endereco" 
           placeholder="Selecionar" 
-          required
-          interface="popover"
+          required 
+          interface="popover" 
           class="custom-ion-select"
-          >
-          <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
-            {{ endereco.logradouro }} - {{ endereco.bairro }}
+          [compareWith]="compareWithIndex"
+        >
+          <ion-select-option *ngFor="let endereco of listaEnderecos; let i = index" [value]="i">
+            {{ endereco.logradouro }}, {{ endereco.numero || 'S/N' }} - {{ endereco.bairro }}
           </ion-select-option>
         </ion-select>
-      </label>
+        </label>
 
-      <!-- Botão para adicionar novo endereço -->
-      <button type="button" (click)="abrirAlertaEndereco()">Adicionar Novo Endereço</button>
+      <button type="button" (click)="abrirModalEndereco()">
+        Adicionar Novo Endereço
+      </button>
 
       <!-- Descrição -->
       <label for="desc">
         <h6>Descrição do lixo a ser coletado</h6>
         <textarea 
-          id="iddesc" 
-          name="desc" 
-          [(ngModel)]="descricao" 
-          placeholder="Digite aqui..." 
-          required
-          rows="4"
-          ></textarea>
+        id="iddesc"
+        name="desc" 
+        [(ngModel)]="descricao" 
+        placeholder="Digite aqui..." 
+        required 
+        rows="4">
+      </textarea>
       </label>
 
       <!-- Valor sugerido -->
-      <label for="vl">
-        <h6>Qual o valor sugerido</h6>
-        <input 
-          type="number" 
-          id="idvalor" 
-          name="valor" 
-          [(ngModel)]="valor" 
-          placeholder="R$" 
-          required 
-          min="0"
-          step="0.01"
-        />
+     <label for="vl">
+        <h6 position="stacked">Valor sugerido</h6>
+        <ion-input type="number" [(ngModel)]="valorSugerido" name="vl" required></ion-input>
       </label>
 
-      <!-- Tela de Agendamento -->
-      <div class="agendamento-wrapper">
+      <!-- Imagem (opcional) -->
+      
+        <ion-label position="stacked">Imagem (opcional)</ion-label>
+        <input type="file" name="imagem" (change)="onImagemSelecionada($event)" />
+      
 
+      <!-- Agendamento -->
+      <div class="agendamento-wrapper">
         <ion-card class="card-data">
           <ion-card-header>
             <ion-card-title>Data do Serviço</ion-card-title>
           </ion-card-header>
-          <hr />
           <ion-card-content>
-            <input 
-              type="date" 
-              name="date" 
-              id="IdDate" 
-              [(ngModel)]="dataSelecionada" 
-              required
-            />
+            <ion-input type="date" [(ngModel)]="dataSelecionada" name="data" required></ion-input>
           </ion-card-content>
         </ion-card>
 
         <ion-card class="card-horario">
           <ion-card-header>
-            <ion-card-title>Horário do serviço</ion-card-title>
+            <ion-card-title>Horário do Serviço</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-input 
-              [(ngModel)]="horaSelecionada" 
-              name="hora" 
-              type="time" 
-              class="hora-input"
-              required
-            ></ion-input>
+            <ion-input type="time" [(ngModel)]="horaSelecionada" name="hora" required class="hora-input"></ion-input>
           </ion-card-content>
         </ion-card>
-
       </div>
 
-      <!-- Botão Final -->
-     <button class="btn-submit-solicitacao" type="submit" [disabled]="isSubmitting" (click)="fazerSolicitacao()">Fazer solicitação</button>
+      <!-- Botão de envio -->
+      <ion-button class="btn-submit-solicitacao" type="submit" [disabled]="form.invalid || isSubmitting">
+        Fazer solicitação
+      </ion-button>
 
       <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
 
     </form>
-
   </div>
 </ion-content>
 

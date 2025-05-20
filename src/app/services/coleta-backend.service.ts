@@ -128,24 +128,41 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: string, hora: string): Observable<any> {
+fazerSolicitacao(
+  index: number,
+  descricao: string,
+  valor: number,
+  data: string,
+  hora: string,
+  imagem: File
+): Observable<any> {
+  const desiredDate = new Date(`${data}T${hora}:00`).getTime();
+  const formData = new FormData();
+  formData.append('type', 'rubble');
+  formData.append('addressIndex', index.toString());
+  formData.append('description', descricao);
+  formData.append('suggestedValue', valor.toString());
+  formData.append('desiredDate', desiredDate.toString());
+  formData.append('image', imagem);
 
-  const desiredDate = new Date(`${data}T${hora}:00`).getTime(); // Converte para timestamp
-    const body = {
-      type: 'rubble',
-      addressIndex: index,
-      description: descricao,
-      suggestedValue: valor,
-      desiredDate: desiredDate
-    };
+console.log('Enviando solicitação com FormData:');
+for (const [key, value] of (formData as any).entries()) {
+  console.log(key, value);
+}
 
-    return this.rawRequest( 'POST', `/solicitation/create`, body);
-  }
+  let headers = new HttpHeaders();
+  if (!this.token) this.token = localStorage.getItem('token') ?? '';
+  headers = headers.set('Authorization', `Bearer ${this.token}`);
 
+  return this.http.post(`${this.url}/solicitation/create`, formData, { headers });
+}
 
   adicionarEndereco(endereco: IColetaAddress) {
     return this.rawRequest('POST', '/address/create', endereco);
   }
+listarEndereco() {
+  return this.rawRequest('GET', '/address/all');
+}
 
   listarSolicitacoes(page: number, limit: number) {
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
