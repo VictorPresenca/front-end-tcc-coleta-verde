@@ -26,21 +26,25 @@ ion-content.fundo-arvores {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 6px 12px;
   color: white;
   font-weight: bold;
   font-size: 12px;
   border-bottom-left-radius: 12px;
+  padding-top: 12px;
 }
 
-.status-banner.concluido {
+.status-banner span{
+  padding: 12px;
+}
+
+.status-banner span.concluido {
   background-color: #0a4e23;
 }
 
-.status-banner.andamento {
+.status-banner span.andamento {
   background-color: #6c757d;
 }
 
-.status-banner.pendente {
+.status-banner span.pendente {
   background-color: #d12d2d;
 }
