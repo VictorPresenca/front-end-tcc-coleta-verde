@@ -29,6 +29,16 @@
         rows="4"
       ></textarea>
 
+      <h6>Selecione o tipo de lixo</h6>
+      <ion-select formControlName="type">
+        <ion-select-option value="rubble">entulho</ion-select-option>
+        <ion-select-option value="recycle">reciclavel</ion-select-option>
+        <ion-select-option value="organic">organico</ion-select-option>
+        <ion-select-option value="biohazard">toxico</ion-select-option>
+        <ion-select-option value="eletronic">eleletronico</ion-select-option>
+        <ion-select-option value="other">outro</ion-select-option>
+      </ion-select>
+
       <h6>Qual o valor sugerido</h6>
       <input
         type="number"
