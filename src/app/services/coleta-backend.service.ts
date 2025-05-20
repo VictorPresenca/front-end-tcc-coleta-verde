@@ -128,24 +128,25 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-fazerSolicitacaoColeta(index: number, descricao: string, valor: number, data: string, hora: string): Observable<any> {
+public fazerSolicitacao(formData: FormData): Observable<IColetaBackendResponse<any>> {
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`
+    // NÃO defina Content-Type aqui! O Angular cuidará disso com boundary corretamente.
+  });
 
-  const desiredDate = new Date(`${data}T${hora}:00`).getTime(); // Converte para timestamp
-    const body = {
-      type: 'rubble',
-      addressIndex: index,
-      description: descricao,
-      suggestedValue: valor,
-      desiredDate: desiredDate
-    };
-
-    return this.rawRequest( 'POST', `/solicitation/create`, body);
-  }
-
+  return this.http.post<IColetaBackendResponse<any>>(
+    this.url + '/solicitation/create',
+    formData,
+    { headers }
+  );
+}
 
   adicionarEndereco(endereco: IColetaAddress) {
     return this.rawRequest('POST', '/address/create', endereco);
   }
+listarEndereco() {
+  return this.rawRequest('GET', '/address/all');
+}
 
   listarSolicitacoes(page: number, limit: number) {
     return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);

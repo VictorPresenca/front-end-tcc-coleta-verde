@@ -6,102 +6,61 @@
 
 <ion-content [fullscreen]="true">
   <div class="container bgd">
+    <div class="blur-overlay"></div>
 
-    <!-- Tela de Solicitação -->
-    <form (ngSubmit)="fazerSolicitacao()" #form="ngForm" class="solicitacao-form">
+    <!-- Formulário principal -->
+    <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" class="solicitacao-form" novalidate>
+      <h6>Selecione o endereço</h6>
+      <ion-select formControlName="enderecoSel" interface="popover" placeholder="Selecione um endereço">
+        <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
+          {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
+        </ion-select-option>
+      </ion-select>
 
-      <!-- Seleção de Endereço -->
-      <label for="endereco">
-        <h6>Selecione o endereço</h6>
-        <ion-select 
-          [(ngModel)]="enderecoSelecionadoIndex" 
-          name="endereco" 
-          placeholder="Selecionar" 
-          required
-          interface="popover"
-          class="custom-ion-select"
-          >
-          <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
-            {{ endereco.logradouro }} - {{ endereco.bairro }}
-          </ion-select-option>
-        </ion-select>
-      </label>
+      <button type="button" (click)="adicionarEndereco()">
+        {{ mostrarFormEndereco ? 'Cancelar' : 'Adicionar novo endereço' }}
+      </button>
 
-      <!-- Botão para adicionar novo endereço -->
-      <button type="button" (click)="abrirAlertaEndereco()">Adicionar Novo Endereço</button>
+      <h6>Descrição do lixo a ser coletado</h6>
+      <textarea
+        formControlName="desc"
+        placeholder="Digite aqui..."
+        required
+        rows="4"
+      ></textarea>
 
-      <!-- Descrição -->
-      <label for="desc">
-        <h6>Descrição do lixo a ser coletado</h6>
-        <textarea 
-          id="iddesc" 
-          name="desc" 
-          [(ngModel)]="descricao" 
-          placeholder="Digite aqui..." 
-          required
-          rows="4"
-          ></textarea>
-      </label>
+      <h6>Qual o valor sugerido</h6>
+      <input
+        type="number"
+        formControlName="valor"
+        placeholder="R$"
+        min="0"
+        step="0.01"
+        required
+      />
 
-      <!-- Valor sugerido -->
-      <label for="vl">
-        <h6>Qual o valor sugerido</h6>
-        <input 
-          type="number" 
-          id="idvalor" 
-          name="valor" 
-          [(ngModel)]="valor" 
-          placeholder="R$" 
-          required 
-          min="0"
-          step="0.01"
-        />
-      </label>
+      <h6>Data do Serviço</h6>
+      <ion-input
+        type="date"
+        formControlName="dataServico"
+        required
+      ></ion-input>
 
-      <!-- Tela de Agendamento -->
-      <div class="agendamento-wrapper">
+      <h6>Horário do Serviço</h6>
+      <ion-input
+        type="time"
+        formControlName="horaServico"
+        required
+      ></ion-input>
 
-        <ion-card class="card-data">
-          <ion-card-header>
-            <ion-card-title>Data do Serviço</ion-card-title>
-          </ion-card-header>
-          <hr />
-          <ion-card-content>
-            <input 
-              type="date" 
-              name="date" 
-              id="IdDate" 
-              [(ngModel)]="dataSelecionada" 
-              required
-            />
-          </ion-card-content>
-        </ion-card>
+      <h6>Imagem</h6>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" required />
 
-        <ion-card class="card-horario">
-          <ion-card-header>
-            <ion-card-title>Horário do serviço</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-input 
-              [(ngModel)]="horaSelecionada" 
-              name="hora" 
-              type="time" 
-              class="hora-input"
-              required
-            ></ion-input>
-          </ion-card-content>
-        </ion-card>
-
-      </div>
-
-      <!-- Botão Final -->
-     <button class="btn-submit-solicitacao" type="submit" [disabled]="isSubmitting" (click)="fazerSolicitacao()">Fazer solicitação</button>
-
-      <ion-spinner *ngIf="isSubmitting" name="crescent"></ion-spinner>
-
+      <button type="submit" class="btn-submit" [disabled]="formulario.invalid || !imagemSelecionada">
+        Enviar Solicitação
+      </button>
     </form>
 
   </div>
 </ion-content>
-
-<app-footer-global></app-footer-global>
+  <app-footer-global></app-footer-global>
