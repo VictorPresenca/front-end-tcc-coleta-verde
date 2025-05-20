@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ToastController } from '@ionic/angular';
-import {
-  ColetaBackendService,
-  EColetaRole,
-} from '../services/coleta-backend.service';
+import { IonicModule, ToastController, LoadingController } from '@ionic/angular';
+import { ColetaBackendService, EColetaRole } from '../services/coleta-backend.service';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs'; // Importação do lastValueFrom
 
 @Component({
   selector: 'app-login',
@@ -23,45 +21,53 @@ export class LoginPage {
   constructor(
     private router: Router,
     private coletaBackendService: ColetaBackendService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) {}
 
-  submitLogin() {
-    this.coletaBackendService
-      .getJwtByCredentials(this.email, this.password)
-      .subscribe({
-        next: (res) => {
-          if (res.data) {
-            this.coletaBackendService.setToken = res.data;
-          } else {
-            this.showToast('Token inválido ou ausente.');
-          }
+  async submitLogin() {
+    if (!this.email || !this.password) {
+      this.showToast('Por favor, preencha todos os campos.');
+      return;
+    }
 
-          // Após o login, buscar os dados do usuário para verificar o tipo da conta
-          this.coletaBackendService.getCurrentUserData().subscribe({
-            next: (resUser) => {
-              const role = resUser.data?.role;
+    const loading = await this.loadingController.create({
+      message: 'Carregando...',
+      spinner: 'circles',
+    });
 
-              if (role === EColetaRole.enterprise) {
-                console.log('Redirecionando para empresa');
-                this.router.navigate(['/home-cliente']);
-              } else if (role === EColetaRole.employee) {
-                console.log('Redirecionando para funcionário');
-                this.router.navigate(['/home-prestador']);
-              } else {
-                console.log('Outro tipo de conta:', role);
-                this.showToast('Apenas empresas e funcionários podem acessar.');
-              }
-            },
-            error: () => {
-              this.showToast('Erro ao buscar dados do usuário.');
-            },
-          });
-        },
-        error: async ({ error }) => {
-          this.showToast(error.message);
-        },
-      });
+    await loading.present();
+
+    try {
+      // Usando lastValueFrom para resolver o Observable em Promise
+      const jwtResponse = await lastValueFrom(this.coletaBackendService.getJwtByCredentials(this.email, this.password));
+
+      if (!jwtResponse.data) {
+        this.showToast('Token inválido ou ausente.');
+        await loading.dismiss();
+        return;
+      }
+
+      this.coletaBackendService.setToken = jwtResponse.data;
+
+      const userResponse = await lastValueFrom(this.coletaBackendService.getCurrentUserData());
+      const role = userResponse.data?.role;
+
+      if (role === EColetaRole.enterprise) {
+        console.log('Redirecionando para empresa');
+        this.router.navigate(['/home-cliente']);
+      } else if (role === EColetaRole.employee) {
+        console.log('Redirecionando para funcionário');
+        this.router.navigate(['/home-prestador']);
+      } else {
+        console.log('Tipo de conta não reconhecido:', role);
+        this.showToast('Apenas empresas e funcionários podem acessar.');
+      }
+    } catch (error: any) {
+      this.showToast(error?.message || 'Erro desconhecido. Por favor, tente novamente.');
+    } finally {
+      await loading.dismiss();
+    }
   }
 
   togglePasswordVisibility() {

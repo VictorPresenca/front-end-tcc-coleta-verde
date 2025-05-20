@@ -10,59 +10,59 @@ ion-content {
   }
 
   .bgd{
-    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png'); 
-    background-repeat: repeat-x; 
-    background-size: contain; 
+    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
     background-position: center bottom;
     width: 100%;
-    height: 100%;
+    height: auto;
     padding-top: 35px;
-    position: fixed; 
+    padding-bottom: 40px;
   }
 
   img{
     max-width: 180px;
     height: auto;
   }
-  
+
   ion-icon {
     font-size: 30px;
     color: white;
     margin-bottom: 5px;
   }
-  
+
   .welcome {
     color: #222428;
     margin-bottom: 30px;
     font-weight: bold;
   }
-  
+
   .form-container {
     width: 80%;
     max-width: 400px;
   }
-  
+
   .input-group {
     background-color: #e0e0e0; /* Tom de cinza claro */
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
   }
-  
+
   ion-item {
     --background: transparent;
     --border-color: #c8c7cc;
     margin-bottom: 10px;
   }
-  
+
   ion-label {
     color: #222428;
   }
-  
+
   .input-field {
     font-size: 1em; /* Define o tamanho da fonte para os inputs */
   }
-  
+
   .enter-button {
     --background: #333333;
     --color: #ffffff;
@@ -70,19 +70,19 @@ ion-content {
     font-weight: bold;
     margin-bottom: 20px;
   }
-  
+
   .forgot-password {
     color: #707070;
     font-size: 0.9em; /* Tamanho inicial um pouco menor */
     text-align: center;
     transition: font-size 0.2s, font-weight 0.2s; /* Adiciona transição suave */
   }
-  
+
   .forgot-password:hover {
     font-size: 1em; /* Aumenta para o tamanho normal no hover */
     font-weight: bold;
   }
-  
+
   .eye-icon {
     font-size: 1.2em; /* Aumenta um pouco o tamanho do ícone */
     cursor: pointer;
