@@ -1,205 +1,302 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ColetaBackendService } from 'src/app/services/coleta-backend.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ColetaBackendService, IColetaAddress } from '../services/coleta-backend.service';
+import { HttpClient } from '@angular/common/http';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-solicitacao',
   templateUrl: './solicitacao.page.html',
   styleUrls: ['./solicitacao.page.scss'],
-  standalone: false,
+  standalone: false
 })
 export class SolicitacaoPage implements OnInit {
-  enderecos: any[] = [];
-  enderecoSelecionadoIndex: number | null = null;
-  descricao: string = '';
-  valor: number | null = null;
-  dataSelecionada: string = '';
-  horaSelecionada: string = '';
-  isSubmitting: boolean = false;
-  novoEndereco: any = {};
+
+  formulario: FormGroup;
+  enderecoForm: FormGroup;
+  mostrarFormEndereco = false;
+  enderecos: IColetaAddress[] = [];
+  imagemSelecionada: File | null = null;
 
   constructor(
-    private alertController: AlertController,
+    private fb: FormBuilder,
+    private coletaService: ColetaBackendService,
     private http: HttpClient,
-    private coletaBackendService: ColetaBackendService
-  ) {}
-
-  ngOnInit() {
-    this.carregarEnderecosSalvos();
-  }
-
-  carregarEnderecosSalvos() {
-    const token = localStorage.getItem('token');
-    if (!token) return console.error('Token não encontrado.');
-
-    const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-
-    this.http.get('https://coletaverde.up.railway.app/address/all', { headers }).subscribe(
-      (res: any) => {
-        this.enderecos = res.data || [];
-        // Se existir algum endereço, pode selecionar o primeiro por padrão (opcional)
-        if(this.enderecos.length > 0 && this.enderecoSelecionadoIndex === null) {
-          this.enderecoSelecionadoIndex = 0;
-        }
-      },
-      (err) => console.error('Erro ao carregar endereços:', err)
-    );
-  }
-
-  async abrirAlertaEndereco() {
-    const alertElement = await this.alertController.create({
-      header: 'Adicionar Endereço',
-      inputs: [{ name: 'cep', type: 'text', placeholder: 'Digite o CEP (ex: 01001-000)' }],
-      buttons: [
-        { text: 'Cancelar', role: 'cancel' },
-        {
-          text: 'Buscar',
-          handler: (data) => {
-            const cep = data.cep.replace(/\D/g, '');
-            if (cep.length === 8) this.buscarEnderecoPorCep(cep);
-            else alert('CEP inválido.');
-          }
-        }
-      ]
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController
+  ) {
+    this.formulario = this.fb.group({
+      enderecoSel: [null, Validators.required],
+      desc: ['', Validators.required],
+      valor: [0, [Validators.required, Validators.min(0)]],
+      dataServico: ['', Validators.required],
+      horaServico: ['', Validators.required],
+      // Caso queira usar type, descomente abaixo
+      // type: ['residencial', Validators.required]
     });
 
-    await alertElement.present();
+    this.enderecoForm = this.fb.group({
+      cep: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+      logradouro: ['', Validators.required],
+      complemento: [''],
+      bairro: ['', Validators.required],
+      localidade: ['', Validators.required],
+      uf: ['', [Validators.required, Validators.maxLength(2), Validators.minLength(2)]]
+    });
   }
 
-  buscarEnderecoPorCep(cep: string) {
-    this.http.get(`https://viacep.com.br/ws/${cep}/json/`).subscribe(
-      (res: any) => {
-        if (res.erro) return alert('CEP não encontrado.');
-        const regiao = this.definirRegiao(res.uf);
-        this.novoEndereco = {
-          cep: res.cep, 
-          logradouro: res.logradouro, 
-          bairro: res.bairro,
-          localidade: res.localidade, 
-          uf: res.uf, 
-          estado: res.uf, 
-          regiao,
-          complemento: '', 
-          unidade: ''
-        };
-        this.confirmarNovoEndereco();
-      },
-      () => alert('Erro ao buscar o endereço.')
-    );
+  ngOnInit() {
+    this.carregarEnderecos();
   }
+
+  carregarEnderecos() {
+    this.coletaService.listarEndereco().subscribe({
+      next: res => {
+        this.enderecos = res.data ?? [];
+        if (this.enderecos.length) {
+          this.formulario.patchValue({ enderecoSel: 0 });
+        }
+      },
+      error: err => {
+        console.error('Erro ao carregar endereços', err);
+      }
+    });
+  }
+
+  buscarEnderecoPorCep() {
+    const cep = this.enderecoForm.get('cep')?.value;
+    if (!cep || cep.length !== 8) return;
+
+    this.http.get<any>(`https://viacep.com.br/ws/${cep}/json/`).subscribe({
+      next: (res) => {
+        if (res.erro) {
+          alert('CEP não encontrado');
+          return;
+        }
+        this.enderecoForm.patchValue({
+          logradouro: res.logradouro || '',
+          bairro: res.bairro || '',
+          localidade: res.localidade || '',
+          uf: res.uf || ''
+        });
+      },
+      error: () => {
+        alert('Erro ao buscar endereço pelo CEP');
+      }
+    });
+  }
+
+async adicionarEndereco() {
+  const cepAlert = await this.alertCtrl.create({
+    header: 'Novo Endereço',
+    inputs: [
+      {
+        name: 'cep',
+        type: 'text',
+        placeholder: 'Digite o CEP',
+        attributes: {
+          maxlength: 9,
+          inputmode: 'numeric'
+        }
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel'
+      },
+      {
+        text: 'Buscar',
+        handler: async (data) => {
+          let cep = (data.cep || '').replace(/\D/g, ''); // Remove qualquer caractere que não seja número
+
+          if (cep.length !== 8) {
+            this.alertCtrl.create({
+              header: 'Erro',
+              message: 'CEP inválido. Deve conter 8 dígitos.',
+              buttons: ['OK']
+            }).then(a => a.present());
+            return false;
+          }
+
+          try {
+            const resposta: any = await this.http.get(`https://viacep.com.br/ws/${cep}/json/`).toPromise();
+
+            if (resposta.erro) {
+              this.alertCtrl.create({
+                header: 'CEP não encontrado',
+                message: 'Verifique se digitou corretamente.',
+                buttons: ['OK']
+              }).then(a => a.present());
+              return false;
+            }
+
+            // Formata o CEP com traço
+            const cepFormatado = `${cep.slice(0, 5)}-${cep.slice(5)}`;
+
+            const enderecoAlert = await this.alertCtrl.create({
+              header: 'Confirmar Endereço',
+              inputs: [
+                { name: 'cep', type: 'text', value: cepFormatado, placeholder: 'CEP' },
+                { name: 'logradouro', type: 'text', value: resposta.logradouro || '', placeholder: 'Logradouro' },
+                { name: 'bairro', type: 'text', value: resposta.bairro || '', placeholder: 'Bairro' },
+                { name: 'localidade', type: 'text', value: resposta.localidade || '', placeholder: 'Cidade' },
+                { name: 'uf', type: 'text', value: resposta.uf || '', placeholder: 'UF', attributes: { maxlength: 2 } },
+                { name: 'regiao', type: 'text', value: this.definirRegiao(resposta.uf), placeholder: 'Região' },
+                { name: 'complemento', type: 'text', value: resposta.complemento || '', placeholder: 'Complemento (opcional)' },
+                { name: 'unidade', type: 'text', value: resposta.unidade || '', placeholder: 'Unidade (opcional)' }
+              ],
+              buttons: [
+                {
+                  text: 'Cancelar',
+                  role: 'cancel'
+                },
+                {
+                  text: 'Salvar',
+                  handler: (info) => {
+                    const novoEndereco: IColetaAddress = {
+                      cep: info.cep,
+                      logradouro: info.logradouro,
+                      bairro: info.bairro,
+                      localidade: info.localidade,
+                      uf: info.uf.toUpperCase(),
+                      estado: info.uf.toUpperCase(),
+                      regiao: info.regiao,
+                      complemento: info.complemento,
+                      unidade: info.unidade
+                    };
+
+                    const duplicado = this.enderecos.some(e =>
+                      e.cep === novoEndereco.cep && e.logradouro === novoEndereco.logradouro
+                    );
+
+                    if (duplicado) {
+                      this.alertCtrl.create({
+                        header: 'Endereço duplicado',
+                        message: 'Este endereço já está cadastrado.',
+                        buttons: ['OK']
+                      }).then(a => a.present());
+                      return false;
+                    }
+
+                    this.coletaService.adicionarEndereco(novoEndereco).subscribe({
+                      next: res => {
+                        if (res.data) {
+                          this.enderecos.push(res.data);
+                          this.formulario.patchValue({ enderecoSel: this.enderecos.length - 1 });
+
+                          this.alertCtrl.create({
+                            header: 'Sucesso',
+                            message: 'Endereço adicionado com sucesso!',
+                            buttons: ['OK']
+                          }).then(a => a.present());
+                        }
+                      },
+                      error: err => {
+                        console.error('Erro ao adicionar endereço', err);
+                        this.alertCtrl.create({
+                          header: 'Erro',
+                          message: 'Erro ao salvar o endereço.',
+                          buttons: ['OK']
+                        }).then(a => a.present());
+                      }
+                    });
+
+                    return true;
+                  }
+                }
+              ]
+            });
+
+            await enderecoAlert.present();
+            return true;
+
+          } catch (erro) {
+            console.error('Erro ao buscar CEP:', erro);
+            this.alertCtrl.create({
+              header: 'Erro',
+              message: 'Erro ao buscar o CEP.',
+              buttons: ['OK']
+            }).then(a => a.present());
+            return false;
+          }
+        }
+      }
+    ]
+  });
+
+  await cepAlert.present();
+}
+
 
   definirRegiao(uf: string): string {
     const regioes: any = {
-      'Norte': ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO'],
-      'Nordeste': ['AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE'],
-      'Centro-Oeste': ['DF', 'GO', 'MT', 'MS'],
-      'Sudeste': ['ES', 'MG', 'RJ', 'SP'],
-      'Sul': ['PR', 'RS', 'SC']
+      'N': ['AC', 'AP', 'AM', 'PA', 'RO', 'RR', 'TO'],
+      'NE': ['AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE'],
+      'CO': ['GO', 'MT', 'MS', 'DF'],
+      'SE': ['ES', 'RJ', 'SP'],
+      'S': ['PR', 'RS', 'SC']
     };
-    for (const regiao in regioes) {
-      if (regioes[regiao].includes(uf)) return regiao;
+    for (const reg in regioes) {
+      if (regioes[reg].includes(uf)) return reg;
     }
     return '';
   }
 
-  async confirmarNovoEndereco() {
-    const alertElement = await this.alertController.create({
-      header: 'Confirmar Endereço',
-      inputs: [
-        { name: 'cep', value: this.novoEndereco.cep, type: 'text', placeholder: 'CEP' },
-        { name: 'logradouro', value: this.novoEndereco.logradouro, type: 'text', placeholder: 'Logradouro' },
-        { name: 'bairro', value: this.novoEndereco.bairro, type: 'text', placeholder: 'Bairro' },
-        { name: 'localidade', value: this.novoEndereco.localidade, type: 'text', placeholder: 'Cidade' },
-        { name: 'uf', value: this.novoEndereco.uf, type: 'text', placeholder: 'UF' },
-        { name: 'regiao', value: this.novoEndereco.regiao, type: 'text', placeholder: 'Região' },
-        { name: 'complemento', value: '', type: 'text', placeholder: 'Complemento' },
-        { name: 'unidade', value: '', type: 'text', placeholder: 'Unidade' }
-      ],
-      buttons: [
-        { text: 'Cancelar', role: 'cancel' },
-        {
-          text: 'Adicionar',
-          handler: (data) => {
-            const token = localStorage.getItem('token');
-            if (!token) {
-              alert('Token não encontrado.');
-              return false; // previne fechar o alert
-            }
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.imagemSelecionada = input.files[0];
+    }
+  }
 
-            const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+  async enviarFormulario() {
+    if (this.formulario.invalid || !this.imagemSelecionada) {
+      alert('Preencha todos os campos obrigatórios e selecione uma imagem.');
+      return;
+    }
 
-            const enderecoEditado = {
-              ...data,
-              estado: data.uf.toUpperCase(),
-              uf: data.uf.toUpperCase()
-            };
-
-            // Verifica duplicado antes de salvar
-            const existe = this.enderecos.some(e =>
-              e.cep === enderecoEditado.cep && e.logradouro === enderecoEditado.logradouro
-            );
-
-            if (existe) {
-              alert('Este endereço já está registrado.');
-              return false; // previne fechar o alert
-            }
-
-            // Salva no backend
-            this.http.post('https://coletaverde.up.railway.app/address/create', enderecoEditado, { headers })
-              .subscribe(
-                (res: any) => {
-                  const novoEnderecoSalvo = res.data;
-                  this.enderecos.push(novoEnderecoSalvo);
-                  this.enderecoSelecionadoIndex = this.enderecos.length - 1;
-                },
-                (err) => {
-                  console.error('Erro ao salvar endereço:', err);
-                  alert('Erro ao salvar o endereço.');
-                }
-              );
-            return true; // garante que sempre retorna um valor
-          }
-        }
-      ]
+    const loading = await this.loadingCtrl.create({
+      message: 'Enviando solicitação...'
     });
+    await loading.present();
 
-    await alertElement.present();
-  }
+    try {
+      const formData = new FormData();
 
-  fazerSolicitacao() {
-    if (this.enderecoSelecionadoIndex === null) return alert('Selecione um endereço.');
-    if (!this.descricao || !this.valor || !this.dataSelecionada || !this.horaSelecionada)
-      return alert('Preencha todos os campos obrigatórios.');
+      const solicitationObj = {
+        type: 'rubble', // ou this.formulario.value.type
+        addressIndex: Number(this.formulario.value.enderecoSel),
+        desiredDate: new Date(this.formulario.value.dataServico + ' ' + this.formulario.value.horaServico).getTime(),
+        description: this.formulario.value.desc,
+        suggestedValue: Number(this.formulario.value.valor)
+      };
 
-    this.isSubmitting = true;
+      formData.append('solicitation', JSON.stringify(solicitationObj));
+      formData.append('image', this.imagemSelecionada, this.imagemSelecionada.name);
 
-    // Passar o índice correto para o backend (supondo que o backend espera índice)
-    this.coletaBackendService.fazerSolicitacaoColeta(
-      this.enderecoSelecionadoIndex,
-      this.descricao,
-      this.valor,
-      this.dataSelecionada,
-      this.horaSelecionada
-    ).subscribe(
-      () => {
-        this.isSubmitting = false;
-        alert('Solicitação enviada com sucesso!');
-        this.resetarFormulario();
-        this.carregarEnderecosSalvos();
-      },
-      (err) => {
-        this.isSubmitting = false;
-        alert(err?.error?.message || 'Erro ao enviar solicitação.');
-      }
-    );
-  }
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('Token não encontrado');
 
-  resetarFormulario() {
-    this.descricao = '';
-    this.valor = null;
-    this.enderecoSelecionadoIndex = null;
-    this.dataSelecionada = '';
-    this.horaSelecionada = '';
+      this.http.post('https://coletaverde.up.railway.app/solicitation/create', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).subscribe({
+        next: res => {
+          console.log('Solicitação enviada', res);
+          alert('Solicitação enviada com sucesso!');
+        },
+        error: err => {
+          console.error('Erro ao enviar solicitação:', err);
+          alert('Erro ao enviar solicitação.');
+        }
+      });
+    } catch (error) {
+      console.error('Erro no envio:', error);
+      alert('Erro interno ao preparar envio.');
+    } finally {
+      loading.dismiss();
+    }
   }
 }

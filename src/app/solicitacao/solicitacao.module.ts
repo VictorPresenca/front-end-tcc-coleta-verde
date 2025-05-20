@@ -10,14 +10,15 @@ import { SolicitacaoPageRoutingModule } from './solicitacao-routing.module';
 import { SolicitacaoPage } from './solicitacao.page';
 
 import { SharedModule } from '../component/shared.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     SolicitacaoPageRoutingModule,
-    SharedModule
+    SharedModule,
+      ReactiveFormsModule
   ],
   declarations: [SolicitacaoPage]
 })
