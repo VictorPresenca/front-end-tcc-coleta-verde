@@ -128,33 +128,17 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-fazerSolicitacao(
-  index: number,
-  descricao: string,
-  valor: number,
-  data: string,
-  hora: string,
-  imagem: File
-): Observable<any> {
-  const desiredDate = new Date(`${data}T${hora}:00`).getTime();
-  const formData = new FormData();
-  formData.append('type', 'rubble');
-  formData.append('addressIndex', index.toString());
-  formData.append('description', descricao);
-  formData.append('suggestedValue', valor.toString());
-  formData.append('desiredDate', desiredDate.toString());
-  formData.append('image', imagem);
+public fazerSolicitacao(formData: FormData): Observable<IColetaBackendResponse<any>> {
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`
+    // NÃO defina Content-Type aqui! O Angular cuidará disso com boundary corretamente.
+  });
 
-console.log('Enviando solicitação com FormData:');
-for (const [key, value] of (formData as any).entries()) {
-  console.log(key, value);
-}
-
-  let headers = new HttpHeaders();
-  if (!this.token) this.token = localStorage.getItem('token') ?? '';
-  headers = headers.set('Authorization', `Bearer ${this.token}`);
-
-  return this.http.post(`${this.url}/solicitation/create`, formData, { headers });
+  return this.http.post<IColetaBackendResponse<any>>(
+    this.url + '/solicitation/create',
+    formData,
+    { headers }
+  );
 }
 
   adicionarEndereco(endereco: IColetaAddress) {
