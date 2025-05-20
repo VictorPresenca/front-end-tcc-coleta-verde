@@ -17,7 +17,7 @@
         </ion-select-option>
       </ion-select>
 
-      <button type="button" (click)="mostrarFormEndereco = !mostrarFormEndereco">
+      <button type="button" (click)="adicionarEndereco()">
         {{ mostrarFormEndereco ? 'Cancelar' : 'Adicionar novo endereço' }}
       </button>
 
@@ -61,33 +61,6 @@
       </button>
     </form>
 
-    <!-- Formulário de adicionar endereço (visível quando mostrarFormEndereco for true) -->
-    <form *ngIf="mostrarFormEndereco" [formGroup]="enderecoForm" (ngSubmit)="adicionarEndereco()" class="endereco-form" novalidate>
-      <h6>Adicionar Novo Endereço</h6>
-
-      <ion-label position="floating">CEP</ion-label>
-      <ion-input formControlName="cep" (ionBlur)="buscarEnderecoPorCep()" maxlength="8" type="text"></ion-input>
-
-      <ion-label position="floating">Logradouro</ion-label>
-      <ion-input formControlName="logradouro"></ion-input>
-
-      <ion-label position="floating">Complemento</ion-label>
-      <ion-input formControlName="complemento"></ion-input>
-
-      <ion-label position="floating">Bairro</ion-label>
-      <ion-input formControlName="bairro"></ion-input>
-
-      <ion-label position="floating">Cidade</ion-label>
-      <ion-input formControlName="localidade"></ion-input>
-
-      <ion-label position="floating">UF</ion-label>
-      <ion-input formControlName="uf" maxlength="2"></ion-input>
-
-      <button class="btn-submit-solicitacao" type="submit" [disabled]="enderecoForm.invalid">
-        Salvar Endereço
-      </button>
-    </form>
   </div>
-
-  <app-footer-global></app-footer-global>
 </ion-content>
+  <app-footer-global></app-footer-global>
