@@ -1,19 +1,17 @@
 <ion-content [fullscreen]="true">
   <div class="content">
-    <ion-card *ngFor="let pedido of solicitacoesAceitas">
+    <ion-card *ngFor="let pedido of solicitacoesAceitas" (click)="abrirDetalhes(pedido)">
       <ion-card-header>
         <ion-card-subtitle class="subtitle-em-andamento">Em andamento</ion-card-subtitle>
         <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
+        <p>Cliente: {{ nomesClientes[pedido.id] || 'Carregando...' }}</p>
         <p>{{ pedido.description }}</p>
+        <p>{{ pedido.logradouro}}</p>
         <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
       </ion-card-content>
-    
-      <ion-button fill="solid" class="abrir-card" [routerLink]="['/finalizar-pedido-prestador']">
-        Abrir
-      </ion-button>
     </ion-card>
 
     <div *ngIf="solicitacoesAceitas.length === 0" class="ion-text-center">

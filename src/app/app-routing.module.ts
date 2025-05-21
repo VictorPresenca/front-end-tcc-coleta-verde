@@ -77,7 +77,7 @@ const routes: Routes = [
     loadChildren: () => import('./cardapio/cardapio.module').then(m => m.CardapioPageModule)
   },
   {
-    path: 'finalizar-pedido-prestador',
+    path: 'finalizar-pedido-prestador/:id',
     loadChildren: () => import('./finalizar-pedido-prestador/finalizar-pedido-prestador.module').then(m => m.FinalizarPedidoPrestadorPageModule)
   },
   {

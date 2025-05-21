@@ -6,9 +6,8 @@ export enum EColetaRole {
   user,
   employee,
   enterprise,
-  admin
+  admin,
 }
-
 
 export interface IColetaBackendResponse<T> {
   message?: string;
@@ -17,51 +16,50 @@ export interface IColetaBackendResponse<T> {
 }
 
 export interface IColetaAddress {
-  cep: string,
-  logradouro: string,
-  complemento: string,
-  unidade: string,
-  bairro: string,
-  localidade: string,
-  uf: string,
-  estado: string,
-  regiao: string
+  cep: string;
+  logradouro: string;
+  complemento: string;
+  unidade: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  estado: string;
+  regiao: string;
 }
 
 export interface IColetaUser {
-  id: number,
-  email: string,
-  verified: boolean,
-  description: string,
-  name: string,
-  password: string,
-  role: EColetaRole,
-  addresses: IColetaAddress[],
-  createdAt: number,
-  rating: number,
-  completedSolicitations?: number,
-  cpf?: string,
-  cnpj?: string,
+  id: number;
+  email: string;
+  verified: boolean;
+  description: string;
+  name: string;
+  password: string;
+  role: EColetaRole;
+  addresses: IColetaAddress[];
+  createdAt: number;
+  rating: number;
+  completedSolicitations?: number;
+  cpf?: string;
+  cnpj?: string;
 }
 
 export type TAuthAccountType = 'user' | 'employee' | 'enterprise';
 
 export interface IAuthRegister {
-  email: string,
-  name: string,
-  password: string,
-  accountType: TAuthAccountType,
-  cpf?: string,
-  cnpj?: string
+  email: string;
+  name: string;
+  password: string;
+  accountType: TAuthAccountType;
+  cpf?: string;
+  cnpj?: string;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColetaBackendService {
   private readonly url = 'https://coletaverde.up.railway.app';
-  private token: string = ''
+  private token: string = '';
 
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token') ?? '';
@@ -84,15 +82,20 @@ export class ColetaBackendService {
     return this.token;
   }
 
-  private rawRequest(method: string, path: string, body?: any): Observable<IColetaBackendResponse<any>> {
+  private rawRequest(
+    method: string,
+    path: string,
+    body?: any
+  ): Observable<IColetaBackendResponse<any>> {
     let headers = new HttpHeaders();
     if (!this.token) this.token = localStorage.getItem('token') ?? '';
     headers = headers.set('Authorization', `Bearer ${this.token}`);
 
-    return this.http.request(method, this.url + path, { headers, body }) as Observable<IColetaBackendResponse<any>>;
+    return this.http.request(method, this.url + path, {
+      headers,
+      body,
+    }) as Observable<IColetaBackendResponse<any>>;
   }
-
-
 
   /**
    * Faz o login do usuário
@@ -100,8 +103,11 @@ export class ColetaBackendService {
    * @param password A senha do usuário
    * @returns O token de autenticação do usuário ou erro
    */
-  public getJwtByCredentials(email: string, password: string): Observable<IColetaBackendResponse<string>> {
-    return this.rawRequest('POST', '/auth/login', { email, password});
+  public getJwtByCredentials(
+    email: string,
+    password: string
+  ): Observable<IColetaBackendResponse<string>> {
+    return this.rawRequest('POST', '/auth/login', { email, password });
   }
 
   // public getLoginType(email: string, password: string, accountType: TAuthAccountType): Observable<IColetaBackendResponse
@@ -114,12 +120,9 @@ export class ColetaBackendService {
     return this.rawRequest('GET', '/user/me');
   }
 
-
   public createAccount(data: IAuthRegister) {
     return this.rawRequest('POST', '/auth/register', data);
   }
-
-
 
   /**
    * Função para fazer solicitação de coleta
@@ -128,37 +131,44 @@ export class ColetaBackendService {
    * @param valor Valor sugerido para a coleta
    * @returns Observable da resposta
    */
-public fazerSolicitacao(formData: FormData): Observable<IColetaBackendResponse<any>> {
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${this.token}`
-    // NÃO defina Content-Type aqui! O Angular cuidará disso com boundary corretamente.
-  });
+  public fazerSolicitacao(
+    formData: FormData
+  ): Observable<IColetaBackendResponse<any>> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.token}`,
+      // NÃO defina Content-Type aqui! O Angular cuidará disso com boundary corretamente.
+    });
 
-  return this.http.post<IColetaBackendResponse<any>>(
-    this.url + '/solicitation/create',
-    formData,
-    { headers }
-  );
-}
+    return this.http.post<IColetaBackendResponse<any>>(
+      this.url + '/solicitation/create',
+      formData,
+      { headers }
+    );
+  }
 
   adicionarEndereco(endereco: IColetaAddress) {
     return this.rawRequest('POST', '/address/create', endereco);
   }
-listarEndereco() {
-  return this.rawRequest('GET', '/address/all');
-}
+  listarEndereco() {
+    return this.rawRequest('GET', '/address/all');
+  }
 
   listarSolicitacoes(page: number, limit: number) {
-    return this.rawRequest('GET', `/solicitation/all?page=${page}&limit=${limit}`);
+    return this.rawRequest(
+      'GET',
+      `/solicitation/all?page=${page}&limit=${limit}`
+    );
   }
 
   listarPedidosCliente(page: number) {
     return this.rawRequest('GET', `/solicitation/id/${page}`);
   }
 
-  public aceitarSolicitacao(id: number): Observable<IColetaBackendResponse<any>> {
-  const body = { id };
-  return this.rawRequest('POST', '/solicitation/accept', body);
+  public aceitarSolicitacao(
+    id: number
+  ): Observable<IColetaBackendResponse<any>> {
+    const body = { id };
+    return this.rawRequest('POST', '/solicitation/accept', body);
   }
 
   public buscarSolicitacaoPorId(id: number) {
@@ -168,7 +178,4 @@ listarEndereco() {
   getUsuarioPorId(id: number) {
     return this.rawRequest('GET', `/user/id/${id}`);
   }
-
-
-
 }

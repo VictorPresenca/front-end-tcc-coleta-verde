@@ -25,7 +25,8 @@ export class CardapioPage implements OnInit {
     this.coleta.listarSolicitacoes(1, 10)
     .subscribe(
       (res: any) => {
-        this.solicitacoes = res.data.filter((s: any) => s.progress === 'created');
+        this.solicitacoes = res.data.filter((s: any) => s.accepted !== true && s.progress === "created");
+        console.log(this.solicitacoes);
       },
       (err: any) => {
         console.error('Erro ao carregar solicitações', err);

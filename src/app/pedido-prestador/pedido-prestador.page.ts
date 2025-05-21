@@ -33,7 +33,6 @@ export class PedidoPrestadorPage implements OnInit {
     this.coletaService.buscarSolicitacaoPorId(this.solicitationId).subscribe({
       next: (res) => {
         this.solicitacao = res.data;
-
         const authorId = this.solicitacao.authorId;
       if (authorId) {
         this.coletaService.getUsuarioPorId(authorId).subscribe({
