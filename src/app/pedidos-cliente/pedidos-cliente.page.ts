@@ -62,6 +62,6 @@ export class PedidosClientePage implements OnInit {
 
   // Abre um pedido específico
   abrirPedido(id: number) {
-    this.router.navigate(['/pedido-prestador', id]);
+    this.router.navigate(['/pedido-cliente', id]);
   }
 }
