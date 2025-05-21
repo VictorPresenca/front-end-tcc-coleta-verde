@@ -1,44 +1,53 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="'Pedido'"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'pedido'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="content">
-    <ion-card class="main-card">
-      <div class="value-section">
-        <ion-label>VALOR:</ion-label>
-        <div class="value">R$ 30,00</div>
-      </div>
+<ion-content [fullscreen]="true">
 
-      <div class="input-group">
-        <ion-label position="stacked">CEP:</ion-label>
-        <ion-input type="text" value="20070-030"></ion-input>
-      </div>
+  <div class="blurred-background"></div>
 
-      <div class="input-group">
-        <ion-label position="stacked">HORÁRIO:</ion-label>
-        <ion-input type="text" value="12h e 30 min"></ion-input>
-      </div>
+  <div class="content" *ngIf="solicitacao">
 
-      <div class="input-group">
-        <ion-label position="stacked">DATA:</ion-label>
-        <ion-input type="text" value="15/04/2025"></ion-input>
-      </div>
+    <ion-item>
+      <ion-label>
+        <h2>Pedido {{ solicitacao.id }} </h2>
+        <p>{{ nomeCliente }}</p>
+        <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
+        <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
+      </ion-label>
+    </ion-item>
 
-      <div class="input-group">
-        <ion-label position="stacked">ENDEREÇO DA EMPRESA:</ion-label>
-        <ion-input type="text" value="Rua João da Silva, 123"></ion-input>
-      </div>
 
-      <div class="description-group">
-        <ion-label position="stacked">DESCRIÇÃO:</ion-label>
-        <div class="description-box">
-          O lixo contém 30 latas de metal...
-        </div>
-      </div>
-    </ion-card>
+    <ion-item button detail="true" class="itens-detalhes">
+      <ion-label>
+        <h3>Imagens dos resíduos</h3>
+      </ion-label>
+    </ion-item>
+
+    <ion-item button detail="true" class="itens-detalhes">
+      <ion-label>
+        <h3>Observações</h3>
+        <p>{{ solicitacao.description }}</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="frase-impactante">
+      <ion-thumbnail slot="start">
+        <img alt="Silhouette of mountains" src="/assets/imagens/green_leaf_recycle_sign.jpg" />
+      </ion-thumbnail>
+      <ion-label>Lixo no lugar certo, o planeta agradece!</ion-label>
+    </ion-item>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Valor Total</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <h2>R$ {{ solicitacao.suggestedValue | number: '1.2-2' }}</h2>
+        </ion-card-content>
+      </ion-card>
   </div>
+  <ion-spinner *ngIf="!solicitacao" name="crescent" style="display: block; margin: 50% auto;"></ion-spinner>
 </ion-content>
-<app-footer-global></app-footer-global>

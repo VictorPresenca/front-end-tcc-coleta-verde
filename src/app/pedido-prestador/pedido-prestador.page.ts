@@ -23,7 +23,7 @@ export class PedidoPrestadorPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-  
+
   ionViewWillEnter() {
     this.solicitationId = Number(this.route.snapshot.paramMap.get('id'));
     this.buscarSolicitacao();
@@ -90,5 +90,5 @@ export class PedidoPrestadorPage implements OnInit {
   2: 'Orgânico',
   3: 'Eletrônico'
 };
-  
+
 }
