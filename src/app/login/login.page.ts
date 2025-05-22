@@ -54,13 +54,10 @@ export class LoginPage {
       const role = userResponse.data?.role;
 
       if (role === EColetaRole.enterprise) {
-        console.log('Redirecionando para empresa');
         this.router.navigate(['/home-cliente']);
       } else if (role === EColetaRole.employee) {
-        console.log('Redirecionando para funcionário');
         this.router.navigate(['/home-prestador']);
       } else {
-        console.log('Tipo de conta não reconhecido:', role);
         this.showToast('Apenas empresas e funcionários podem acessar.');
       }
     } catch (error: any) {
