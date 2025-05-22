@@ -1,20 +1,39 @@
-<ion-footer>
+<ion-footer *ngIf="role">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <a href="/home-prestador" class="link-icone">
-        <img src="../../../assets/imagens/icones/iconeCasa.png" class="icone-custom" />
-        <ion-label>Início</ion-label>
-      </a>
+      <ng-container *ngIf="role === EColetaRole.employee; else clienteLinks">
+        <a href="/home-prestador" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconeCasa.png" class="icone-custom" />
+          <ion-label>Início</ion-label>
+        </a>
 
-      <a href="/pedidos-prestador" class="link-icone">
-        <img src="../../../assets/imagens/icones/iconeSolicitacoes.png" class="icone-custom" />
-        <ion-label>Pedidos</ion-label>
-      </a>
+        <a href="/pedidos-prestador" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconeSolicitacoes.png" class="icone-custom" />
+          <ion-label>Pedidos</ion-label>
+        </a>
 
-      <a href="/perfil-prestador" class="link-icone">
-        <img src="../../../assets/imagens/icones/iconePerfil.png" class="icone-custom" />
-        <ion-label>Perfil</ion-label>
-      </a>
+        <a href="/perfil-prestador" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconePerfil.png" class="icone-custom" />
+          <ion-label>Perfil</ion-label>
+        </a>
+      </ng-container>
+
+      <ng-template #clienteLinks>
+        <a href="/home-cliente" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconeCasa.png" class="icone-custom" />
+          <ion-label>Início</ion-label>
+        </a>
+
+        <a href="/pedidos-cliente" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconeSolicitacoes.png" class="icone-custom" />
+          <ion-label>Pedidos</ion-label>
+        </a>
+
+        <a href="/perfil-cliente" class="link-icone">
+          <img src="../../../assets/imagens/icones/iconePerfil.png" class="icone-custom" />
+          <ion-label>Perfil</ion-label>
+        </a>
+      </ng-template>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

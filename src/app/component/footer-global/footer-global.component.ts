@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ColetaBackendService, EColetaRole } from 'src/app/services/coleta-backend.service';
 
 @Component({
   selector: 'app-footer-global',
@@ -8,8 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterGlobalComponent  implements OnInit {
 
-  constructor() { }
+  role: EColetaRole | null = null;
+  EColetaRole = EColetaRole;
 
-  ngOnInit() {}
+  constructor(private coletaService: ColetaBackendService) { }
 
+  ngOnInit() {
+    this.coletaService.getCurrentUserData().subscribe({
+      next: (res) => {
+        this.role = res.data?.role ?? null;
+      },
+      error: () => {
+        this.role = null;
+      }
+    });
+  }
 }
