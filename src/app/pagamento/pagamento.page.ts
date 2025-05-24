@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ColetaBackendService } from '../services/coleta-backend.service';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pagamento',
@@ -7,10 +10,19 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class PagamentoPage implements OnInit {
+  solicitationId?: string;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private coleta: ColetaBackendService,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.solicitationId = this.route.snapshot.paramMap.get('id')!;
+    console.log('ID da solicitação para pagamento:', this.solicitationId);
   }
 
   valor: string = 'R$0,00';
@@ -42,6 +54,36 @@ selecionarForma(forma: string) {
     this.formaSelecionada = forma;
   }
 }
+
+// pagar
+async pagar() {
+    if (!this.solicitationId) return;
+
+    const loading = await this.loadingCtrl.create({ message: 'Processando pagamento...' });
+    await loading.present();
+
+    this.coleta.pagarSolicitacao(Number(this.solicitationId)).subscribe({
+      next: async (res) => {
+        await loading.dismiss();
+        const alert = await this.alertCtrl.create({
+          header: 'Sucesso',
+          message: 'Pagamento aprovado com sucesso!',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      },
+      error: async (err) => {
+        await loading.dismiss();
+        const alert = await this.alertCtrl.create({
+          header: 'Erro',
+          message: 'Não foi possível processar o pagamento.',
+          buttons: ['OK'],
+        });
+        await alert.present();
+        console.error(err);
+      },
+    });
+  }
 
 abrirNotificacoes() {
   console.log("Notificações clicadas!");

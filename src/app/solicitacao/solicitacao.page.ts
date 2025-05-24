@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ColetaBackendService, IColetaAddress } from '../services/coleta-backend.service';
 import { HttpClient } from '@angular/common/http';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitacao',
@@ -23,7 +24,8 @@ export class SolicitacaoPage implements OnInit {
     private coletaService: ColetaBackendService,
     private http: HttpClient,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private router: Router
   ) {
     this.formulario = this.fb.group({
       enderecoSel: [null, Validators.required],
@@ -247,6 +249,7 @@ async adicionarEndereco() {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.imagemSelecionada = input.files[0];
+      console.log('Imagem selecionada:', this.imagemSelecionada.name);
     }
   }
 
@@ -285,9 +288,16 @@ async adicionarEndereco() {
       }).subscribe({
         next: res => {
           console.log('Solicitação enviada', res);
-          alert('Solicitação enviada com sucesso!');
+          const solicitationId = (res as any)?.data?.id; // ou ajuste conforme a resposta real
+          if (solicitationId) {
+            this.router.navigate(['/pagamento', solicitationId]);
+          } else {
+            alert('Solicitação enviada, mas não foi possível obter o ID para pagamento.');
+          }
         },
         error: err => {
+          console.log('Solicitation:', solicitationObj);
+          console.log('Imagem:', this.imagemSelecionada);
           console.error('Erro ao enviar solicitação:', err);
           alert('Erro ao enviar solicitação.');
         }
