@@ -14,6 +14,7 @@ import { NavController } from '@ionic/angular';
   standalone: false,
 })
 export class PedidosPrestadorPage implements OnInit {
+
   solicitationId!: number;
   solicitacao: any;
   solicitacoesAceitas: any[] = [];
@@ -36,30 +37,38 @@ export class PedidosPrestadorPage implements OnInit {
     this.coletaService.getCurrentUserData().subscribe({
       next: (res) => {
         this.usuarioLogado = res.data!;
-        this.coletaService.listarSolicitacoes(1, 10).subscribe({
-          next: (res) => {
-            this.solicitacao = res.data;
-            const authorId = this.solicitacao.authorId;
-            this.solicitacoesAceitas = res.data.filter(
-              (s: any) =>
-                s.accepted === true && s.employeeId === this.usuarioLogado.id
-            );
-            this.solicitacoesAceitas.forEach((s) => {
-              if (s.authorId) {
-              this.coletaService.getUsuarioPorId(s.authorId).subscribe({
-                next: (userRes) => {
-                  const user = (userRes as any).data;
-                  this.nomesClientes[s.id] = user.name;
-                },
-                error: () => {
-                  this.nomesClientes[s.id] = 'Nome indisponível';
-                },
-              });
-            }
-            });
-            
-          },
+        this.listarSolicitacoesAceitas();
+      },
+    });
+  }
+
+  listarSolicitacoesAceitas(){
+
+  this.coletaService.listarSolicitacoes(1, 10).subscribe({
+      next: (res) => {
+        this.solicitacao = res.data;
+        console.log(this.solicitacao);
+        const authorId = this.solicitacao.authorId;
+        this.solicitacoesAceitas = res.data.filter(
+          (s: any) =>
+            s.accepted === true && s.employeeId === this.usuarioLogado.id
+        );
+
+        //Pegar nome do cliente
+        this.solicitacoesAceitas.forEach((s) => {
+          if (s.authorId) {
+          this.coletaService.getUsuarioPorId(s.authorId).subscribe({
+            next: (userRes) => {
+              const user = (userRes as any).data;
+              this.nomesClientes[s.id] = user.name;
+            },
+            error: () => {
+              this.nomesClientes[s.id] = 'Nome indisponível';
+            },
+          });
+        }
         });
+        
       },
     });
   }
