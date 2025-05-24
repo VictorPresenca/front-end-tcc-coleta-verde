@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SolicitacaoService } from '../../services/solicitacao.service';
 
 @Component({
   selector: 'app-toolbar-global',
@@ -6,11 +8,22 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./toolbar-global.component.scss'],
   standalone: false,
 })
-export class ToolbarGlobalComponent  implements OnInit {
+export class ToolbarGlobalComponent  implements OnInit, OnDestroy {
 
-  constructor() { }
+  qtdNovasSolicitacoes = 0;
+  private subscription!: Subscription;
 
-  ngOnInit() {}
+  constructor(private solicitacaoService: SolicitacaoService) { }
+
+  ngOnInit() {
+    this.subscription = this.solicitacaoService.solicitacoes$.subscribe(solicitacoes => {
+      this.qtdNovasSolicitacoes = solicitacoes.length;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   @Input() titulo: string = 'Título'; // Personalizável por página
   @Input() mostrarBotaoVoltar: boolean = true;
