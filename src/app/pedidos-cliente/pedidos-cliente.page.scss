@@ -1,3 +1,4 @@
+/* Estilos básicos para o fundo e conteúdo */
 ion-content.fundo-arvores {
   --background: transparent;
   background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
@@ -12,6 +13,7 @@ ion-content.fundo-arvores {
   z-index: 2;
   max-width: 700px;
   margin: 0 auto;
+  padding: 16px;
 }
 
 .card-pedido {
@@ -47,4 +49,94 @@ ion-content.fundo-arvores {
 
 .status-banner span.pendente {
   background-color: #d12d2d;
+}
+
+/* Responsividade para telas pequenas */
+@media screen and (max-width: 768px) {
+  .content {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .card-pedido {
+    margin-bottom: 12px;
+    border-radius: 10px;
+  }
+
+  .status-banner {
+    font-size: 10px;
+    padding-top: 8px;
+  }
+
+  .status-banner span {
+    padding: 8px;
+  }
+
+  ion-card-header {
+    font-size: 14px;
+  }
+
+  ion-card-content {
+    font-size: 14px;
+  }
+}
+
+/* Responsividade para telas muito pequenas (ex: celulares em modo retrato) */
+@media screen and (max-width: 480px) {
+  .card-pedido {
+    margin-bottom: 8px;
+    border-radius: 8px;
+  }
+
+  .status-banner {
+    font-size: 10px;
+    padding-top: 6px;
+  }
+
+  .status-banner span {
+    padding: 6px;
+  }
+
+  ion-card-header {
+    font-size: 13px;
+  }
+
+  ion-card-content {
+    font-size: 13px;
+  }
+
+  .content {
+    max-width: 100%;
+    padding: 8px;
+  }
+}
+
+/* Ajustes para telas maiores */
+@media screen and (min-width: 1024px) {
+  .content {
+    max-width: 900px;
+    padding: 20px;
+  }
+
+  .card-pedido {
+    margin-bottom: 24px;
+    border-radius: 16px;
+  }
+
+  .status-banner {
+    font-size: 14px;
+    padding-top: 16px;
+  }
+
+  .status-banner span {
+    padding: 14px;
+  }
+
+  ion-card-header {
+    font-size: 16px;
+  }
+
+  ion-card-content {
+    font-size: 16px;
+  }
 }
