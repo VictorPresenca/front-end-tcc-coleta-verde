@@ -79,91 +79,29 @@ hr {
 }
 
 /* ----------- AGENDAMENTO ----------- */
-.agendamento-wrapper ion-card {
-  border-radius: 8px;
-  background-color: #d6f0d9;
-  padding: 30px 0px 20px 0px;
-  margin: 5% auto;
-  max-width: 320px;
+.solicitacao-form ion-input[type="date"] {
   width: 100%;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
-}
-
-.agendamento-wrapper ion-card-content {
-  background-color: #d6f0d9;
-}
-
-.card-data {
-  margin-bottom: 5%;
-}
-
-ion-card-title {
-  color: #3f3d3d;
-  font-size: 7vw;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.card-horario ion-card-title {
-  font-size: 4vw;
-}
-
-/* Inputs */
-input[type="date"] {
-  width: 100%;
-  padding: 6px 10px;
+  padding: 12px 16px;
+  font-size: 4.5vw;
   border: 1px solid #2f9e25;
   border-radius: 8px;
   box-sizing: border-box;
-  font-size: 4.5vw;
-  background-color: #d6f0d9;
-}
-
-.hora-input,
-.minuto-input {
-  width: 100%;
-  padding: 6px 10px;
-  height: auto; /* usa o mesmo padding do input[type="date"] */
-  font-size: 4.5vw;
-  background: #d6f0d9;
-  border-radius: 8px;
-  border: 1px solid #2f9e25;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.row-horario {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.sep {
-  font-size: 10vw;
-  font-weight: bold;
+  background-color: #fff;
   color: #333;
 }
 
-/* Botões */
-.btn {
-  margin: 10px 15px 0px 10px;
-  text-align: right;
+.solicitacao-form ion-input[type="time"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 4.5vw;
+  border: 1px solid #2f9e25;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
 }
 
-.btn input {
-  border: none;
-  color: #0A4E23;
-  font-weight: bold;
-  background: transparent;
-  cursor: pointer;
-  padding: 6px 12px;
-}
-
-/* Botão final */
-.btn-submit {
+.solicitacao-form .btn-submit {
   display: block;
   margin: 30px auto 0 auto;
   padding: 10px;
@@ -173,4 +111,92 @@ input[type="date"] {
   width: 70%;
   text-align: center;
   font-size: 4.5vw;
+}
+
+/* ----------- INPUT DE ARQUIVO ----------- */
+.solicitacao-form input[type="file"] {
+  display: none; /* Esconde o input de arquivo padrão */
+}
+
+.solicitacao-form label.file-label {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 1px solid #2f9e25;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #2f9e25;
+  font-size: 4.5vw;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.solicitacao-form label.file-label:hover {
+  background-color: #2f9e25;
+  color: white;
+}
+
+.solicitacao-form input[type="file"]:focus + label.file-label {
+  outline: none;
+  box-shadow: 0 0 5px rgba(47, 158, 37, 0.7); /* Sombra ao focar */
+}
+
+/* ----------- RESPONSIVO PARA TELA PEQUENA ----------- */
+@media screen and (max-width: 768px) {
+  .solicitacao-form {
+    max-width: 90%;
+  }
+
+  .solicitacao-form h6 {
+    font-size: 5vw;
+  }
+
+  .solicitacao-form ion-select,
+  .solicitacao-form input[type="number"],
+  .solicitacao-form textarea,
+  .solicitacao-form ion-input[type="date"],
+  .solicitacao-form ion-input[type="time"] {
+    font-size: 4.5vw; /* Ajuste do tamanho da fonte para telas menores */
+  }
+
+  .solicitacao-form .btn-submit {
+    font-size: 4.5vw;
+    width: 80%;
+  }
+
+  .solicitacao-form label.file-label {
+    font-size: 4.5vw;
+  }
+}
+
+/* ----------- RESPONSIVO PARA TELAS MUITO PEQUENAS ----------- */
+@media screen and (max-width: 480px) {
+  .solicitacao-form {
+    max-width: 90%;
+    padding: 10px;
+  }
+
+  .solicitacao-form h6 {
+    font-size: 6vw;
+  }
+
+  .solicitacao-form ion-select,
+  .solicitacao-form input[type="number"],
+  .solicitacao-form textarea,
+  .solicitacao-form ion-input[type="date"],
+  .solicitacao-form ion-input[type="time"] {
+    font-size: 5vw; /* Ajuste para telas muito pequenas */
+  }
+
+  .solicitacao-form .btn-submit {
+    font-size: 5vw;
+    width: 90%;
+  }
+
+  .solicitacao-form label.file-label {
+    font-size: 5vw;
+  }
 }
