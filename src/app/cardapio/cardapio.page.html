@@ -6,39 +6,31 @@
 
 <ion-content [fullscreen]="true">
   <div class="CardapioHeader">
-    <img src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde">
+    <img src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde" />
   </div>
 
-  <div class="blocoSelecione">
+  <div class="blocoSelecione" role="region" aria-label="Selecione o serviço">
     <div><span>SELECIONE O SEU SERVIÇO...</span></div>
-    <div><img src="../../assets/imagens/icones/iconeFiltro.png" /></div>
+    <div>
+      <img src="../../assets/imagens/icones/iconeFiltro.png" alt="Ícone filtro" />
+    </div>
   </div>
 
   <div class="contentCardapio">
-
     <div class="inicioCardapio">
-
-      <div class="blocoInfos" *ngFor="let item of solicitacoes">
-
-          <div class="blocoInfosEsq" (click)="abrirDetalhes(item)">
-            <span class="blocoInfosData">Pedido: {{ item.id }}</span>
-            <span class="blocoInfosData">Dia: {{ item.desiredDate | date:'dd/MM/yyyy' }}</span>
-            <span class="blocoInfosHorario">Horário: {{ item.desiredDate | date:'HH:mm' }}</span>
-            <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
-          </div>
-
-          <div class="blocoInfosDir">
-            <span class="blocoInfosPreco">R$ {{ item.suggestedValue }}</span>
-          </div>
-
+      <div class="blocoInfos" *ngFor="let item of solicitacoes" (click)="abrirDetalhes(item)" tabindex="0" role="button" aria-pressed="false">
+        <div class="blocoInfosEsq">
+          <span class="blocoInfosData">Pedido: {{ item.id }}</span>
+          <span class="blocoInfosData">Dia: {{ item.desiredDate | date:'dd/MM/yyyy' }}</span>
+          <span class="blocoInfosHorario">Horário: {{ item.desiredDate | date:'HH:mm' }}</span>
+          <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
+        </div>
+        <div class="blocoInfosDir">
+          <span class="blocoInfosPreco">R$ {{ item.suggestedValue | number:'1.2-2' }}</span>
+        </div>
       </div>
-
-
     </div>
-
   </div>
-
-
 </ion-content>
 
 <app-footer-global></app-footer-global>
