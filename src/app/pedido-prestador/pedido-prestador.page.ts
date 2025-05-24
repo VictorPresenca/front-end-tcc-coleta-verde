@@ -90,4 +90,46 @@ export class PedidoPrestadorPage implements OnInit {
   3: 'Eletrônico'
 };
 
+finalizarSolicitacao() {
+  this.coletaService.finalizarSolicitacao(this.solicitacao.id).subscribe({
+    next: async (res) => {
+      if (res.status === 200) {
+        const toast = await this.toastCtrl.create({
+          message: 'Solicitação finalizada com sucesso!',
+          duration: 2000,
+          color: 'success'
+        });
+        await toast.present();
+        this.navCtrl.navigateRoot('/pedidos-prestador');
+      } else {
+        this.showErro(res.message ?? 'Erro ao finalizar a solicitação');
+      }
+    },
+    error: () => {
+      this.showErro('Erro de conexão com o servidor');
+    }
+  });
+}
+
+cancelarSolicitacao() {
+  this.coletaService.cancelarSolicitacao(this.solicitacao.id).subscribe({
+    next: async (res) => {
+      if (res.status === 200) {
+        const toast = await this.toastCtrl.create({
+          message: 'Solicitação cancelada com sucesso!',
+          duration: 2000,
+          color: 'danger'
+        });
+        await toast.present();
+        this.navCtrl.navigateRoot('/pedidos-prestador');
+      } else {
+        this.showErro(res.message ?? 'Erro ao cancelar a solicitação');
+      }
+    },
+    error: () => {
+      this.showErro('Erro de conexão com o servidor');
+    }
+  });
+}
+
 }

@@ -185,4 +185,12 @@ export class ColetaBackendService {
     const body = { id };
     return this.rawRequest('POST', `/billing/approve/${id}`, body);
   }
+
+  finalizarSolicitacao(id: number){
+    return this.rawRequest('PUT', `/solicitation/finish/${id}`)
+  }
+
+  cancelarSolicitacao(id: number){
+    return this.rawRequest('PUT', `/solicitation/cancel/${id}`);
+  }
 }
