@@ -178,4 +178,11 @@ export class ColetaBackendService {
   getUsuarioPorId(id: number) {
     return this.rawRequest('GET', `/user/id/${id}`);
   }
+
+  public pagarSolicitacao(
+    id: number
+  ): Observable<IColetaBackendResponse<any>> {
+    const body = { id };
+    return this.rawRequest('POST', `/billing/approve/${id}`, body);
+  }
 }
