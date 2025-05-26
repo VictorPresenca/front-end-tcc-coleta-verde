@@ -2,7 +2,7 @@
   <div class="content">
     <ion-card *ngFor="let pedido of solicitacoesAceitas" (click)="abrirDetalhes(pedido)">
       <ion-card-header>
-        <ion-card-subtitle class="subtitle-em-andamento">Em andamento</ion-card-subtitle>
+        <ion-card-subtitle class="subtitle-em-andamento"> {{ pedido.progress }} </ion-card-subtitle>
         <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
       </ion-card-header>
     

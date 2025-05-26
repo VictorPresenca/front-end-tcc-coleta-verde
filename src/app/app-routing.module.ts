@@ -83,7 +83,15 @@ const routes: Routes = [
   {
     path: 'home-prestador',
     loadChildren: () => import('./home-prestador/home-prestador.module').then(m => m.Tab1PageModule)
+  },  {
+    path: 'settings-notfications',
+    loadChildren: () => import('./settings-notfications/settings-notfications.module').then( m => m.SettingsNotficationsPageModule)
+  },
+  {
+    path: 'version-settings',
+    loadChildren: () => import('./version-settings/version-settings.module').then( m => m.VersionSettingsPageModule)
   }
+
 
 
 ];

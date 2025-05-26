@@ -1,0 +1,15 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-settings-notfications',
+  templateUrl: './settings-notfications.page.html',
+  styleUrls: ['./settings-notfications.page.scss'],
+})
+export class SettingsNotficationsPage implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
