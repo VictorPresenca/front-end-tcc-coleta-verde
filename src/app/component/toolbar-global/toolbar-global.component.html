@@ -9,9 +9,10 @@
     </ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="abrirNotificacoes()" class="botao-notificacao">
         <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-      </ion-button>
+        <ion-badge *ngIf="qtdNovasSolicitacoes > 0" color="danger" class="notification-badge">
+          {{ qtdNovasSolicitacoes }}
+        </ion-badge>
     </ion-buttons>
   </div>
 </ion-toolbar>

@@ -41,7 +41,7 @@ const routes: Routes = [
     loadChildren: () => import('./pedidos-prestador/pedidos-prestador.module').then(m => m.PedidosPrestadorPageModule)
   },
   {
-    path: 'pagamento',
+    path: 'pagamento/:id',
     loadChildren: () => import('./pagamento/pagamento.module').then(m => m.PagamentoPageModule)
   },
   {
