@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-version-settings',
   templateUrl: './version-settings.page.html',
   styleUrls: ['./version-settings.page.scss'],
+  standalone: false
 })
 export class VersionSettingsPage implements OnInit {
 
