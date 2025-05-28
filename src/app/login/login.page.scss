@@ -21,9 +21,13 @@ ion-content {
   align-items: center; /* Centraliza horizontalmente o conteúdo interno */
   position: fixed;
 }
-
-img {
-  max-width: 180px;
+.logo-container {
+  margin-top: 50px;
+  margin-bottom: 40px;
+  width: 150px;
+}
+.logo-container img {
+  width: 100%;
   height: auto;
 }
 

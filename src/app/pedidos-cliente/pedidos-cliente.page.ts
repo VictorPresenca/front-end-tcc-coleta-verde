@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../component/shared.module';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { RouterModule, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { ColetaBackendService, IColetaUser, IColetaBackendResponse } from '../services/coleta-backend.service';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedidos-cliente',
@@ -18,11 +16,12 @@ import { NavController } from '@ionic/angular';
 })
 export class PedidosClientePage implements OnInit {
 
-  solicitacoesAceitas: any[] = [];
+  solicitacoesCliente: any[] = [];
   usuarioLogado!: IColetaUser;
+  nomesPrestadores: { [key: number]: string } = {};
 
   constructor(
-    private coleta: ColetaBackendService, // Usando 'coleta' corretamente
+    private coletaService: ColetaBackendService,
     private http: HttpClient,
     private navCtrl: NavController,
     private router: Router
@@ -32,27 +31,44 @@ export class PedidosClientePage implements OnInit {
     this.carregarUsuarioEColetas();
   }
 
-  // Carrega dados do usuário e as coletas aceitas
   carregarUsuarioEColetas() {
-    this.coleta.getCurrentUserData().subscribe({
-      next: (res: IColetaBackendResponse<IColetaUser>) => {  // Tipagem explícita para resposta do usuário
+    this.coletaService.getCurrentUserData().subscribe({
+      next: (res: IColetaBackendResponse<IColetaUser>) => {
         if (res.data) {
           this.usuarioLogado = res.data;
-          this.listarSolicitacoesAceitas();
+          this.listarSolicitacoesDoCliente();
         }
       },
       error: (err) => {
         console.error('Erro ao carregar dados do usuário:', err);
-        // Pode adicionar uma notificação de erro aqui
       }
     });
   }
 
-  // Lista as solicitações aceitas
-  listarSolicitacoesAceitas() {
-    this.coleta.listarSolicitacoes(1, 5).subscribe({
+  listarSolicitacoesDoCliente() {
+    this.coletaService.listarSolicitacoes(1, 10).subscribe({
       next: (res) => {
-        this.solicitacoesAceitas = res.data || [];
+        // Filtrar as solicitações onde o autor é o usuário logado
+        this.solicitacoesCliente = res.data.filter(
+          (s: any) => s.authorId === this.usuarioLogado.id
+        );
+
+        // Pegar nome do prestador para cada solicitação aceita
+        this.solicitacoesCliente.forEach((s) => {
+          if (s.employeeId) { // Verifica se há um prestador atribuído
+            this.coletaService.getUsuarioPorId(s.employeeId).subscribe({
+              next: (userRes) => {
+                const user = (userRes as any).data;
+                this.nomesPrestadores[s.id] = user.name;
+              },
+              error: () => {
+                this.nomesPrestadores[s.id] = 'Prestador indisponível';
+              },
+            });
+          } else {
+            this.nomesPrestadores[s.id] = 'Aguardando prestador';
+          }
+        });
       },
       error: (err) => {
         console.error('Erro ao listar solicitações:', err);
@@ -60,8 +76,46 @@ export class PedidosClientePage implements OnInit {
     });
   }
 
-  // Abre um pedido específico
-  abrirPedido(id: number) {
-    this.router.navigate(['/pedido-cliente', id]);
+  abrirDetalhes(pedido: any) {
+    this.navCtrl.navigateForward(`/pedido-cliente/${pedido.id}`);
+  }
+
+  getProgressClass(progress: string): string {
+    switch (progress) {
+      case 'created':
+      case 'accepted':
+      case 'inProgress':
+        return 'inProgress'; // Cor para status em andamento
+      case 'finished':
+        return 'finished'; // Cor para status concluído
+      case 'canceled':
+      case 'expired':
+        return 'canceled'; // Cor para status cancelado/expirado
+      case 'paying':
+        return 'paying'; // Cor para status de pagamento
+      default:
+        return '';
+    }
+  }
+
+  getProgressText(progress: string): string {
+    switch (progress) {
+      case 'created':
+        return 'CRIADO';
+      case 'accepted':
+        return 'ACEITO';
+      case 'inProgress':
+        return 'EM ANDAMENTO';
+      case 'finished':
+        return 'CONCLUÍDO';
+      case 'expired':
+        return 'EXPIRADO';
+      case 'canceled':
+        return 'CANCELADO';
+      case 'paying':
+        return 'AGUARDANDO PGTO';
+      default:
+        return progress.toUpperCase();
+    }
   }
 }
