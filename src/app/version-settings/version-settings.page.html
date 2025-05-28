@@ -1,13 +1,21 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>version-settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sobre Esta Versão</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">version-settings</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item routerLink="/termos-de-uso">
+      <ion-label>Termos de uso</ion-label>
+    </ion-item>
+    <ion-item routerLink="/politica-de-privacidade">
+      <ion-label>Política de Privacidade</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<app-footer-global></app-footer-global>
+

@@ -1,0 +1,90 @@
+html, body, ion-app {
+
+  height: 100%;
+
+  }
+
+
+
+  ion-content {
+
+  --background: url('../../assets/imagens/fundo-arvores-removebg-preview.png') repeat-x center bottom / contain;
+
+  // --background: rgb(233, 237, 237);
+
+  }
+
+
+
+
+
+  .content {
+
+  background: url('../../assets/imagens/fundo-arvores-removebg-preview.png') repeat-x center bottom;
+
+  background-size: contain;
+
+  background-repeat: repeat-x;
+
+   background-position: center bottom;
+
+  }
+
+
+
+  .settings-list {
+
+  width: 100%;
+
+ max-width: 400px;
+ background-color: rgb(233, 237, 237);
+
+  }
+
+
+
+  ion-item {
+
+  // --background: transparent !important;
+
+  --border-color: transparent !important;
+
+  border-bottom: 1px solid #dcdcdc;
+
+  border-radius: 0;
+
+  font-weight: normal;
+
+  --inner-padding-end: 10px;
+
+  --padding-top: 18px;
+
+  --padding-bottom: 18px;
+
+  }
+
+
+
+  ion-label {
+
+  color: #000 !important;
+
+  }
+
+
+
+  ion-icon {
+
+  color: #666 !important;
+
+  font-size: 20px;
+
+  }
+
+
+
+  ion-icon[slot="end"] {
+
+  display: block !important;
+
+  }
