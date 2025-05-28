@@ -4,58 +4,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="fundo-arvores">
+<ion-content [fullscreen]="true">
   <div class="content">
-
-    <ion-card class="card-pedido" *ngFor="let item of solicitacoesAceitas" (click)="abrirPedido(item.id)">
-      <div class="status-banner">
-        <ng-container [ngSwitch]="item.progress">
-          <span *ngSwitchCase="'created'" class="andamento">CRIADO</span>
-          <span *ngSwitchCase="'accepted'" class="andamento">ACEITO</span>
-          <span *ngSwitchCase="'inProgress'" class="andamento">EM ANDAMENTO</span>
-          <span *ngSwitchCase="'finished'" class="concluido">CONCLUÍDO</span>
-          <span *ngSwitchCase="'expired'" class="pendente">EXPIRADO</span>
-          <span *ngSwitchDefault>{{ item.progress }}</span>
-        </ng-container>
-      </div>
+    <ion-card *ngFor="let pedido of solicitacoesCliente" (click)="abrirDetalhes(pedido)">
       <ion-card-header>
-        <ion-card-title>Pedido do endereço: {{ item.address.logradouro }}</ion-card-title>
+        <ion-card-subtitle class="subtitle-{{ getProgressClass(pedido.progress) }}"> {{ getProgressText(pedido.progress) }} </ion-card-subtitle>
+        <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
       </ion-card-header>
-      <ion-card-content *ngIf="item.progress === 'finished'" >
-        Pedido concluído em {{ item.dataConclusao | date:'dd/MM/yy' }}<br>
-        Concluído por {{ item.concluidoPor }}
-      </ion-card-content>
+
       <ion-card-content>
-        Pedido criado em {{ item.createdAt }}
+        <p>Prestador: {{ nomesPrestadores[pedido.id] || 'Carregando...' }}</p>
+        <p>{{ pedido.description }}</p>
+        <p>{{ pedido.address.logradouro}}</p>
+        <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
       </ion-card-content>
     </ion-card>
 
-
-    <!-- <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
-      <div class="status-banner andamento">EM ANDAMENTO</div>
-      <ion-card-header>
-        <ion-card-title>Pedido 12345</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        Pedido aceito em 16/03/25
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="card-pedido" [routerLink]="['/pedido-cliente']">
-      <div class="status-banner pendente">CANCELADO</div>
-      <ion-card-header>
-        <ion-card-title>Pedido 12345</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        Pedido feito em 15/03/25<br>
-        Aguardando contato
-      </ion-card-content>
-    </ion-card> -->
-
-    <div *ngIf="solicitacoesAceitas.length === 0" class="ion-text-center">
+    <div *ngIf="solicitacoesCliente.length === 0" class="ion-text-center">
       <p>Você ainda não realizou nenhum pedido.</p>
     </div>
-
   </div>
 </ion-content>
 
