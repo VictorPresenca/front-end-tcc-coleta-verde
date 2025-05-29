@@ -8,30 +8,38 @@ body {
   color: #2c3e50;
 }
 
-/* Cabeçalho */
-.CardapioHeader {
+.header-container {
+  position: relative;
+  height: 200px;
+}
+
+.blurred-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
   background-repeat: repeat-x;
   background-size: cover;
   background-position: center bottom;
-  width: 100%;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 0;
+  filter: blur(4px);
+  z-index: 1;
+}
+
+.CardapioHeader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 }
 
-.CardapioHeader img {
-  max-width: 180px;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-.CardapioHeader img:hover {
-  transform: scale(1.15);
-  opacity: 0.8;
+.img-logo-app {
+  max-width: 150px !important;
+  height: auto; 
+  object-fit: contain;
 }
 
 /* Bloco Selecione o Serviço */
@@ -61,6 +69,23 @@ body {
   width: 36px;
   height: 36px;
   transition: transform 0.3s ease;
+}
+
+.top-icons {
+  --border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.top-icons ion-icon {
+  font-size: 24px;
+  color: #21481C;
+}
+
+.icone-direita {
+  margin-left: auto;
 }
 
 .blocoSelecione:hover div:last-child img {

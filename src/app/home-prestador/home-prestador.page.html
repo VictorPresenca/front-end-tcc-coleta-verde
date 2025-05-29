@@ -13,7 +13,7 @@
     </ion-avatar>
     <div class="nome-prestador-final-fixo">
       <ion-label class="ola-final-fixo">Olá,</ion-label>
-      <ion-label class="nome-final-fixo">Nome do prestador</ion-label>
+      <ion-label class="nome-final-fixo">{{ nomeUsuario }}</ion-label>
     </div>
   </div>
 
@@ -51,8 +51,6 @@
     <ion-icon name="document-text-outline" class="icone-procurar-final-fixo verde-principal icone-propostas-maior"></ion-icon>
     <ion-label class="texto-procurar-final-fixo verde-principal-texto texto-propostas-maior">ANALISAR PROPOSTAS</ion-label>
   </div>
-      <ion-button fill="outline" size="small" style="margin-left: 45%;" [routerLink]="['/navegacao-teste-front']">NAVEGAR</ion-button>
-
 </ion-content>
 
 <app-footer-global></app-footer-global>

@@ -57,6 +57,7 @@ export class LoginPage {
         this.router.navigate(['/home-cliente']);
       } else if (role === EColetaRole.employee) {
         this.router.navigate(['/home-prestador']);
+        this.coletaBackendService.setToken = jwtResponse.data;
       } else {
         this.showToast('Apenas empresas e funcionários podem acessar.');
       }

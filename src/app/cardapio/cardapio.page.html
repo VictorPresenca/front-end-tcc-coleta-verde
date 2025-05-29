@@ -1,20 +1,31 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-header-endereco-global [endereco]="'Endereço do Usuário'"></app-header-endereco-global>
+    <app-toolbar-global [titulo]="''" ></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="CardapioHeader">
-    <img src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde" />
-  </div>
 
-  <div class="blocoSelecione" role="region" aria-label="Selecione o serviço">
-    <div><span>SELECIONE O SEU SERVIÇO...</span></div>
-    <div>
-      <img src="../../assets/imagens/icones/iconeFiltro.png" alt="Ícone filtro" />
+  <div class="header-container">
+    <div class="blurred-background"></div>
+    <div class="CardapioHeader">
+      <img class="img-logo-app" src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde" />
     </div>
   </div>
+
+  <!-- <div class="blocoSelecione" role="region" aria-label="Selecione o serviço">
+    <div>
+      <span>Serviços</span>
+    </div>
+    <div>
+      <img src="../../assets/imagens/icones/iconeFiltro.png" alt="Ícone filtro" />
+    </div>  
+  </div> -->
+
+  <ion-item lines="none" class="top-icons">
+    <ion-icon name="search-outline" ></ion-icon>
+    <ion-icon name="funnel-outline" class="icone-direita"></ion-icon>
+  </ion-item>
 
   <div class="contentCardapio">
     <div class="inicioCardapio">

@@ -9,6 +9,11 @@ ion-title{
     cursor: pointer;
 }
 
+.content{
+    height: 100%;
+    display: flex;
+}
+
 .content-padding {
     padding: 16px;
   }

@@ -71,6 +71,7 @@ async pagar() {
           buttons: ['OK'],
         });
         await alert.present();
+        this.router.navigate(['/pedidos-cliente']);
       },
       error: async (err) => {
         await loading.dismiss();
