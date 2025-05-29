@@ -8,11 +8,14 @@
       {{ titulo }}
     </ion-title>
 
-    <ion-buttons slot="end">
-        <ion-icon class="botao-notificacao" slot="icon-only" name="notifications-outline"></ion-icon>
-        <ion-badge *ngIf="qtdNovasSolicitacoes > 0" color="danger" class="notification-badge">
-          {{ qtdNovasSolicitacoes }}
+    <ion-buttons slot="end" class="notification-button-wrapper">
+      <ion-button fill="clear" (click)="abrirNotificacoes()">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+        <ion-badge *ngIf="qtdNovasNotificacoes > 0" color="danger" class="notification-badge">
+          {{ qtdNovasNotificacoes }}
         </ion-badge>
+      </ion-button>
     </ion-buttons>
+
   </div>
 </ion-toolbar>

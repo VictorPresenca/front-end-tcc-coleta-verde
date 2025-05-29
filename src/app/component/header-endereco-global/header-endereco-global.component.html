@@ -5,11 +5,14 @@
       <img src="../../../assets/imagens/icones/iconeSetaEndereco.png"/>
     </ion-title>
 
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" class="notification-button-wrapper">
+      <ion-button fill="clear" (click)="abrirNotificacoes()">
         <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
-        <ion-badge *ngIf="qtdNovasSolicitacoes > 0" color="danger" class="notification-badge">
-          {{ qtdNovasSolicitacoes }}
+        <ion-badge *ngIf="qtdNovasNotificacoes > 0" color="danger" class="notification-badge">
+          {{ qtdNovasNotificacoes }}
         </ion-badge>
+      </ion-button>
     </ion-buttons>
+
   </div>
 </ion-toolbar>

@@ -90,6 +90,10 @@ const routes: Routes = [
   {
     path: 'version-settings',
     loadChildren: () => import('./version-settings/version-settings.module').then( m => m.VersionSettingsPageModule)
+  },
+  {
+    path: 'notificacoes',
+    loadChildren: () => import('./notificacoes/notificacoes.module').then( m => m.NotificacoesPageModule)
   }
 
 

@@ -1,0 +1,16 @@
+ion-content{
+    --background: rgb(233, 237, 237);
+    padding: 15px;
+ }
+
+.content{
+    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center bottom;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    padding: 40px 0;
+}
