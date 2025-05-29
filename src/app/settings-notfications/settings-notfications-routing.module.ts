@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { SettingsNotficationsPage } from './settings-notfications.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: SettingsNotficationsPage
-  }
+    component: SettingsNotficationsPage,
+  },
 ];
 
 @NgModule({

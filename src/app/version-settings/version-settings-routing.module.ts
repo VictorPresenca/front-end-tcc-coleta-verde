@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { VersionSettingsPage } from './version-settings.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: VersionSettingsPage
-  }
+    component: VersionSettingsPage,
+  },
 ];
 
 @NgModule({
