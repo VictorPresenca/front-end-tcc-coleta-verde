@@ -100,8 +100,8 @@ export class PedidosClientePage implements OnInit {
 
   getProgressText(progress: string): string {
     switch (progress) {
-      case 'created':
-        return 'CRIADO';
+      case 'waiting':
+        return 'AGUARDANDO';
       case 'accepted':
         return 'ACEITO';
       case 'inProgress':
