@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SolicitacaoService } from '../../services/solicitacao.service';
+import { NotificacoesService } from '../../services/notificacoes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar-global',
@@ -10,14 +11,14 @@ import { SolicitacaoService } from '../../services/solicitacao.service';
 })
 export class ToolbarGlobalComponent  implements OnInit, OnDestroy {
 
-  qtdNovasSolicitacoes = 0;
+  qtdNovasNotificacoes = 0;
   private subscription!: Subscription;
 
-  constructor(private solicitacaoService: SolicitacaoService) { }
+  constructor(private notificacoesService: NotificacoesService, private router: Router) { }
 
   ngOnInit() {
-    this.subscription = this.solicitacaoService.solicitacoes$.subscribe(solicitacoes => {
-      this.qtdNovasSolicitacoes = solicitacoes.length;
+    this.subscription = this.notificacoesService.notificacoes$.subscribe(notificacoes => {
+      this.qtdNovasNotificacoes = notificacoes.length;
     });
   }
 
@@ -29,8 +30,7 @@ export class ToolbarGlobalComponent  implements OnInit, OnDestroy {
   @Input() mostrarBotaoVoltar: boolean = true;
 
   abrirNotificacoes() {
-    // Coloque aqui a lógica para abrir as notificações
-    console.log('Notificações abertas!');
+    this.router.navigate(['/notificacoes']);
   }
 
 }
