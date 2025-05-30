@@ -6,15 +6,17 @@
 
 <ion-content [fullscreen]="true">
   <div class="content">
-    <ion-list *ngIf="notificacoes.length > 0; else semDados">
-      <ion-item *ngFor="let notificacao of notificacoes">
-        {{ notificacao.titulo || 'Notificação sem título' }}
-      </ion-item>
-    </ion-list>
+    <div class="contentBg">
+      <ion-list *ngIf="notificacoes.length > 0; else semDados">
+        <ion-item *ngFor="let notificacao of notificacoes">
+          {{ notificacao.titulo || 'Notificação sem título' }}
+        </ion-item>
+      </ion-list>
 
-    <ng-template #semDados>
-      <ion-text class="ion-padding">Nenhuma notificação encontrada.</ion-text>
-    </ng-template>
+      <ng-template #semDados>
+        <ion-text class="ion-padding">Nenhuma notificação encontrada.</ion-text>
+      </ng-template>
+    </div>
   </div>
 </ion-content>
 
