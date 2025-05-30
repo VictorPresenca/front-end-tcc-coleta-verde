@@ -13,7 +13,7 @@ export class NotificacoesService {
     // Atualiza notificações a cada 30 segundos
     timer(0, 30000)
       .pipe(
-        switchMap(() => this.backend.listarSolicitacoes(1, 20)), // você pode ajustar paginação
+        switchMap(() => this.backend.listarSolicitacoes(1, 10)), // você pode ajustar paginação
         tap(res => {
           if (res.status === 200 && res.data) {
             this.notificacoes.next(res.data);
@@ -24,7 +24,7 @@ export class NotificacoesService {
   }
 
   forcarAtualizacao() {
-    return this.backend.listarSolicitacoes(1, 20).pipe(
+    return this.backend.listarSolicitacoes(1, 10).pipe(
       tap(res => {
         if (res.status === 200 && res.data) {
           this.notificacoes.next(res.data);

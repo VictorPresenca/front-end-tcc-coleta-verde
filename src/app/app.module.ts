@@ -10,8 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideHttpClient } from '@angular/common/http';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+
 
 import { IonicStorageModule } from '@ionic/storage-angular';
 
@@ -21,9 +20,8 @@ import { IonicStorageModule } from '@ionic/storage-angular';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     provideHttpClient()
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
