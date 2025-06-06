@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <app-toolbar-global [titulo]="'Dados da Conta'" [mostrarBotaoVoltar]="true"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="no-scroll">
+  <div class="linha-separadora-topo"></div>
+
+  <div class="titulo-dados">Informações da empresa</div>
+
+  <div class="card-cinza" *ngIf="currentUser">
+    <div class="info-item">
+      <label>Nome</label>
+      <p>{{ currentUser.name }}</p>
+    </div>
+
+    <div class="info-item">
+      <label>Email</label>
+      <p>{{ currentUser.email }}</p>
+    </div>
+
+    <div class="info-item" *ngIf="currentUser.cnpj">
+      <label>CNPJ</label>
+      <p>{{ currentUser.cnpj }}</p>
+    </div>
+
+    <div class="info-item" *ngIf="enderecos.length > 0">
+      <label>Endereços</label>
+      <ion-select [formControl]="enderecoSel" interface="popover" placeholder="Endereços cadastrados na conta">
+        <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="endereco">
+          {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
+        </ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer-global></app-footer-global>
