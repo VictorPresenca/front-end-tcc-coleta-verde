@@ -36,4 +36,9 @@ export class PerfilClientePage implements OnInit {
   abrirLeilao() {
     this.router.navigate(['/leilao']);
   }
+
+
+abrirDadosConta() {
+  this.router.navigate(['/dados-da-conta']);
+}
 }
