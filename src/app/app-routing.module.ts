@@ -94,6 +94,10 @@ const routes: Routes = [
   {
     path: 'notificacoes',
     loadChildren: () => import('./notificacoes/notificacoes.module').then( m => m.NotificacoesPageModule)
+  },
+  {
+    path: 'dados-da-conta',
+    loadChildren: () => import('./dados-da-conta/dados-da-conta.module').then( m => m.DadosDaContaPageModule)
   }
 
 
