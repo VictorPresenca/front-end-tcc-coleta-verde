@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColetaBackendService, IColetaAddress } from '../services/coleta-backend.service';
 import { ToastController } from '@ionic/angular';
-import { FormControl } from '@angular/forms';  // importação do FormControl
 
 @Component({
   selector: 'app-dados-da-conta',
@@ -12,8 +11,7 @@ import { FormControl } from '@angular/forms';  // importação do FormControl
 export class DadosDaContaPage implements OnInit {
   currentUser: any;
   enderecos: IColetaAddress[] = [];
-
-  enderecoSel = new FormControl();  // FormControl para o ion-select
+  selectedEnderecoIndex: number | null = null;
 
   constructor(
     private coletaBackendService: ColetaBackendService,
@@ -24,6 +22,7 @@ export class DadosDaContaPage implements OnInit {
     this.coletaBackendService.getCurrentUserData().subscribe({
       next: (value) => {
         this.currentUser = value.data!;
+        console.log(this.currentUser);
       },
       error: ({ error }) => {
         this.toastController.create({
@@ -41,5 +40,9 @@ export class DadosDaContaPage implements OnInit {
         console.error('Erro ao carregar endereços', err);
       }
     });
+  }
+
+  onEnderecoChange(event: any) {
+    this.selectedEnderecoIndex = event.detail.value;
   }
 }

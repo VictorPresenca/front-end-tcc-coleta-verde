@@ -98,6 +98,10 @@ const routes: Routes = [
   {
     path: 'dados-da-conta',
     loadChildren: () => import('./dados-da-conta/dados-da-conta.module').then( m => m.DadosDaContaPageModule)
+  },
+  {
+    path: 'enderecos',
+    loadChildren: () => import('./enderecos/enderecos.module').then( m => m.EnderecosPageModule)
   }
 
 

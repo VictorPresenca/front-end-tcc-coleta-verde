@@ -25,13 +25,42 @@
       <p>{{ currentUser.cnpj }}</p>
     </div>
 
-    <div class="info-item" *ngIf="enderecos.length > 0">
-      <label>Endereços</label>
-      <ion-select [formControl]="enderecoSel" interface="popover" placeholder="Endereços cadastrados na conta">
-        <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="endereco">
-          {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
-        </ion-select-option>
-      </ion-select>
+    <div class="info-item">
+      <ion-label routerLink="/enderecos">
+        <h2>Endereços cadastrados</h2>
+      </ion-label>
+    </div>
+
+
+    <div *ngIf="selectedEnderecoIndex !== null" class="detalhes-endereco">
+      <div class="info-item">
+        <label>CEP</label>
+        <p>{{ enderecos[selectedEnderecoIndex].cep }}</p>
+      </div>
+      <div class="info-item">
+        <label>Complemento</label>
+        <p>{{ enderecos[selectedEnderecoIndex].complemento || '-' }}</p>
+      </div>
+      <div class="info-item">
+        <label>Localidade</label>
+        <p>{{ enderecos[selectedEnderecoIndex].localidade }}</p>
+      </div>
+      <div class="info-item">
+        <label>UF</label>
+        <p>{{ enderecos[selectedEnderecoIndex].uf }}</p>
+      </div>
+      <div class="info-item">
+        <label>Estado</label>
+        <p>{{ enderecos[selectedEnderecoIndex].estado }}</p>
+      </div>
+      <div class="info-item">
+        <label>Região</label>
+        <p>{{ enderecos[selectedEnderecoIndex].regiao }}</p>
+      </div>
+      <div class="info-item">
+        <label>Unidade</label>
+        <p>{{ enderecos[selectedEnderecoIndex].unidade }}</p>
+      </div>
     </div>
   </div>
 </ion-content>
