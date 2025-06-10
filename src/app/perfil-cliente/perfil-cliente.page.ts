@@ -41,4 +41,7 @@ export class PerfilClientePage implements OnInit {
 abrirDadosConta() {
   this.router.navigate(['/dados-da-conta']);
 }
+abrirNotificacoes() {
+  this.router.navigate(['/notificacoes']);
+}
 }

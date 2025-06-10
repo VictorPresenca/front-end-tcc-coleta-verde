@@ -25,14 +25,12 @@
       <p>{{ currentUser.cnpj }}</p>
     </div>
 
-    <div class="info-item" *ngIf="enderecos.length > 0">
-      <label>Endereços</label>
-      <ion-select interface="popover" placeholder="Endereços cadastrado na conta" (ionChange)="onEnderecoChange($event)">
-        <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
-          {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
-        </ion-select-option>
-      </ion-select>
+    <div class="info-item">
+      <ion-label routerLink="/enderecos">
+        <h2>Endereços cadastrados</h2>
+      </ion-label>
     </div>
+
 
     <div *ngIf="selectedEnderecoIndex !== null" class="detalhes-endereco">
       <div class="info-item">

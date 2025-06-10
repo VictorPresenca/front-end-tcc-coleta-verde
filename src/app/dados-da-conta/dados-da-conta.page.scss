@@ -21,13 +21,20 @@ ion-content {
   font-weight: 600;
   margin: 16px;
   color: #1e1e1e;
+  letter-spacing: 0.02em;
 }
 
 .card-cinza {
   background-color: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 12px;
   margin: 10px 16px;
-  padding: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-cinza:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .info-item {
@@ -39,16 +46,48 @@ ion-content {
   font-size: 14px;
   color: #555;
   margin-bottom: 6px;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .info-item p {
   font-size: 16px;
   color: #1e1e1e;
   background-color: #eaeaea;
-  padding: 10px 14px;
-  border-radius: 6px;
+  padding: 12px 16px;
+  border-radius: 8px;
   margin: 0;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.info-item p:hover {
+  background-color: #d6d8db;
+}
+
+/* Botão estilizado para Endereços */
+.info-item ion-label[routerLink="/enderecos"] {
+  display: inline-block;
+  background-color: #3b82f6; /* azul vibrante */
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 8px rgba(59,130,246,0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  width: fit-content;
+  margin-top: 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.info-item ion-label[routerLink="/enderecos"]:hover {
+  background-color: #2563eb;
+  box-shadow: 0 6px 12px rgba(37,99,235,0.4);
 }
 
 /* Avatar opcional (caso queira exibir na parte superior) */
@@ -76,12 +115,17 @@ ion-content {
 /* Estilo aprimorado para as informações do endereço */
 .detalhes-endereco {
   margin-top: 20px;
-  padding: 16px 20px;
+  padding: 20px 24px;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid #ddd;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.detalhes-endereco:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .detalhes-endereco .info-item {
@@ -91,21 +135,21 @@ ion-content {
 }
 
 .detalhes-endereco .info-item label {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   color: #444;
   margin-bottom: 6px;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
 }
 
 .detalhes-endereco .info-item p {
   background-color: #f0f2f5;
   color: #222;
   font-size: 16px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
   margin: 0;
   transition: background-color 0.3s ease;
 }
@@ -118,7 +162,7 @@ ion-content {
 @media (max-width: 480px) {
   .card-cinza {
     margin: 10px;
-    padding: 14px;
+    padding: 16px;
   }
 
   .info-item p {
@@ -130,7 +174,7 @@ ion-content {
   }
 
   .detalhes-endereco {
-    padding: 12px 16px;
+    padding: 16px 20px;
   }
 
   .detalhes-endereco .info-item label {
@@ -139,6 +183,11 @@ ion-content {
 
   .detalhes-endereco .info-item p {
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 10px 12px;
+  }
+
+  .info-item ion-label[routerLink="/enderecos"] {
+    padding: 10px 18px;
+    font-size: 14px;
   }
 }

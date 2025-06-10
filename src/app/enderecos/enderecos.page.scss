@@ -1,0 +1,124 @@
+:host {
+  --ion-background-color: #fff;
+  display: block;
+  height: 100%;
+  background: var(--ion-background-color);
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+ion-content {
+  --background: #fff;
+  padding: 0 12px; /* Pequeno padding lateral */
+}
+
+/* Título do header */
+ion-toolbar ion-title {
+  font-weight: 700;
+  text-transform: capitalize;
+  font-size: 22px;
+  color: #2c3e50;
+  letter-spacing: 0.04em;
+  padding-left: 8px;
+}
+
+/* Lista de endereços */
+ion-list {
+  margin-top: 14px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  padding: 8px 0;
+}
+
+/* Item da lista */
+ion-item {
+  --background: #fff;
+  margin: 8px 0;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  transition: box-shadow 0.25s ease;
+  padding: 12px 16px;
+  --inner-padding-end: 8px;
+}
+
+ion-item:hover {
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+ion-label {
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+  white-space: normal;
+}
+
+ion-label p {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 6px 0 0;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Botões */
+ion-button {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  --min-width: 36px;
+  --border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-left: 6px;
+  box-shadow: none;
+}
+
+ion-button[fill="clear"] {
+  background-color: transparent;
+  color: #34495e;
+}
+
+ion-button[fill="clear"]:hover {
+  background-color: #ecf0f1;
+  border-radius: 10px;
+}
+
+ion-button[color="danger"] {
+  color: #e74c3c;
+}
+
+ion-button[color="danger"]:hover {
+  background-color: #f9e6e5;
+  border-radius: 10px;
+}
+
+/* Ícones */
+ion-icon {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+/* Estilo exclusivo para mensagem de lista vazia */
+ion-item.msg-vazia {
+  text-align: center;
+  font-style: italic;
+  color: #95a5a6;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 28px 0;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  ion-item {
+    padding: 10px 12px;
+  }
+  ion-label {
+    font-size: 15px;
+  }
+  ion-label p {
+    font-size: 13px;
+  }
+  ion-button {
+    --min-width: 30px;
+    margin-left: 4px;
+  }
+}

@@ -152,6 +152,10 @@ export class ColetaBackendService {
   listarEndereco() {
     return this.rawRequest('GET', '/address/all');
   }
+  deletarEnderecoPorIndex(index: number) {
+    return this.rawRequest('DELETE', `/address/delete/index/${index}`);
+  }
+
 
   listarSolicitacoes(page: number, limit: number) {
     return this.rawRequest(
