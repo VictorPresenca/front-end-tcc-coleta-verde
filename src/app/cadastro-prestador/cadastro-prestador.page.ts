@@ -115,39 +115,39 @@ export class CadastroPrestadorPage implements OnInit {
 
   async onSubmit() {
     if (!this.nomeCompleto) {
-      alert('Nome Completo é obrigatório');
+      this.showToast('Nome Completo é obrigatório');
       return;
     }
 
     if (!this.cpf) {
-      alert('CPF é obrigatório');
+      this.showToast('CPF é obrigatório');
       return;
     }
 
     if (!this.email) {
-      alert('E-mail é obrigatório');
+      this.showToast('E-mail é obrigatório');
       return;
     }
 
     if (!this.telefone) {
-      alert('Telefone é obrigatório');
+      this.showToast('Telefone é obrigatório');
       return;
     }
 
     if (!this.senha) {
-      alert('Senha é obrigatória');
+      this.showToast('Senha é obrigatória');
       return;
     }
 
     const emailValido = this.validarEmail(this.email);
     if (!emailValido) {
-      alert('E-mail inválido');
+      this.showToast('E-mail inválido');
       return;
     }
 
     const senhaValida = this.validarSenha(this.senha);
     if (!senhaValida) {
-      alert('A senha deve ter entre 8 e 20 caracteres.');
+      this.showToast('A senha deve ter entre 8 e 20 caracteres.');
       return;
     }
 
@@ -172,7 +172,7 @@ export class CadastroPrestadorPage implements OnInit {
 
       await this.httpClient.post('https://coletaverde.up.railway.app/auth/register', dadosCadastro).toPromise();
 
-      console.log('Cadastro prestador realizado com sucesso');
+      this.showToast('Cadastro realizado com sucesso');
       this.router.navigate(['/login']);
     } catch (error: any) {
       console.error('Erro ao cadastrar prestador', error);

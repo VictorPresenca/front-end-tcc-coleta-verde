@@ -80,34 +80,34 @@ export class CadastroClientePage implements OnInit {
 
   async onSubmit() {
     if (!this.nomeEmpresa) {
-      alert('Nome da Empresa é obrigatório');
+      this.showToast('Nome da Empresa é obrigatório');
       return;
     }
 
     if (!this.cnpj) {
-      alert('CNPJ é obrigatório');
+      this.showToast('CNPJ é obrigatório');
       return;
     }
 
     if (!this.email) {
-      alert('E-mail é obrigatório');
+      this.showToast('E-mail é obrigatório');
       return;
     }
 
     if (!this.senha) {
-      alert('Senha é obrigatória');
+      this.showToast('Senha é obrigatória');
       return;
     }
 
     const emailValido = this.validarEmail(this.email);
     if (!emailValido) {
-      alert('E-mail inválido');
+      this.showToast('E-mail inválido');
       return;
     }
 
     const senhaValida = this.validarSenha(this.senha);
     if (!senhaValida) {
-      alert('A senha deve ter entre 8 e 20 caracteres.');
+      this.showToast('A senha deve ter entre 8 e 20 caracteres.');
       return;
     }
 
@@ -133,12 +133,12 @@ export class CadastroClientePage implements OnInit {
       this.coleta.createAccount(dadosCadastro)
         .subscribe(
           (response) => {
-            console.log('Cadastro realizado com sucesso:', response);
+            this.showToast('Cadastro realizado com sucesso');
             this.router.navigate(['/login']);
           },
           (error) => {
             console.error('Erro ao enviar dados', error);
-            alert('Erro ao cadastrar. Tente novamente.');
+            this.showToast('Erro ao cadastrar. Tente novamente.');
           }
         );
 
