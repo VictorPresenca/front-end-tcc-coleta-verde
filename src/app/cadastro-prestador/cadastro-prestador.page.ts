@@ -82,6 +82,15 @@ export class CadastroPrestadorPage implements OnInit {
   }
 
 
+  validarEmail(email: string): boolean {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return regex.test(email);
+  }
+
+  validarSenha(senha: string): boolean {
+    return senha.length >= 8 && senha.length <= 20;
+  }
+
   permitirSomenteNumeros(event: KeyboardEvent) {
     const charCode = event.charCode || event.keyCode;
     if (charCode < 48 || charCode > 57) {
@@ -100,7 +109,6 @@ export class CadastroPrestadorPage implements OnInit {
   }
 
   onSubmit() {
-
     if (!this.nomeCompleto) {
       alert('Nome Completo é obrigatório');
       return;
@@ -126,11 +134,23 @@ export class CadastroPrestadorPage implements OnInit {
       return;
     }
 
+    const emailValido = this.validarEmail(this.email);
+    if (!emailValido) {
+      alert('E-mail inválido');
+      return;
+    }
+
+    const senhaValida = this.validarSenha(this.senha);
+    if (!senhaValida) {
+      alert('A senha deve ter entre 8 e 20 caracteres.');
+      return;
+    }
+
     const dadosCadastro = {
       name: this.nomeCompleto,
       cpf: this.cpf,
       email: this.email,
-      telefone: this.telefone,
+      //telefone: this.telefone,
       password: this.senha,
       accountType: 'employee'
     };
