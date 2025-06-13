@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, LoadingController, ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -99,7 +99,12 @@ export class CadastroPrestadorPage implements OnInit {
   }
 
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private loadingController: LoadingController,
+    private toastController: ToastController
+  ) { }
 
   ngOnInit() {
   }
@@ -108,7 +113,7 @@ export class CadastroPrestadorPage implements OnInit {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (!this.nomeCompleto) {
       alert('Nome Completo é obrigatório');
       return;
@@ -130,7 +135,7 @@ export class CadastroPrestadorPage implements OnInit {
     }
 
     if (!this.senha) {
-      alert('Senha é obrigatório');
+      alert('Senha é obrigatória');
       return;
     }
 
@@ -146,28 +151,42 @@ export class CadastroPrestadorPage implements OnInit {
       return;
     }
 
-    const dadosCadastro = {
-      name: this.nomeCompleto,
-      cpf: this.cpf,
-      email: this.email,
-      //telefone: this.telefone,
-      password: this.senha,
-      accountType: 'employee'
-    };
+    const loading = await this.loadingController.create({
+      message: 'Cadastrando...',
+      spinner: 'circles',
+    });
 
-    console.log('enviando cadastro do prestador', dadosCadastro);
+    await loading.present();
 
-    this.httpClient.post('https://coletaverde.up.railway.app/auth/register', dadosCadastro)
-      .subscribe(
-        (response) => {
-          console.log('Cadastro prestador realizado com sucesso', response);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          console.log('Erro ao cadastrar prestador', error);
-          alert('Erro ao cadastrar prestador. Provavelmente os campos de preenchimento estão errados');
-        }
-      );
+    try {
+      const dadosCadastro = {
+        name: this.nomeCompleto,
+        cpf: this.cpf,
+        email: this.email,
+        telefone: this.telefone, // Verifique se é necessário
+        password: this.senha,
+        accountType: 'employee'
+      };
 
+      console.log('Enviando cadastro do prestador', dadosCadastro);
+
+      await this.httpClient.post('https://coletaverde.up.railway.app/auth/register', dadosCadastro).toPromise();
+
+      console.log('Cadastro prestador realizado com sucesso');
+      this.router.navigate(['/login']);
+    } catch (error: any) {
+      console.error('Erro ao cadastrar prestador', error);
+      this.showToast(error?.message || 'Erro desconhecido. Por favor, tente novamente.');
+    } finally {
+      await loading.dismiss();
+    }
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+    });
+    toast.present();
   }
 }
