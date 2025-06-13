@@ -1,12 +1,18 @@
 ion-content {
-  --background: rgb(233, 237, 237); /* Cor de fundo padrão */
+  --background: rgb(233, 237, 237);
+  /* Cor de fundo padrão */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente */
-  justify-content: flex-start; /* Alinha o conteúdo ao topo */
-  min-height: 100vh; /* Garante que o ion-content ocupe toda a altura da viewport */
-  padding-bottom: 20px; /* Espaçamento inferior */
-  padding-top: 30px; /* Espaçamento superior */
+  align-items: center;
+  /* Centraliza horizontalmente */
+  justify-content: flex-start;
+  /* Alinha o conteúdo ao topo */
+  min-height: 100vh;
+  /* Garante que o ion-content ocupe toda a altura da viewport */
+  padding-bottom: 20px;
+  /* Espaçamento inferior */
+  padding-top: 30px;
+  /* Espaçamento superior */
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -17,11 +23,14 @@ ion-content {
   background-size: contain;
   background-position: center bottom;
   width: 100%;
-  height: 100%; /* Garante que a div content cubra todo o ion-content */
+  height: 100%;
+  /* Garante que a div content cubra todo o ion-content */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+  align-items: center;
+  /* Centraliza horizontalmente o conteúdo interno */
   position: fixed;
+  overflow-y: auto;
 }
 
 .logo-container {
