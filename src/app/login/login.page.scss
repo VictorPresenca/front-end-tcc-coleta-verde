@@ -15,17 +15,21 @@ ion-content {
   background-size: contain;
   background-position: center bottom;
   width: 100%;
-  height: 100%; /* Garante que a div content cubra todo o ion-content */
+  height: 100%;
+  /* Garante que a div content cubra todo o ion-content */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+  align-items: center;
+  /* Centraliza horizontalmente o conteúdo interno */
   position: fixed;
 }
+
 .logo-container {
   margin-top: 50px;
   margin-bottom: 40px;
   width: 150px;
 }
+
 .logo-container img {
   width: 100%;
   height: auto;
@@ -97,6 +101,10 @@ ion-label {
 .eye-icon {
   font-size: 1.2em;
   /* Aumenta um pouco o tamanho do ícone */
+  cursor: pointer;
+}
+
+.forgot-password {
   cursor: pointer;
 }
 

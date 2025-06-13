@@ -23,7 +23,7 @@ export class LoginPage {
     private coletaBackendService: ColetaBackendService,
     private toastController: ToastController,
     private loadingController: LoadingController
-  ) {}
+  ) { }
 
   async submitLogin() {
     if (!this.email || !this.password) {
@@ -78,5 +78,9 @@ export class LoginPage {
       duration: 2000,
     });
     toast.present();
+  }
+
+  esqueciSenha() {
+    alert("Ops! A opção de redefinir a senha está desativada. Entre em contato com o administrador do site para obter ajuda.");
   }
 }
