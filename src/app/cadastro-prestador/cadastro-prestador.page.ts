@@ -49,6 +49,46 @@ export class CadastroPrestadorPage implements OnInit {
     this.cpf = valor;
   }
 
+  formatarTelefone(event: any) {
+    let valor: string = event.target.value || '';
+
+    valor = valor.replace(/\D/g, '');
+
+    valor = valor.replace(
+      /(\d{0,2})(\d{0,5})(\d{0,4})/,
+      (
+        match: string,
+        ddd: string,
+        parte1: string,
+        parte2: string
+      ): string => {
+        let resultado = '';
+        if (ddd) {
+          resultado += '(' + ddd;
+          if (ddd.length === 2) resultado += ') ';
+        }
+        if (parte1) {
+          resultado += parte1;
+          if (parte1.length === 5 || (parte1.length === 4 && valor.length < 11)) {
+            resultado += '-';
+          }
+        }
+        if (parte2) resultado += parte2;
+        return resultado;
+      }
+    );
+
+    this.telefone = valor;
+  }
+
+
+  permitirSomenteNumeros(event: KeyboardEvent) {
+    const charCode = event.charCode || event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

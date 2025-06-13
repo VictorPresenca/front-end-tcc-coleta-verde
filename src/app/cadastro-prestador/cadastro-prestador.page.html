@@ -7,29 +7,28 @@
     <div class="form-container">
       <div class="input-group">
         <ion-item>
-          <ion-label position="floating">Nome Completo</ion-label>
-          <ion-input type="text" aria-required="true" class="input-field" [(ngModel)]="nomeCompleto"></ion-input>
+          <ion-label position="floating">Nome Completo</ion-label><br>
+          <ion-input type="text" aria-required="true" placeholder="Nome e Sobrenome" class="input-field" [(ngModel)]="nomeCompleto"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">CPF</ion-label>
-          <ion-input type="text" aria-required="true" class="input-field" maxlength="14" [(ngModel)]="cpf"
-            (ionInput)="formatarCpf($event)"></ion-input>
+          <ion-label position="floating">CPF</ion-label><br>
+          <ion-input type="text" aria-required="true" class="input-field" maxlength="14" [(ngModel)]="cpf" placeholder="000.000.000-00" (ionInput)="formatarCpf($event)" (keypress)="permitirSomenteNumeros($event)"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Email</ion-label>
+          <ion-label position="floating">Email</ion-label><br>
           <ion-input type="email" aria-required="true" placeholder="email@domain.com" class="input-field" [(ngModel)]="email"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Telefone</ion-label>
-          <ion-input type="tel" aria-required="true" [(ngModel)]="telefone" class="input-field"></ion-input>
+          <ion-label position="floating">Telefone</ion-label><br>
+          <ion-input type="tel" aria-required="true" [(ngModel)]="telefone" placeholder="(00) 00000-0000" class="input-field" maxlength="15" (ionInput)="formatarTelefone($event)" (keypress)="permitirSomenteNumeros($event)"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="floating">Senha</ion-label>
-          <ion-input aria-required="true" [type]="passwordVisible ? 'text' : 'password'" class="input-field"
+          <ion-label position="floating">Senha</ion-label><br>
+          <ion-input aria-required="true" placeholder="******" [type]="passwordVisible ? 'text' : 'password'" class="input-field"
             [(ngModel)]="senha"></ion-input>
           <ion-icon class="eye-icon" slot="end" [name]="passwordVisible ? 'eye-outline' : 'eye-off-outline'"
             (click)="togglePasswordVisibility()"></ion-icon>
