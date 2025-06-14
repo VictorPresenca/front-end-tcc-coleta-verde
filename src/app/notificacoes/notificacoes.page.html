@@ -8,7 +8,7 @@
   <div class="content">
     <div class="contentBg">
       <ion-list *ngIf="notificacoes.length > 0; else semDados">
-        <ion-item *ngFor="let notificacao of notificacoes" (click)="cliqueNotificao()">
+        <ion-item *ngFor="let notificacao of notificacoes" (click)="cliqueNotificao(notificacao)">
           Solicitação: Nº {{ notificacao.id || 'Notificação sem título' }}<br>
           Endereço: {{ notificacao.address.logradouro || 'Notificação sem título' }}
         </ion-item>

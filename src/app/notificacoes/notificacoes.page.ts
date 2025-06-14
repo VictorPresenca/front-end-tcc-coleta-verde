@@ -30,14 +30,14 @@ export class NotificacoesPage implements OnInit {
     this.notificacoesService.forcarAtualizacao().subscribe();
   }
 
-  async cliqueNotificao() {
+  async cliqueNotificao(notificacao: any) {
     const userResponse = await lastValueFrom(this.coletaBackendService.getCurrentUserData());
     const role = userResponse.data?.role;
 
     if (role === EColetaRole.enterprise) {
-      this.router.navigate(['/pedidos-cliente']);
+      this.router.navigate([`/finalizar-pedido-prestador/${notificacao.id}`]);
     } else if (role === EColetaRole.employee) {
-      this.router.navigate(['/pedidos-prestador']);
+      this.router.navigate([`/finalizar-pedido-prestador/${notificacao.id}`]);
     }
   }
 
