@@ -35,7 +35,7 @@ export class NotificacoesPage implements OnInit {
     const role = userResponse.data?.role;
 
     if (role === EColetaRole.enterprise) {
-      this.router.navigate([`/finalizar-pedido-prestador/${notificacao.id}`]);
+      this.router.navigate([`/finalizar-pedido-cliente/${notificacao.id}`]);
     } else if (role === EColetaRole.employee) {
       this.router.navigate([`/finalizar-pedido-prestador/${notificacao.id}`]);
     }
