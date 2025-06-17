@@ -102,6 +102,10 @@ const routes: Routes = [
   {
     path: 'enderecos',
     loadChildren: () => import('./enderecos/enderecos.module').then( m => m.EnderecosPageModule)
+  },
+  {
+    path: 'carteira-prestador',
+    loadChildren: () => import('./carteira-prestador/carteira-prestador.module').then( m => m.CarteiraPrestadorPageModule)
   }
 
 

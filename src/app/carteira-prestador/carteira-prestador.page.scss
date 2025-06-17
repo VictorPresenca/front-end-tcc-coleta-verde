@@ -1,0 +1,80 @@
+/* Estilos específicos para a página de carteira - Coleta de Lixo */
+.saldo-container {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.saldo-total {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.saldo-label {
+  display: block;
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.valor-saldo {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: #0a4e23; /* Verde mantido para consistência */
+}
+
+.botoes-acao {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.botao-acao {
+  flex: 1;
+}
+
+.transacao-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.icone-transacao {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.detalhes-transacao {
+  flex: 1;
+}
+
+.descricao {
+  display: block;
+  font-size: 14px;
+  color: #000;
+}
+
+.data {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+.valor {
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.valor.positivo {
+  color: #0a4e23; /* Verde para entradas */
+}
+
+.valor.negativo {
+  color: #d32f2f; /* Vermelho para saques */
+}
+
+/* Ícone específico para coleta de lixo */
+ion-icon[name="trash-outline"] {
+  color: #0a4e23; /* Verde para serviços de coleta */
+}

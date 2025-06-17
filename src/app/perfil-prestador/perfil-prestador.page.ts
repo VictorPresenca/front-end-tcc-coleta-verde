@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -8,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class PerfilPrestadorPage {
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  irParaCarteira(){
+    this.router.navigateByUrl('/carteira-prestador')
+  }
 
 }
