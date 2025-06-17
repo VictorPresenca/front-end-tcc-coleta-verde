@@ -56,20 +56,6 @@ export interface IAuthRegister {
   cnpj?: string;
 }
 
-
-
-
-export interface ITransacao {
-  id: number;
-  valor: number;
-  data: string;
-  descricao: string;
-  tipo: string;
-  bairro: string;
-  suggestedValue: string;
-  createdAt: string;
-  // outros campos que você precise
-}
 @Injectable({
   providedIn: 'root',
 })
@@ -214,69 +200,6 @@ export class ColetaBackendService {
     return this.rawRequest('PUT', `/solicitation/cancel/${id}`);
   }
 
-
-
-  public calcularSaldoDisponivel(userId: number): Observable<number> {
-    return this.listarSolicitacoes(1, 100).pipe(
-      map((res: IColetaBackendResponse<any>) => {
-        if (!res.data || !Array.isArray(res.data)) {
-          console.error('Dados inválidos ou não é array:', res.data);
-          return 0;
-        }
-
-        console.log('Solicitações recebidas:', res.data); // Log para debug
-
-        const total = res.data
-          .filter((s: any) => {
-            const condicao = s.accepted === true &&
-                            s.employeeId === userId &&
-                            s.status === 'completed';
-            if (!condicao) {
-              console.log('Solicitação filtrada:', s.id, 'Motivo:', {
-                accepted: s.accepted,
-                employeeId: s.employeeId,
-                status: s.status,
-                userId
-              });
-            }
-            return condicao;
-          })
-          .reduce((total: number, s: any) => {
-            const valor = parseFloat(s.suggestedValue) || 0;
-            console.log('Adicionando valor:', valor, 'da solicitação:', s.id);
-            return total + valor;
-          }, 0);
-
-        console.log('Total calculado:', total);
-        return total;
-      }),
-      catchError((err) => {
-        console.error('Erro ao calcular saldo:', err);
-        return of(0);
-      })
-    );
-  }
-
-
-  public buscarUltimasTransacoes(userId: number, limit: number = 3): Observable<any[]> {
-    return this.listarSolicitacoes(1, limit).pipe(
-      map((res: IColetaBackendResponse<any>) => {
-        if (!res.data || !Array.isArray(res.data)) return [];
-
-        return res.data
-          .filter((s: any) => s.accepted === true && s.employeeId === userId)
-          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-          .slice(0, limit)
-          .map(s => ({
-            ...s,
-            valor: parseFloat(s.suggestedValue),
-            data: s.createdAt,
-            descricao: `Coleta ${s.tipo || 'residencial'} - ${s.bairro || ''}`
-          }));
-      }),
-      catchError(() => of([]))
-    );
-  }
 }
 
 
