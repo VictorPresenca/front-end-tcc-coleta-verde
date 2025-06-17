@@ -69,10 +69,6 @@ const routes: Routes = [
     loadChildren: () => import('./perfil-cliente/perfil-cliente.module').then(m => m.PerfilClientePageModule)
   },
   {
-    path: 'navegacao-teste-front',
-    loadChildren: () => import('./navegacao-teste-front/navegacao-teste-front.module').then(m => m.NavegacaoTesteFrontPageModule)
-  },
-  {
     path: 'cardapio',
     loadChildren: () => import('./cardapio/cardapio.module').then(m => m.CardapioPageModule)
   },
@@ -83,7 +79,8 @@ const routes: Routes = [
   {
     path: 'home-prestador',
     loadChildren: () => import('./home-prestador/home-prestador.module').then(m => m.Tab1PageModule)
-  },  {
+  },
+  {
     path: 'settings-notfications',
     loadChildren: () => import('./settings-notfications/settings-notfications.module').then( m => m.SettingsNotficationsPageModule)
   },
