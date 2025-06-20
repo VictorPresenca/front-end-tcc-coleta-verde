@@ -1,0 +1,102 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <app-toolbar-global [titulo]="'Carteira'" [mostrarBotaoVoltar]="true"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="no-scroll">
+  <div class="linha-separadora-topo"></div>
+
+  <!-- Conteúdo com valores fictícios -->
+  <div>
+    <div class="saldo-container">
+      <div class="saldo-total">
+        <ion-label class="saldo-label">Saldo disponível</ion-label>
+        <ion-label class="valor-saldo">
+          R$ 1.245,90
+        </ion-label>
+      </div>
+
+      <div class="botoes-acao">
+        <ion-button expand="block" fill="solid" color="primary" class="botao-acao">
+          <ion-icon name="arrow-down-outline" slot="start"></ion-icon>
+          Sacar
+        </ion-button>
+
+        <ion-button expand="block" fill="outline" color="primary" class="botao-acao">
+          <ion-icon name="cash-outline" slot="start"></ion-icon>
+          Extrato
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none">
+        <ion-label>
+          <h2>Histórico recente</h2>
+        </ion-label>
+        <ion-button fill="clear" slot="end" color="medium">
+          Ver tudo
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <!-- Transações fictícias -->
+      <div class="transacao-item">
+        <ion-icon name="arrow-down-circle-outline" color="success" class="icone-transacao"></ion-icon>
+        <div class="detalhes-transacao">
+          <ion-label class="descricao">Pagamento de coleta #1234</ion-label>
+          <ion-label class="data">15/06/2025 - 14:30</ion-label>
+        </div>
+        <ion-label class="valor positivo">
+          +R$ 85,50
+        </ion-label>
+      </div>
+
+      <div class="transacao-item">
+        <ion-icon name="arrow-down-circle-outline" color="success" class="icone-transacao"></ion-icon>
+        <div class="detalhes-transacao">
+          <ion-label class="descricao">Pagamento de coleta #1233</ion-label>
+          <ion-label class="data">14/06/2025 - 10:15</ion-label>
+        </div>
+        <ion-label class="valor positivo">
+          +R$ 72,00
+        </ion-label>
+      </div>
+
+      <div class="transacao-item">
+        <ion-icon name="trash-outline" color="danger" class="icone-transacao"></ion-icon>
+        <div class="detalhes-transacao">
+          <ion-label class="descricao">Taxa de serviço</ion-label>
+          <ion-label class="data">10/06/2025 - 08:00</ion-label>
+        </div>
+        <ion-label class="valor negativo">
+          -R$ 7,20
+        </ion-label>
+      </div>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none">
+        <ion-icon name="information-circle-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <h2>Informações</h2>
+          <p>Pagamentos são liberados 24h após a coleta confirmada</p>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div class="card-cinza">
+      <ion-item lines="none">
+        <ion-icon name="card-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <h2>Métodos de pagamento</h2>
+          <p>Cartão Mastercard ****1234</p>
+        </ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer-global></app-footer-global>
