@@ -1,3 +1,9 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <app-toolbar-global [titulo]="'Pedidos'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <div class="content">
     <ion-card *ngFor="let pedido of solicitacoesAceitas" (click)="abrirDetalhes(pedido)">
