@@ -53,4 +53,8 @@ export class PerfilPrestadorPage {
     this.router.navigateByUrl('/carteira-prestador')
   }
 
+  irParaNotificacao(){
+    this.router.navigateByUrl('/notificacoes')
+  }
+
 }
