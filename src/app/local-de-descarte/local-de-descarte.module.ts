@@ -8,12 +8,16 @@ import { LocalDeDescartePageRoutingModule } from './local-de-descarte-routing.mo
 
 import { LocalDeDescartePage } from './local-de-descarte.page';
 
+import { SharedModule } from '../component/shared.module'; 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocalDeDescartePageRoutingModule
+    LocalDeDescartePageRoutingModule,
+    SharedModule
   ],
   declarations: [LocalDeDescartePage]
 })
