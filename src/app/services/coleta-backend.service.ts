@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export enum EColetaRole {
   user,
@@ -197,4 +199,7 @@ export class ColetaBackendService {
   cancelarSolicitacao(id: number){
     return this.rawRequest('PUT', `/solicitation/cancel/${id}`);
   }
+
 }
+
+

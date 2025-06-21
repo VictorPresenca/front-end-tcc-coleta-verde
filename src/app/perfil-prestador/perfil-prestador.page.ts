@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ColetaBackendService, IColetaBackendResponse, IColetaUser } from '../services/coleta-backend.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-perfil-prestador',
@@ -10,9 +12,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class PerfilPrestadorPage {
 
+
   constructor(
     private ColetaService: ColetaBackendService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
+    
   ) {}
 
   ngOnInit() {
@@ -42,6 +47,10 @@ export class PerfilPrestadorPage {
     });
 
     await alert.present();
+  }
+
+  irParaCarteira(){
+    this.router.navigateByUrl('/carteira-prestador')
   }
 
 }
