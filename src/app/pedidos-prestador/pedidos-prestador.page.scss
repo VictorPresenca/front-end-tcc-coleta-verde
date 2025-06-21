@@ -3,13 +3,24 @@ ion-content{
     padding: 15px;
   }
 
+.contentBg {
+  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center bottom;
+  width: 100%;
+  height: 100%; /* Garante que a div content cubra todo o ion-content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+  position: fixed;
+  overflow-y: auto;
+}
+
 .content{
-    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png'); 
-    background-repeat: repeat-x; 
-    background-size: contain; 
-    background-position: center bottom;
     width: 100%;
     height: 100%;
+    max-width: 700px;
 }
 
 // <card>
@@ -17,7 +28,7 @@ ion-content{
 ion-card{
     // background-color: #c4d3c5; não gostei da cor
     border-radius: 20px;
-    margin: 25px;
+    margin: 25px 0;
 }
 
 ion-card-subtitle{
@@ -60,6 +71,40 @@ ion-card-subtitle{
      border: solid, 1px, rgb(21, 0, 255);
     background-color: rgb(21, 0, 255);
     color: rgb(21, 0, 255);
+}
+
+
+
+ion-card-subtitle{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    text-align: center;
+    justify-content: center;
+    width: 180px;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.subtitle-inProgress, .subtitle-accepted, .subtitle-created{
+    border: solid, 1px, grey;
+    background-color: grey;
+    color: #FFFFFF;
+}
+
+.subtitle-finished{
+    border: solid, 1px, #0a4e23;
+    background-color: #0a4e23;
+    color: #FFFFFF;
+}
+
+.subtitle-canceled, .subtitle-expired{
+    border: solid, 1px, red;
+    background-color: red;
+    color: #FFFFFF;
 }
 
 // </card>

@@ -73,6 +73,45 @@ export class PedidosPrestadorPage implements OnInit {
     });
   }
 
+  getProgressText(progress: string): string {
+    switch (progress) {
+      case 'waiting':
+        return 'AGUARDANDO';
+      case 'accepted':
+        return 'ACEITO';
+      case 'inProgress':
+        return 'EM ANDAMENTO';
+      case 'finished':
+        return 'CONCLUÍDO';
+      case 'expired':
+        return 'EXPIRADO';
+      case 'canceled':
+        return 'CANCELADO';
+      case 'paying':
+        return 'AGUARDANDO PGTO';
+      default:
+        return progress.toUpperCase();
+    }
+  }
+
+  getProgressClass(progress: string): string {
+    switch (progress) {
+      case 'created':
+      case 'accepted':
+      case 'inProgress':
+        return 'inProgress'; // Cor para status em andamento
+      case 'finished':
+        return 'finished'; // Cor para status concluído
+      case 'canceled':
+      case 'expired':
+        return 'canceled'; // Cor para status cancelado/expirado
+      case 'paying':
+        return 'paying'; // Cor para status de pagamento
+      default:
+        return '';
+    }
+  }
+
   abrirDetalhes(pedido: any) {
     this.navCtrl.navigateForward(`/finalizar-pedido-prestador/${pedido.id}`);
   }
