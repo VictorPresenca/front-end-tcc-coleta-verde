@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ColetaBackendService } from '../services/coleta-backend.service';
 import { NavController, ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido-prestador',
@@ -19,7 +20,8 @@ export class PedidoPrestadorPage implements OnInit {
     private route: ActivatedRoute,
     private coletaService: ColetaBackendService,
     private toastCtrl: ToastController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {}
@@ -72,6 +74,31 @@ export class PedidoPrestadorPage implements OnInit {
         this.showErro('Erro de conexão com o servidor');
       }
     });
+  }
+
+  async cliqueFuncaoDesabilitada() {
+    const alert = await this.alertController.create({
+      header: 'Função Indisponível',
+      message: 'Esta funcionalidade está desabilitada no momento. Novas implementações estão previstas para a próxima sprint.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async cliqueLigarCentral(){
+    const alert = await this.alertController.create({
+      header: 'Telefone da Central',
+      message: 'Precisando de ajuda? Estamos a disposição: (11) 4002-8922!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  cliqueMaps(endereco: string, number: string) {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco+number)}`;
+    window.open(url, '_blank');
   }
 
   async showErro(msg: string) {
