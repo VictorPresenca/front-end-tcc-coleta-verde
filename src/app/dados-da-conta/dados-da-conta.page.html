@@ -5,61 +5,65 @@
 </ion-header>
 
 <ion-content class="no-scroll">
-  <div class="linha-separadora-topo"></div>
+  <div class="contentBg">
+    <div class="content">
+      <div class="linha-separadora-topo"></div>
 
-  <div class="titulo-dados">Informações da empresa</div>
+      <div class="titulo-dados">Informações da empresa</div>
 
-  <div class="card-cinza" *ngIf="currentUser">
-    <div class="info-item">
-      <label>Nome</label>
-      <p>{{ currentUser.name }}</p>
-    </div>
+      <div class="card-cinza" *ngIf="currentUser">
+        <div class="info-item">
+          <label>Nome</label>
+          <p>{{ currentUser.name }}</p>
+        </div>
 
-    <div class="info-item">
-      <label>Email</label>
-      <p>{{ currentUser.email }}</p>
-    </div>
+        <div class="info-item">
+          <label>Email</label>
+          <p>{{ currentUser.email }}</p>
+        </div>
 
-    <div class="info-item" *ngIf="currentUser.cnpj">
-      <label>CNPJ</label>
-      <p>{{ currentUser.cnpj }}</p>
-    </div>
+        <div class="info-item" *ngIf="currentUser.cnpj">
+          <label>CNPJ</label>
+          <p>{{ currentUser.cnpj }}</p>
+        </div>
 
-    <div class="info-item">
-      <ion-label routerLink="/enderecos">
-        <h2>Endereços cadastrados</h2>
-      </ion-label>
-    </div>
+        <div class="info-item">
+          <ion-label routerLink="/enderecos">
+            <h2>Endereços cadastrados</h2>
+          </ion-label>
+        </div>
 
 
-    <div *ngIf="selectedEnderecoIndex !== null" class="detalhes-endereco">
-      <div class="info-item">
-        <label>CEP</label>
-        <p>{{ enderecos[selectedEnderecoIndex].cep }}</p>
-      </div>
-      <div class="info-item">
-        <label>Complemento</label>
-        <p>{{ enderecos[selectedEnderecoIndex].complemento || '-' }}</p>
-      </div>
-      <div class="info-item">
-        <label>Localidade</label>
-        <p>{{ enderecos[selectedEnderecoIndex].localidade }}</p>
-      </div>
-      <div class="info-item">
-        <label>UF</label>
-        <p>{{ enderecos[selectedEnderecoIndex].uf }}</p>
-      </div>
-      <div class="info-item">
-        <label>Estado</label>
-        <p>{{ enderecos[selectedEnderecoIndex].estado }}</p>
-      </div>
-      <div class="info-item">
-        <label>Região</label>
-        <p>{{ enderecos[selectedEnderecoIndex].regiao }}</p>
-      </div>
-      <div class="info-item">
-        <label>Unidade</label>
-        <p>{{ enderecos[selectedEnderecoIndex].unidade }}</p>
+        <div *ngIf="selectedEnderecoIndex !== null" class="detalhes-endereco">
+          <div class="info-item">
+            <label>CEP</label>
+            <p>{{ enderecos[selectedEnderecoIndex].cep }}</p>
+          </div>
+          <div class="info-item">
+            <label>Complemento</label>
+            <p>{{ enderecos[selectedEnderecoIndex].complemento || '-' }}</p>
+          </div>
+          <div class="info-item">
+            <label>Localidade</label>
+            <p>{{ enderecos[selectedEnderecoIndex].localidade }}</p>
+          </div>
+          <div class="info-item">
+            <label>UF</label>
+            <p>{{ enderecos[selectedEnderecoIndex].uf }}</p>
+          </div>
+          <div class="info-item">
+            <label>Estado</label>
+            <p>{{ enderecos[selectedEnderecoIndex].estado }}</p>
+          </div>
+          <div class="info-item">
+            <label>Região</label>
+            <p>{{ enderecos[selectedEnderecoIndex].regiao }}</p>
+          </div>
+          <div class="info-item">
+            <label>Unidade</label>
+            <p>{{ enderecos[selectedEnderecoIndex].unidade }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

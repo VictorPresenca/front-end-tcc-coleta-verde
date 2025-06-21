@@ -1,39 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="''" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Início'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content">
+  <div class="contentBg">
+
     <div class="bgd-superior">
       <img class="img-logo" src="/assets/imagens/logo-app-coleta-verde.png" alt="logo-app-coleta-verde" />
     </div>
 
-    <div class="atalhos-home">
-      <h2>COLETA DE LIXO</h2>
-      <p>clique para fazer uma solicitação</p>
-      <ion-button class="btn" expand="block" [routerLink]="['/solicitacao']">Solicitar</ion-button>
-    </div>
+    <div class="content">
 
-    <div class="carrossel-scroll" #carrossel>
-      <div
-        class="card"
-        *ngFor="let item of cards; let i = index"
-        (click)="scrollToCard(i)"
-        (mouseenter)="hoverCard(i)"
-        (mouseleave)="leaveCard()"
-        [class.hovered]="hoveredIndex === i"
-      >
-        <ion-card>
-          <ion-card-header>
-            <img class="img-card" [src]="item.img" [alt]="item.alt" />
-          </ion-card-header>
-          <ion-card-content>{{ item.texto }}</ion-card-content>
-        </ion-card>
+      <div class="atalhos-home">
+        <h2>COLETA DE LIXO</h2>
+        <p>clique para fazer uma solicitação</p>
+        <ion-button class="btn" expand="block" [routerLink]="['/solicitacao']">Solicitar</ion-button>
+      </div>
+
+      <div class="carrossel-scroll" #carrossel>
+        <div
+          class="card"
+          *ngFor="let item of cards; let i = index"
+          (click)="scrollToCard(i)"
+          (mouseenter)="hoverCard(i)"
+          (mouseleave)="leaveCard()"
+          [class.hovered]="hoveredIndex === i"
+        >
+          <ion-card>
+            <ion-card-header>
+              <img class="img-card" [src]="item.img" [alt]="item.alt" />
+            </ion-card-header>
+            <ion-card-content>{{ item.texto }}</ion-card-content>
+          </ion-card>
+        </div>
       </div>
     </div>
-
   </div>
 </ion-content>
 

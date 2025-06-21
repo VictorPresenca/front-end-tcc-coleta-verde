@@ -1,32 +1,38 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Endereços</ion-title>
+    <app-toolbar-global [titulo]="'Endereços'" [mostrarBotaoVoltar]="true"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <!-- Mensagem quando não há endereços -->
-    <ion-item *ngIf="enderecos.length === 0" class="msg-vazia">
-      <ion-label>Nenhum endereço encontrado...</ion-label>
-    </ion-item>
+  <div class="contentBg">
+    <div class="content">
+      <ion-list>
+        <!-- Mensagem quando não há endereços -->
+        <ion-item *ngIf="enderecos.length === 0" class="msg-vazia">
+          <ion-label>Nenhum endereço encontrado...</ion-label>
+        </ion-item>
 
-    <!-- Lista de endereços cadastrados -->
-    <ion-item lines="full" *ngFor="let endereco of enderecos; let i = index">
-      <ion-label class="ion-text-wrap">
-        {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
-        <p>{{ endereco.localidade }} - {{ endereco.uf }}</p>
-      </ion-label>
+        <!-- Lista de endereços cadastrados -->
+        <ion-item lines="full" *ngFor="let endereco of enderecos; let i = index">
+          <ion-label class="ion-text-wrap">
+            {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
+            <p>{{ endereco.localidade }} - {{ endereco.uf }}</p>
+          </ion-label>
 
-      <!-- Botão editar -->
-      <ion-button fill="clear" slot="end" (click)="editarEndereco(endereco, i)">
-        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-      </ion-button>
+          <!-- Botão editar -->
+          <ion-button fill="clear" slot="end" (click)="editarEndereco(endereco, i)">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
 
-      <!-- Botão deletar -->
-      <ion-button fill="clear" color="danger" slot="end" (click)="deletarEndereco(i)">
-        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
+          <!-- Botão deletar -->
+          <ion-button fill="clear" color="danger" slot="end" (click)="deletarEndereco(i)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
+
+<app-footer-global></app-footer-global>

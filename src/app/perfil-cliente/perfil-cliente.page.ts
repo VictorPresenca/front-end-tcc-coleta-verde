@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ColetaBackendService, IColetaUser } from '../services/coleta-backend.service';
 import { ToastController } from '@ionic/angular';
-import { Router } from '@angular/router'; // Importe o Router
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil-cliente',
@@ -15,7 +16,8 @@ export class PerfilClientePage implements OnInit {
   constructor(
     private coletaBackendService: ColetaBackendService,
     private toastController: ToastController,
-    private router: Router // Injete o Router no construtor
+    private router: Router,
+    private alertController: AlertController,
   ) { }
 
   ngOnInit() {
@@ -37,11 +39,20 @@ export class PerfilClientePage implements OnInit {
     this.router.navigate(['/leilao']);
   }
 
+  abrirDadosConta() {
+    this.router.navigate(['/dados-da-conta']);
+  }
+  abrirNotificacoes() {
+    this.router.navigate(['/notificacoes']);
+  }
 
-abrirDadosConta() {
-  this.router.navigate(['/dados-da-conta']);
-}
-abrirNotificacoes() {
-  this.router.navigate(['/notificacoes']);
-}
+  async cliqueFuncaoDesabilitada() {
+    const alert = await this.alertController.create({
+      header: 'Função Indisponível',
+      message: 'Esta funcionalidade está desabilitada no momento. Novas implementações estão previstas para a próxima sprint.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 }

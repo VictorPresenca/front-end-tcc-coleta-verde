@@ -8,12 +8,15 @@ import { EnderecosPageRoutingModule } from './enderecos-routing.module';
 
 import { EnderecosPage } from './enderecos.page';
 
+import { SharedModule } from '../component/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EnderecosPageRoutingModule
+    EnderecosPageRoutingModule,
+    SharedModule
   ],
   declarations: [EnderecosPage]
 })
