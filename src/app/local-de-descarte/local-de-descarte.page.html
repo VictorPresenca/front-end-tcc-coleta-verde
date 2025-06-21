@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <app-toolbar-global [titulo]="'Local de Descarte'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="contentBg">
+    <div class="content">
+      <p>Confira abaixo os locais mais próximos de você onde é possível realizar o descarte da sua coleta.</p>
+      <iframe
+        src="https://www.google.com/maps?q=Ecoponto+Perto+de+Mim&output=embed"
+        width="100%"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer-global></app-footer-global>

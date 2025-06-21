@@ -103,6 +103,10 @@ const routes: Routes = [
   {
     path: 'carteira-prestador',
     loadChildren: () => import('./carteira-prestador/carteira-prestador.module').then( m => m.CarteiraPrestadorPageModule)
+  },
+  {
+    path: 'local-de-descarte',
+    loadChildren: () => import('./local-de-descarte/local-de-descarte.module').then( m => m.LocalDeDescartePageModule)
   }
 
 
