@@ -67,8 +67,8 @@
 
       <h6>Imagem</h6>
       <!-- Modifique o input para ser escondido e adicione a label -->
-      <input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload" required />
-      <label for="file-upload" class="file-label">Escolher Imagem</label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload" hidden />
+      <label for="file-upload" class="file-label">{{ nomeArquivo || 'Escolher Imagem' }}</label>
 
       <button type="submit" class="btn-submit" >
         Enviar Solicitação

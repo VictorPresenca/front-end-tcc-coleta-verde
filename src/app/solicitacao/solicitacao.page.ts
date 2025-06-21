@@ -18,6 +18,7 @@ export class SolicitacaoPage implements OnInit {
   mostrarFormEndereco = false;
   enderecos: IColetaAddress[] = [];
   imagemSelecionada: File | null = null;
+  nomeArquivo: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -250,9 +251,11 @@ async adicionarEndereco() {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.imagemSelecionada = input.files[0];
-      console.log('Imagem selecionada:', this.imagemSelecionada.name);
+      this.nomeArquivo = this.imagemSelecionada.name; // aqui está o nome do arquivo
+      console.log('Imagem selecionada:', this.nomeArquivo);
     }
   }
+
 
   async enviarFormulario() {
 
