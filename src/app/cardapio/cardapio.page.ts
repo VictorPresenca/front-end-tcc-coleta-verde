@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ColetaBackendService } from '../services/coleta-backend.service';
 import { NavController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cardapio',
@@ -13,7 +14,12 @@ export class CardapioPage implements OnInit {
 
   solicitacoes: any[] = [];
 
-  constructor(private coleta: ColetaBackendService, private http: HttpClient, private navCtrl: NavController) { }
+  constructor(
+    private coleta: ColetaBackendService, 
+    private http: HttpClient, 
+    private navCtrl: NavController,
+    private alertController: AlertController
+  ) { }
 
   ngOnInit() {
     this.carregarSolicitacoes();
@@ -37,6 +43,16 @@ export class CardapioPage implements OnInit {
   abrirDetalhes(item: any){
     console.log('Item clicado:', item);
     this.navCtrl.navigateForward(`/pedido-prestador/${item.id}`);
+  }
+
+  async cliqueFuncaoDesabilitada() {
+    const alert = await this.alertController.create({
+      header: 'Função Indisponível',
+      message: 'Esta funcionalidade está desabilitada no momento. Novas implementações estão previstas para a próxima sprint.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }

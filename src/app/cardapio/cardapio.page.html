@@ -6,38 +6,46 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="header-container">
-    <div class="blurred-background"></div>
-    <div class="CardapioHeader">
-      <img class="img-logo-app" src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde" />
+  
+
+  <div class="contentBg">
+    <div class="header-container">
+      <div class="CardapioHeader">
+        <img class="img-logo-app" src="../../assets/imagens/logo-app-coleta-verde.png" alt="Logo Coleta Verde" />
+      </div>
     </div>
-  </div>
 
-  <!-- <div class="blocoSelecione" role="region" aria-label="Selecione o serviço">
-    <div>
-      <span>Serviços</span>
-    </div>
-    <div>
-      <img src="../../assets/imagens/icones/iconeFiltro.png" alt="Ícone filtro" />
-    </div>  
-  </div> -->
+    <div class="content">
 
-  <ion-item lines="none" class="top-icons">
-    <ion-icon name="search-outline" ></ion-icon>
-    <ion-icon name="funnel-outline" class="icone-direita"></ion-icon>
-  </ion-item>
+      
 
-  <div class="contentCardapio">
-    <div class="inicioCardapio">
-      <div class="blocoInfos" *ngFor="let item of solicitacoes" (click)="abrirDetalhes(item)" tabindex="0" role="button" aria-pressed="false">
-        <div class="blocoInfosEsq">
-          <span class="blocoInfosData">Pedido: {{ item.id }}</span>
-          <span class="blocoInfosData">Dia: {{ item.desiredDate | date:'dd/MM/yyyy' }}</span>
-          <span class="blocoInfosHorario">Horário: {{ item.desiredDate | date:'HH:mm' }}</span>
-          <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
+      <!-- <div class="blocoSelecione" role="region" aria-label="Selecione o serviço">
+        <div>
+          <span>Serviços</span>
         </div>
-        <div class="blocoInfosDir">
-          <span class="blocoInfosPreco">R$ {{ item.suggestedValue | number:'1.2-2' }}</span>
+        <div>
+          <img src="../../assets/imagens/icones/iconeFiltro.png" alt="Ícone filtro" />
+        </div>  
+      </div> -->
+
+      <ion-item lines="none" class="top-icons" (click)="cliqueFuncaoDesabilitada()">
+        <ion-icon name="search-outline" ></ion-icon>
+        <ion-icon name="funnel-outline" class="icone-direita"></ion-icon>
+      </ion-item>
+
+      <div class="contentCardapio">
+        <div class="inicioCardapio">
+          <div class="blocoInfos" *ngFor="let item of solicitacoes" (click)="abrirDetalhes(item)" tabindex="0" role="button" aria-pressed="false">
+            <div class="blocoInfosEsq">
+              <span class="blocoInfosData">Pedido: {{ item.id }}</span>
+              <span class="blocoInfosData">Dia: {{ item.desiredDate | date:'dd/MM/yyyy' }}</span>
+              <span class="blocoInfosHorario">Horário: {{ item.desiredDate | date:'HH:mm' }}</span>
+              <span class="blocoInfosEndereco">{{ item.address.logradouro }} - {{ item.address.bairro }}</span>
+            </div>
+            <div class="blocoInfosDir">
+              <span class="blocoInfosPreco">R$ {{ item.suggestedValue | number:'1.2-2' }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

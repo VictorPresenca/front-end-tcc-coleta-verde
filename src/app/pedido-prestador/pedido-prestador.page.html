@@ -5,92 +5,96 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="contentBg">
+    <div class="content">
 
-  <div class="blurred-background"></div>
+      <div class="content" *ngIf="solicitacao">
 
-  <div class="content" *ngIf="solicitacao">
+        <ion-item>
+          <ion-label>
+            <h2>Pedido {{ solicitacao.id }} </h2>
+            <p>{{ nomeCliente }}</p>
+            <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
+            <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
+          </ion-label>
+        </ion-item>
 
-    <ion-item>
-      <ion-label>
-        <h2>Pedido {{ solicitacao.id }} </h2>
-        <p>{{ nomeCliente }}</p>
-        <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
-        <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
-      </ion-label>
-    </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Tipo de coleta</h2>
+            <p>{{ tipoColetaMap[solicitacao.type] || 'Desconhecido' }}</p>
+          </ion-label>
+        </ion-item>
 
-    <ion-item>
-      <ion-label>
-        <h2>Tipo de coleta</h2>
-        <p>{{ tipoColetaMap[solicitacao.type] || 'Desconhecido' }}</p>
-      </ion-label>
-    </ion-item>
+        <ion-item button detail="true" class="itens-detalhes">
+          <ion-label>
+            <h3>Imagens dos resíduos</h3>
+          </ion-label>
+        </ion-item>
 
-    <ion-item button detail="true" class="itens-detalhes">
-      <ion-label>
-        <h3>Imagens dos resíduos</h3>
-      </ion-label>
-    </ion-item>
+        <ion-item button detail="true" class="itens-detalhes">
+          <ion-label>
+            <h3>Observações</h3>
+            <p>{{ solicitacao.description }}</p>
+          </ion-label>
+        </ion-item>
 
-    <ion-item button detail="true" class="itens-detalhes">
-      <ion-label>
-        <h3>Observações</h3>
-        <p>{{ solicitacao.description }}</p>
-      </ion-label>
-    </ion-item>
+        <ion-item class="frase-impactante">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="/assets/imagens/green_leaf_recycle_sign.jpg" />
+          </ion-thumbnail>
+          <ion-label>Lixo no lugar certo, o planeta agradece!</ion-label>
+        </ion-item>
 
-    <ion-item class="frase-impactante">
-      <ion-thumbnail slot="start">
-        <img alt="Silhouette of mountains" src="/assets/imagens/green_leaf_recycle_sign.jpg" />
-      </ion-thumbnail>
-      <ion-label>Lixo no lugar certo, o planeta agradece!</ion-label>
-    </ion-item>
+        <div class="botoes-links">
+          <ion-grid>
+            <ion-row class="ion-justify-content-center">
+              <ion-col (click)="cliqueFuncaoDesabilitada()">
+                  <ion-button shape="round" class="btn-links">
+                    <ion-icon name="chatbox-outline" class="icones-btn-links"></ion-icon>
+                  </ion-button>
+                  <p class="p-btn-links">Chat</p>
+              </ion-col>
+          
+              <ion-col  (click)="cliqueMaps(solicitacao.address.cep, solicitacao.address.logradouro, solicitacao.address.unidade)"> 
+                  <ion-button shape="round" class="btn-links">
+                    <ion-icon name="map-outline" class="icones-btn-links"></ion-icon>
+                  </ion-button>
+                  <p class="p-btn-links">Mapa</p>
+                </ion-col>
 
-    <div class="botoes-links">
-      <ion-grid>
-        <ion-row class="ion-justify-content-center">
-          <ion-col>
-              <ion-button shape="round" class="btn-links">
-                <ion-icon name="chatbox-outline" class="icones-btn-links"></ion-icon>
-              </ion-button>
-              <p class="p-btn-links">Chat</p>
-          </ion-col>
-      
-          <ion-col>
-              <ion-button shape="round" class="btn-links">
-                <ion-icon name="map-outline" class="icones-btn-links"></ion-icon>
-              </ion-button>
-              <p class="p-btn-links">Mapa</p>
-            </ion-col>
+                <ion-col (click)="cliqueLigarCentral()">
+                  <ion-button shape="round" class="btn-links">
+                    <ion-icon name="call-outline" class="icones-btn-links"></ion-icon>
+                  </ion-button>
+                  <p class="p-btn-links">Ligar</p>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
 
-            <ion-col>
-              <ion-button shape="round" class="btn-links">
-                <ion-icon name="call-outline" class="icones-btn-links"></ion-icon>
-              </ion-button>
-              <p class="p-btn-links">Ligar</p>
-            </ion-col>
-        </ion-row>
-      </ion-grid>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Valor Total</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <h2>R$ {{ solicitacao.suggestedValue | number: '1.2-2' }}</h2>
+            </ion-card-content>
+          </ion-card>
+
+          <div class="botoes-finais" *ngIf="solicitacao?.progress === 'inProgress'">
+            <ion-button class="btn-negociar" (click)="cancelarSolicitacao()">Cancelar</ion-button>
+            <ion-button class="btn-aceitar" (click)="finalizarSolicitacao()">Finalizar</ion-button>
+          </div>
+
+          <div class="botoes-finais" *ngIf="solicitacao?.progress !== 'inProgress'">
+            <ion-button class="btn-negociar" (click)="cliqueFuncaoDesabilitada()">Negociar</ion-button>
+            <ion-button class="btn-aceitar" (click)="aceitarSolicitacao()">Aceitar</ion-button>
+          </div>
+        </div>
+      <ion-spinner *ngIf="!solicitacao" name="crescent" style="display: block; margin: 50% auto;"></ion-spinner>
     </div>
-
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Valor Total</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <h2>R$ {{ solicitacao.suggestedValue | number: '1.2-2' }}</h2>
-        </ion-card-content>
-      </ion-card>
-
-      <div class="botoes-finais" *ngIf="solicitacao?.progress === 'inProgress'">
-        <ion-button class="btn-negociar" (click)="cancelarSolicitacao()">Cancelar</ion-button>
-        <ion-button class="btn-aceitar" (click)="finalizarSolicitacao()">Finalizar</ion-button>
-      </div>
-
-      <div class="botoes-finais" *ngIf="solicitacao?.progress !== 'inProgress'">
-        <ion-button class="btn-negociar">Negociar</ion-button>
-        <ion-button class="btn-aceitar" (click)="aceitarSolicitacao()">Aceitar</ion-button>
-      </div>
-    </div>
-  <ion-spinner *ngIf="!solicitacao" name="crescent" style="display: block; margin: 50% auto;"></ion-spinner>
+  </div>
 </ion-content>
+
+<app-footer-global></app-footer-global>

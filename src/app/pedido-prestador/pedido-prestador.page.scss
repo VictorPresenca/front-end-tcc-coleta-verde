@@ -5,26 +5,10 @@ ion-content {
 .content {
     position: relative;
     background: #FFFFFF;
-    margin: 10px;
     border-radius: 10px;
     z-index: 2;
-    padding: 16px;
-  }
-
-.blurred-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(233, 237, 237);
-    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-position: center bottom;
-    filter: blur(4px);
-    z-index: 1;
-    opacity: 1;
+    margin: 20px 0;
+    padding: 10px;
   }
 
 .itens-detalhes{
@@ -92,3 +76,31 @@ ion-row {
 }
 
 // </botoes-finais>
+
+.contentBg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    overflow-y: auto;
+    float: left;
+    max-height: 450px;
+    background-color: rgb(233, 237, 237);
+    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: center bottom;
+}
+
+.content {
+    max-width: 700px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+  .content {
+    max-width: 900px;
+  }
+}
