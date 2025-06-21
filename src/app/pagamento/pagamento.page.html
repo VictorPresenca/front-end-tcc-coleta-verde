@@ -1,30 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="''"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Pagamento'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content">
-    <div class="content-padding bgd">
-        <p class="p-pagamento">Qual a forma de pagamento:</p>
+  <div class="contentBg">
+    <div class="content">
+      <div class="content-padding bgd">
+          <p class="p-pagamento">Qual a forma de pagamento:</p>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col size="6" *ngFor="let forma of formasPagamento">
-              <ion-button
-                expand="block"
-                [ngClass]="formaSelecionada === forma ? 'botao-verde-claro' : 'botao-cinza'"
-                (click)="selecionarForma(forma)"
-              >
-                {{ forma | titlecase }}
-              </ion-button>
-            </ion-col>
-          </ion-row>
-          </ion-grid>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" *ngFor="let forma of formasPagamento">
+                <ion-button
+                  expand="block"
+                  [ngClass]="formaSelecionada === forma ? 'botao-verde-claro' : 'botao-cinza'"
+                  (click)="selecionarForma(forma)"
+                >
+                  {{ forma | titlecase }}
+                </ion-button>
+              </ion-col>
+            </ion-row>
+            </ion-grid>
 
-        <div class="btn-pagar"> 
-          <button type="submit" (click)="pagar()">Pagar</button>
+          <div class="btn-pagar"> 
+            <button type="submit" (click)="pagar()">Pagar</button>
+          </div>
         </div>
       </div>
     </div>

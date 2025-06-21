@@ -1,22 +1,33 @@
+.contentBg {
+  background-image: url('../../assets/imagens/fundo-arvores-removebg-preview.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  background-position: center bottom;
+  width: 100%;
+  height: 100%; /* Garante que a div content cubra todo o ion-content */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente o conteúdo interno */
+  position: fixed;
+  overflow-y: auto;
+}
+
 ion-content{
     --background: rgb(233, 237, 237);
     padding: 15px;
  }
 
 .content{
-    background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
-    background-repeat: repeat-x;
-    background-size: contain;
-    background-position: center bottom;
     width: 100%;
     height: 100%;
+    max-width: 700px;
 }
 
 // <card>
 
 ion-card{
     border-radius: 20px;
-    margin: 25px;
+    margin: 25px 0;
 }
 
 ion-card-subtitle{
@@ -25,7 +36,7 @@ ion-card-subtitle{
     right: 0px;
     text-align: center;
     justify-content: center;
-    width: 15vh;
+    width: 180px;
     padding: 10px;
     border-bottom-left-radius: 10px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -57,7 +68,7 @@ ion-card-subtitle{
 .subtitle-paying{
     border: solid, 1px, rgb(21, 0, 255);
     background-color: rgb(21, 0, 255);
-    color: rgb(21, 0, 255);
+    color: #FFFFFF;
 }
 
 // </card>

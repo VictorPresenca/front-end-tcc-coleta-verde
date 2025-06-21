@@ -1,10 +1,10 @@
 .bgd-superior {
   background: rgb(233, 237, 237);
   background-image: url("/assets/imagens/fundo-arvores-removebg-preview.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: repeat-x;
   background-position: center;
   height: 35vh;
+  width: 100%;
 }
 
 .img-logo {
@@ -109,4 +109,28 @@ ion-card-content {
   text-align: left;
   height: 100%;
   box-sizing: border-box;
+}
+
+
+.contentBg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    overflow-y: auto;
+    float: left;
+    max-height: 450px;
+}
+
+.content {
+    max-width: 700px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+  .content {
+    max-width: 900px;
+  }
 }

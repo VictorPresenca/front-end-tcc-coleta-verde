@@ -1,25 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="''"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Solicitar Coleta'"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="contentBg">
+    <div class="content">
   <div class="container bgd">
-    <div class="blur-overlay"></div>
+    
 
     <!-- Formulário principal -->
     <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()" class="solicitacao-form" novalidate>
-      <h6>Selecione o endereço</h6>
+      <h6 class="titTopo">Selecione o endereço</h6>
+      <button type="button" class="btnTopo" (click)="adicionarEndereco()">
+        {{ mostrarFormEndereco ? 'Cancelar' : 'Adicionar novo endereço' }}
+      </button>
+
       <ion-select formControlName="enderecoSel" interface="popover" placeholder="Selecione um endereço">
         <ion-select-option *ngFor="let endereco of enderecos; let i = index" [value]="i">
           {{ endereco.logradouro }}, {{ endereco.unidade || '' }} - {{ endereco.bairro }}
         </ion-select-option>
       </ion-select>
-
-      <button type="button" (click)="adicionarEndereco()">
-        {{ mostrarFormEndereco ? 'Cancelar' : 'Adicionar novo endereço' }}
-      </button>
 
       <h6>Descrição do lixo a ser coletado</h6>
       <textarea
@@ -31,15 +33,15 @@
 
       <h6>Selecione o tipo de lixo</h6>
       <ion-select formControlName="type">
-        <ion-select-option value="rubble">entulho</ion-select-option>
-        <ion-select-option value="recycle">reciclavel</ion-select-option>
-        <ion-select-option value="organic">organico</ion-select-option>
-        <ion-select-option value="biohazard">toxico</ion-select-option>
-        <ion-select-option value="eletronic">eleletronico</ion-select-option>
-        <ion-select-option value="other">outro</ion-select-option>
+        <ion-select-option value="rubble">Entulho</ion-select-option>
+        <ion-select-option value="recycle">Reciclável</ion-select-option>
+        <ion-select-option value="organic">Orgânico</ion-select-option>
+        <ion-select-option value="biohazard">Tóxico</ion-select-option>
+        <ion-select-option value="eletronic">Eletrônico</ion-select-option>
+        <ion-select-option value="other">Outro</ion-select-option>
       </ion-select>
 
-      <h6>Qual o valor sugerido</h6>
+      <h6>Qual valor em R$ você gostaria de sugerir?</h6>
       <input
         type="number"
         formControlName="valor"
@@ -64,15 +66,17 @@
       ></ion-input>
 
       <h6>Imagem</h6>
-<!-- Modifique o input para ser escondido e adicione a label -->
-<input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload" required />
-<label for="file-upload" class="file-label">Escolher Imagem</label>
+      <!-- Modifique o input para ser escondido e adicione a label -->
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" id="file-upload" hidden />
+      <label for="file-upload" class="file-label">{{ nomeArquivo || 'Escolher Imagem' }}</label>
 
-      <button type="submit" class="btn-submit" [disabled]="formulario.invalid || !imagemSelecionada">
+      <button type="submit" class="btn-submit" >
         Enviar Solicitação
       </button>
     </form>
 
+  </div>
+  </div>
   </div>
 </ion-content>
   <app-footer-global></app-footer-global>

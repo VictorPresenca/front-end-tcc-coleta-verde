@@ -1,27 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="''" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Pedidos'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="content">
-    <ion-card *ngFor="let pedido of solicitacoesCliente" (click)="abrirDetalhes(pedido)">
-      <ion-card-header>
-        <ion-card-subtitle class="subtitle-{{ getProgressClass(pedido.progress) }}"> {{ getProgressText(pedido.progress) }} </ion-card-subtitle>
-        <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
-      </ion-card-header>
+  <div class="contentBg">
+    <div class="content">
+      <ion-card *ngFor="let pedido of solicitacoesCliente" (click)="abrirDetalhes(pedido)">
+        <ion-card-header>
+          <ion-card-subtitle class="subtitle-{{ getProgressClass(pedido.progress) }}"> {{ getProgressText(pedido.progress) }} </ion-card-subtitle>
+          <ion-card-title>Pedido {{ pedido.id }}</ion-card-title>
+        </ion-card-header>
 
-      <ion-card-content>
-        <p>Prestador: {{ nomesPrestadores[pedido.id] || 'Carregando...' }}</p>
-        <p>{{ pedido.description }}</p>
-        <p>{{ pedido.address.logradouro}}</p>
-        <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
-      </ion-card-content>
-    </ion-card>
+        <ion-card-content>
+          <p>Prestador: {{ nomesPrestadores[pedido.id] || 'Carregando...' }}</p>
+          <p>{{ pedido.description }}</p>
+          <p>{{ pedido.address.logradouro}}</p>
+          <p><strong>Valor:</strong> R$ {{ pedido.suggestedValue }}</p>
+        </ion-card-content>
+      </ion-card>
 
-    <div *ngIf="solicitacoesCliente.length === 0" class="ion-text-center">
-      <p>Você ainda não realizou nenhum pedido.</p>
+      <div *ngIf="solicitacoesCliente.length === 0" class="ion-text-center">
+        <p>Você ainda não realizou nenhum pedido.</p>
+      </div>
     </div>
   </div>
 </ion-content>
