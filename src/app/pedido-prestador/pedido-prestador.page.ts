@@ -96,10 +96,12 @@ export class PedidoPrestadorPage implements OnInit {
     await alert.present();
   }
 
-  cliqueMaps(endereco: string, number: string) {
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco+number)}`;
+  cliqueMaps(cep: string, endereco: string, numero: string) {
+    const query = `${endereco}, ${numero}, ${cep}`;
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
     window.open(url, '_blank');
   }
+
 
   async showErro(msg: string) {
     const toast = await this.toastCtrl.create({
