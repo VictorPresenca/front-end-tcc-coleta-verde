@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ColetaBackendService, IColetaAddress } from '../services/coleta-backend.service';
 import { HttpClient } from '@angular/common/http';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,7 +25,8 @@ export class SolicitacaoPage implements OnInit {
     private http: HttpClient,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private router: Router
+    private router: Router,
+    private toastController: ToastController
   ) {
     this.formulario = this.fb.group({
       enderecoSel: [null, Validators.required],
@@ -141,12 +142,12 @@ async adicionarEndereco() {
               inputs: [
                 { name: 'cep', type: 'text', value: cepFormatado, placeholder: 'CEP' },
                 { name: 'logradouro', type: 'text', value: resposta.logradouro || '', placeholder: 'Logradouro' },
+                { name: 'unidade', type: 'text', value: resposta.unidade || '', placeholder: 'Nº' },
                 { name: 'bairro', type: 'text', value: resposta.bairro || '', placeholder: 'Bairro' },
                 { name: 'localidade', type: 'text', value: resposta.localidade || '', placeholder: 'Cidade' },
                 { name: 'uf', type: 'text', value: resposta.uf || '', placeholder: 'UF', attributes: { maxlength: 2 } },
                 { name: 'regiao', type: 'text', value: this.definirRegiao(resposta.uf), placeholder: 'Região' },
-                { name: 'complemento', type: 'text', value: resposta.complemento || '', placeholder: 'Complemento (opcional)' },
-                { name: 'unidade', type: 'text', value: resposta.unidade || '', placeholder: 'Unidade (opcional)' }
+                { name: 'complemento', type: 'text', value: resposta.complemento || '', placeholder: 'Complemento (opcional)' }
               ],
               buttons: [
                 {
@@ -254,8 +255,9 @@ async adicionarEndereco() {
   }
 
   async enviarFormulario() {
+
     if (this.formulario.invalid || !this.imagemSelecionada) {
-      alert('Preencha todos os campos obrigatórios e selecione uma imagem.');
+      this.showToast('Preencha todos os campos obrigatórios e selecione uma imagem.');
       return;
     }
 
@@ -308,5 +310,13 @@ async adicionarEndereco() {
     } finally {
       loading.dismiss();
     }
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+    });
+    toast.present();
   }
 }
