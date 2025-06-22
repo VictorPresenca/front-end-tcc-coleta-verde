@@ -32,4 +32,8 @@ export class NotificacoesService {
       })
     );
   }
+
+  marcarTodasComoLidas() {
+    this.notificacoes.next([]); 
+  }
 }
