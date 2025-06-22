@@ -9,6 +9,7 @@ ion-content {
     z-index: 2;
     margin: 20px 0;
     padding: 10px;
+    padding-bottom: 60px;
   }
 
 .itens-detalhes{
@@ -86,7 +87,6 @@ ion-row {
     position: fixed;
     overflow-y: auto;
     float: left;
-    max-height: 450px;
     background-color: rgb(233, 237, 237);
     background-image: url('/assets/imagens/fundo-arvores-removebg-preview.png');
     background-repeat: repeat-x;
@@ -102,5 +102,9 @@ ion-row {
 @media (max-width: 600px) {
   .content {
     max-width: 900px;
+  }
+
+  .contentBg{
+      max-height: 100%;
   }
 }

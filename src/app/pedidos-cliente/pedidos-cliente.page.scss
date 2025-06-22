@@ -92,3 +92,12 @@ display: flex;
 justify-content: center;
 }
 // </botões>
+
+
+@media (max-width: 600px) {
+
+  .contentBg{
+      max-height: 100%;
+  }
+
+}

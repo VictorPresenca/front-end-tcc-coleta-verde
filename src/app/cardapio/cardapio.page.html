@@ -1,13 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="''" ></app-toolbar-global>
+    <app-toolbar-global [titulo]="'Coletas Disponíveis'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  
-
   <div class="contentBg">
     <div class="header-container">
       <div class="CardapioHeader">
@@ -45,6 +42,10 @@
             <div class="blocoInfosDir">
               <span class="blocoInfosPreco">R$ {{ item.suggestedValue | number:'1.2-2' }}</span>
             </div>
+          </div>
+
+          <div *ngIf="solicitacoes.length === 0" class="ion-text-center">
+            <p>Nenhuma coleta disponível no momento.</p>
           </div>
         </div>
       </div>

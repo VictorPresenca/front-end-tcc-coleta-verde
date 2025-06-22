@@ -113,52 +113,73 @@ export class PedidoPrestadorPage implements OnInit {
   }
 
   tipoColetaMap: { [key: number]: string } = {
-  0: 'Reciclável',
-  1: 'Entulho',
-  2: 'Orgânico',
-  3: 'Eletrônico'
-};
+    0: 'Reciclável',
+    1: 'Entulho',
+    2: 'Orgânico',
+    3: 'Eletrônico'
+  };
 
-finalizarSolicitacao() {
-  this.coletaService.finalizarSolicitacao(this.solicitacao.id).subscribe({
-    next: async (res) => {
-      if (res.status === 200) {
-        const toast = await this.toastCtrl.create({
-          message: 'Solicitação finalizada com sucesso!',
-          duration: 2000,
-          color: 'success'
-        });
-        await toast.present();
-        this.navCtrl.navigateRoot('/pedidos-prestador');
-      } else {
-        this.showErro(res.message ?? 'Erro ao finalizar a solicitação');
+  finalizarSolicitacao() {
+    this.coletaService.finalizarSolicitacao(this.solicitacao.id).subscribe({
+      next: async (res) => {
+        if (res.status === 200) {
+          const toast = await this.toastCtrl.create({
+            message: 'Solicitação finalizada com sucesso!',
+            duration: 2000,
+            color: 'success'
+          });
+          await toast.present();
+          this.navCtrl.navigateRoot('/pedidos-prestador');
+        } else {
+          this.showErro(res.message ?? 'Erro ao finalizar a solicitação');
+        }
+      },
+      error: () => {
+        this.showErro('Erro de conexão com o servidor');
       }
-    },
-    error: () => {
-      this.showErro('Erro de conexão com o servidor');
-    }
-  });
-}
+    });
+  }
 
-cancelarSolicitacao() {
-  this.coletaService.cancelarSolicitacao(this.solicitacao.id).subscribe({
-    next: async (res) => {
-      if (res.status === 200) {
-        const toast = await this.toastCtrl.create({
-          message: 'Solicitação cancelada com sucesso!',
-          duration: 2000,
-          color: 'danger'
-        });
-        await toast.present();
-        this.navCtrl.navigateRoot('/pedidos-prestador');
-      } else {
-        this.showErro(res.message ?? 'Erro ao cancelar a solicitação');
+  cancelarSolicitacao() {
+    this.coletaService.cancelarSolicitacao(this.solicitacao.id).subscribe({
+      next: async (res) => {
+        if (res.status === 200) {
+          const toast = await this.toastCtrl.create({
+            message: 'Solicitação cancelada com sucesso!',
+            duration: 2000,
+            color: 'danger'
+          });
+          await toast.present();
+          this.navCtrl.navigateRoot('/pedidos-prestador');
+        } else {
+          this.showErro(res.message ?? 'Erro ao cancelar a solicitação');
+        }
+      },
+      error: () => {
+        this.showErro('Erro de conexão com o servidor');
       }
-    },
-    error: () => {
-      this.showErro('Erro de conexão com o servidor');
+    });
+  }
+
+  getProgressText(progress: string): string {
+    switch (progress) {
+      case 'waiting':
+        return 'AGUARDANDO';
+      case 'accepted':
+        return 'ACEITO';
+      case 'inProgress':
+        return 'EM ANDAMENTO';
+      case 'finished':
+        return 'CONCLUÍDO';
+      case 'expired':
+        return 'EXPIRADO';
+      case 'canceled':
+        return 'CANCELADO';
+      case 'paying':
+        return 'AGUARDANDO PGTO';
+      default:
+        return progress.toUpperCase();
     }
-  });
-}
+  }
 
 }
