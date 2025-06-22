@@ -17,7 +17,17 @@ export class HeaderEnderecoGlobalComponent  implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = this.notificacoesService.notificacoes$.subscribe(notificacoes => {
-      this.qtdNovasNotificacoes = notificacoes.length;
+      const notificacoesVistas = localStorage.getItem('notificacoesVistas') === 'true';
+
+      if (!notificacoesVistas && notificacoes.length > 0) {
+        this.qtdNovasNotificacoes = notificacoes.length;
+      } else {
+        this.qtdNovasNotificacoes = 0;
+      }
+
+      if (notificacoes.length > 0) {
+        localStorage.setItem('notificacoesVistas', 'false');
+      }
     });
   }
 
@@ -29,7 +39,18 @@ export class HeaderEnderecoGlobalComponent  implements OnInit, OnDestroy {
   @Input() mostrarBotaoVoltar: boolean = true;
 
   abrirNotificacoes() {
+    const notificacoesAntes = this.qtdNovasNotificacoes;
+
+    if (notificacoesAntes > 0) {
+      this.qtdNovasNotificacoes = 0;
+      this.notificacoesService.marcarTodasComoLidas();
+      localStorage.setItem('notificacoesVistas', 'true');
+    }
+
     this.router.navigate(['/notificacoes']);
   }
+
+  
+
 
 }
