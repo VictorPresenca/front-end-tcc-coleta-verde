@@ -15,6 +15,7 @@
             <p>{{ nomeCliente }}</p>
             <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
             <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
+            <p>Status do Pedido: {{ getProgressText(solicitacao.progress) }}</p>
           </ion-label>
         </ion-item>
 
