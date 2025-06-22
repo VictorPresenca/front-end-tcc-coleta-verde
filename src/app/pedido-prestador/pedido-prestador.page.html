@@ -16,6 +16,7 @@
             <p>{{ nomeCliente }}</p>
             <p>Dia: {{ solicitacao.desiredDate | date:'dd/MM/yyyy' }}</p>
             <p>{{ solicitacao.desiredDate | date:'HH:mm' }}</p>
+            <p>Status do Pedido: {{ getProgressText(solicitacao.progress) }}</p>
           </ion-label>
         </ion-item>
 
@@ -26,13 +27,14 @@
           </ion-label>
         </ion-item>
 
-        <ion-item button detail="true" class="itens-detalhes">
+        <ion-item>
           <ion-label>
             <h3>Imagens dos resíduos</h3>
+            <img src="https://coletaverde.up.railway.app/media/{{ solicitacao.image }}" />
           </ion-label>
         </ion-item>
 
-        <ion-item button detail="true" class="itens-detalhes">
+        <ion-item>
           <ion-label>
             <h3>Observações</h3>
             <p>{{ solicitacao.description }}</p>
@@ -87,7 +89,7 @@
             <ion-button class="btn-aceitar" (click)="finalizarSolicitacao()">Finalizar</ion-button>
           </div>
 
-          <div class="botoes-finais" *ngIf="solicitacao?.progress !== 'inProgress'">
+          <div class="botoes-finais" *ngIf="solicitacao?.progress === 'waiting'">
             <ion-button class="btn-negociar" (click)="cliqueFuncaoDesabilitada()">Negociar</ion-button>
             <ion-button class="btn-aceitar" (click)="aceitarSolicitacao()">Aceitar</ion-button>
           </div>

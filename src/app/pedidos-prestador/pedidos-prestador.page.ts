@@ -113,6 +113,10 @@ export class PedidosPrestadorPage implements OnInit {
   }
 
   abrirDetalhes(pedido: any) {
+    if(pedido.progress=='finished'){
+      this.navCtrl.navigateForward(`/pedido-prestador/${pedido.id}`);
+      return;
+    }
     this.navCtrl.navigateForward(`/finalizar-pedido-prestador/${pedido.id}`);
   }
 }

@@ -233,7 +233,6 @@ ion-content.no-scroll {
     position: fixed;
     overflow-y: auto;
     float: left;
-    max-height: 450px;
 }
 
 .content {
@@ -244,5 +243,9 @@ ion-content.no-scroll {
 @media (max-width: 600px) {
   .content {
     max-width: 900px;
+  }
+
+  .contentBg{
+      max-height: 100%;
   }
 }

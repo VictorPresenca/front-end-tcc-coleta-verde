@@ -140,7 +140,7 @@ ion-tab-button ion-label {
     position: fixed;
     overflow-y: auto;
     float: left;
-    max-height: 450px;
+    padding-bottom: 140px;
 }
 
 .content {
@@ -151,5 +151,9 @@ ion-tab-button ion-label {
 @media (max-width: 600px) {
   .content {
     max-width: 900px;
+  }
+
+  .contentBg{
+      max-height: 100%;
   }
 }

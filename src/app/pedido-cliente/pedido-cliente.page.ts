@@ -57,4 +57,25 @@ export class PedidoClientePage implements OnInit {
     });
     await toast.present();
   }
+
+  getProgressText(progress: string): string {
+    switch (progress) {
+      case 'waiting':
+        return 'AGUARDANDO';
+      case 'accepted':
+        return 'ACEITO';
+      case 'inProgress':
+        return 'EM ANDAMENTO';
+      case 'finished':
+        return 'CONCLUÍDO';
+      case 'expired':
+        return 'EXPIRADO';
+      case 'canceled':
+        return 'CANCELADO';
+      case 'paying':
+        return 'AGUARDANDO PGTO';
+      default:
+        return progress.toUpperCase();
+    }
+  }
 }
