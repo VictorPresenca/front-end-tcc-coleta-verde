@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <app-toolbar-global [titulo]="'Notificações'" [mostrarBotaoVoltar]="false"></app-toolbar-global>
+    <app-toolbar-global
+      [titulo]="'Notificações'"
+      [mostrarBotaoVoltar]="false"
+    ></app-toolbar-global>
   </ion-toolbar>
 </ion-header>
 
@@ -8,10 +11,24 @@
   <div class="content">
     <div class="contentBg">
       <ion-list *ngIf="notificacoes.length > 0; else semDados">
-        <ion-item *ngFor="let notificacao of notificacoes" (click)="cliqueNotificao(notificacao)">
-          Solicitação: Nº {{ notificacao.id || 'Notificação sem título' }}<br>
-          Endereço: {{ notificacao.address.logradouro || 'Notificação sem título' }}
-        </ion-item>
+        <ion-card
+          *ngFor="let notificacao of notificacoes"
+          (click)="cliqueNotificao(notificacao)"
+          class="notificacao-card"
+        >
+          <ion-card-header>
+            <ion-card-title
+              >🗑️ Solicitação Nº {{ notificacao.id || 'Sem número'
+              }}</ion-card-title
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              📍 Endereço: {{ notificacao.address?.logradouro || 'Sem endereço'
+              }}
+            </p>
+          </ion-card-content>
+        </ion-card>
       </ion-list>
 
       <ng-template #semDados>
