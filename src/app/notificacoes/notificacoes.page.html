@@ -17,22 +17,27 @@
           class="notificacao-card"
         >
           <ion-card-header>
-            <ion-card-title
-              >🗑️ Solicitação Nº {{ notificacao.id || 'Sem número'
-              }}</ion-card-title
-            >
+            <ion-card-title>
+              🗑️ Solicitação Nº {{ notificacao.id || 'Sem número' }}
+            </ion-card-title>
           </ion-card-header>
+
           <ion-card-content>
-            <p>
-              📍 Endereço: {{ notificacao.address?.logradouro || 'Sem endereço'
-              }}
-            </p>
+            <ion-label class="ion-text-wrap">
+              <p>
+                📍 <strong>Endereço:</strong>
+                {{ notificacao.address?.logradouro || 'Sem endereço' }}
+              </p>
+            </ion-label>
           </ion-card-content>
         </ion-card>
       </ion-list>
 
       <ng-template #semDados>
-        <ion-text class="ion-padding">Nenhuma notificação encontrada.</ion-text>
+        <div class="ion-text-center ion-padding">
+          <ion-icon name="notifications-off-outline" size="large"></ion-icon>
+          <p>Nenhuma notificação disponível no momento.</p>
+        </div>
       </ng-template>
     </div>
   </div>
